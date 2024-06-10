@@ -1,0 +1,13 @@
+Package: FactoMineR2
+Type: Package
+Title: Multivariate exploratory data analysis in R
+Version: 0.1.0
+Author: Alex YAHIAOUI MARTINEZ 
+Maintainer: Alex YAHIAOUI MARTINEZ <yahiaoui-martinez.alex@outlook.com>
+Description: Perform PCA, MFA, CA, MFA.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr, magrittr
+Suggests: devtools, renv, testthat, covr
+RoxygenNote: 7.3.1
