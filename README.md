@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# FactoMineR <a href=#><img src='man/figures/logo.png' align="right" height="139" /></a>
+# FactoMineR <a href=#><img src='man/figures/sticker.png' align="right" height="139" /></a>
 
-![](https://img.shields.io/badge/github%20version-1.0.0-green.svg)
+![](https://img.shields.io/badge/github%20version-0.1.0-orange.svg)
 
 > Multivariate exploratory data analysis in R
 
@@ -26,13 +26,4 @@ devtools::install_github("alexym1/FactoMineR2")
 
 ``` r
 library(FactoMineR2)
-#> Le chargement a nécessité le package : dplyr
-#> 
-#> Attachement du package : 'dplyr'
-#> Les objets suivants sont masqués depuis 'package:stats':
-#> 
-#>     filter, lag
-#> Les objets suivants sont masqués depuis 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 ```
