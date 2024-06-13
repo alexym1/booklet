@@ -1,8 +1,8 @@
+utils::globalVariables(c("."))
+
 #' Data standardization
 #'
 #' Perform data standardization for multivariate exploratory data analysis.
-#'
-#' @import dplyr
 #'
 #' @param X matrix
 #' @param type nature of standardization

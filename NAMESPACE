@@ -1,1 +1,4 @@
 exportPattern("^[[:alpha:]]+")
+import(dplyr)
+importFrom(magrittr, "%>%", extract2, set_colnames, set_rownames)
+importFrom(stats, cov)

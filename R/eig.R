@@ -2,9 +2,6 @@
 #'
 #' Return eigvalues and eigvectors of a matrix
 #'
-#' @importFrom stats cov
-#' @importFrom magrittr extract2 set_rownames set_colnames
-#'
 #' @param X X_active
 #'
 #' @examples
@@ -12,7 +9,7 @@
 #'
 #' iris[,-5] |>
 #'  standardize(type = "norm") |>
-#'  eigen()
+#'  get_eig()
 #'
 #' @export
 get_eig <- function(X) {
@@ -33,8 +30,6 @@ get_eig <- function(X) {
 #' Compute eigvalues
 #'
 #' Return eigvalues of a matrix
-#'
-#' @importFrom magrittr extract2 set_rownames set_colnames
 #'
 #' @param X X_active
 #'
@@ -59,8 +54,6 @@ eigvalues <- function(X) {
 #' Compute eigvectors
 #'
 #' Return eigvectors of a matrix
-#'
-#' @importFrom magrittr extract2 set_rownames set_colnames
 #'
 #' @param X X_active
 #'

@@ -17,6 +17,6 @@ library(FactoMineR2)
 
 iris[,-5] |>
  standardize(type = "norm") |>
- eigen()
+ get_eig()
 
 }
