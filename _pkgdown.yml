@@ -1,4 +1,18 @@
-url: ~
+url: https://alexym1.github.io/FactoMineR2/
+
 template:
   bootstrap: 5
 
+authors:
+  Alex Martinez:
+    href: https://github.com/alexym1
+
+articles:
+- title: Get started
+  navbar: ~
+  contents:
+  - FactoMineR2
+  - extensions
+
+development:
+  mode: auto

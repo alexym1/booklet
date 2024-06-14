@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# FactoMineR <a href=#><img src='man/figures/sticker.png' align="right" height="139" /></a>
+# FactoMineR <a href=#><img src='man/figures/sticker.png' align="right" width="120" /></a>
 
 ![](https://img.shields.io/badge/github%20version-0.1.0-orange.svg)
 
@@ -9,7 +9,7 @@
 
 ## Overview
 
-`{FactoMineR2}` is a ground-up rewrite of
+`FactoMineR2` is a ground-up rewrite of
 [FactoMineR](https://github.com/husson/FactoMineR/tree/master) that
 provides a set of functions for multivariate exploratory data analysis.
 
