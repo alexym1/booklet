@@ -8,11 +8,34 @@ authors:
     href: https://github.com/alexym1
 
 articles:
-- title: Get started
+- title: Extensions
   navbar: ~
   contents:
-  - FactoMineR2
   - extensions
+
+reference:
+- title: Eigen
+  desc:  Compute eigenvalues and eigenvectors.
+  contents:
+  - get_eigen
+  - eigvalues
+  - eigvectors
+
+- title: Standardization
+  desc:  Standardize a dataset.
+  contents:
+  - standardize
+
+- title: PCA
+  desc: Perform PCA.
+  contents:
+  - pca_ind_coords
+  - pca_ind_cos2
+  - pca_ind_contrib
+  - pca_var_coords
+  - pca_var_cos2
+  - pca_var_contrib
+
 
 development:
   mode: auto

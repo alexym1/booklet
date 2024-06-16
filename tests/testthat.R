@@ -1,4 +1,3 @@
-library(dplyr)
 library(FactoMineR2)
 library(testthat)
 

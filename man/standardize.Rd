@@ -19,13 +19,13 @@ Perform data standardization for multivariate exploratory data analysis.
 \details{
 Standardization depends on what you need to perform factor analysis. Actually,
 there are only two types:
-
-* \code{type = "FactoMineR"}: standardization is performed by centering the
+\itemize{
+\item \code{type = "FactoMineR"}: standardization is performed by centering the
 data matrix and dividing by the square root of the sum of squares of the
 weights. This is the default standardization in FactoMineR::PCA(..., scale.unit = TRUE).
-
-* \code{type = "norm"}: standardization is performed by centering and scaling
+\item \code{type = "norm"}: standardization is performed by centering and scaling
 the data matrix. This is the default standardization in R.
+}
 }
 \examples{
 library(FactoMineR2)

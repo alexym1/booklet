@@ -1,3 +1,5 @@
+library(dplyr)
+
 df <- iris |>
   select(-Species) |>
   standardize(type = "norm")
@@ -42,8 +44,8 @@ test_that("Testing active individuals - cos2", {
 })
 
 test_that("Testing active individuals - contribution", {
-  df_contrib <- pca_ind_contrib(df_coords)
-  gf_contrib <- pca_ind_contrib(gf_coords)
+  df_contrib <- pca_ind_contrib(df_coords, eigvalues(df))
+  gf_contrib <- pca_ind_contrib(gf_coords, eigvalues(gf))
 
   expect_identical(is.matrix(df_contrib), TRUE)
   expect_identical(colnames(df_contrib), paste0("Dim.", 1:ncol(df)))

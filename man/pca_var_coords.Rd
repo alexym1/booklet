@@ -4,12 +4,12 @@
 \alias{pca_var_coords}
 \title{Compute variable coordinates}
 \usage{
-pca_var_coords(eigvalues, eigvectors)
+pca_var_coords(eigenvalues, eigenvectors)
 }
 \arguments{
-\item{eigvalues}{eigvalues}
+\item{eigenvalues}{eigenvalues}
 
-\item{eigvectors}{eigvectors}
+\item{eigenvectors}{eigenvectors}
 }
 \description{
 Return variable coordinates

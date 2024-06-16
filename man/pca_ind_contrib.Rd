@@ -4,10 +4,12 @@
 \alias{pca_ind_contrib}
 \title{Compute individual contributions}
 \usage{
-pca_ind_contrib(ind_coords)
+pca_ind_contrib(ind_coords, eigenvalues)
 }
 \arguments{
 \item{ind_coords}{individual coordinates}
+
+\item{eigenvalues}{eigenvalues}
 }
 \description{
 Return indivdual contributions for each principal component
@@ -21,8 +23,11 @@ X_active <- iris[,-5] |>
 vectors <- X_active |>
   eigvectors()
 
+values <- X_active |>
+  eigvalues()
+
 X_active |>
   pca_ind_coords(vectors) |>
-  pca_ind_contrib()
+  pca_ind_contrib(values)
 
 }

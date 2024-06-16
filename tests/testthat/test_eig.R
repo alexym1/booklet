@@ -1,3 +1,5 @@
+library(dplyr)
+
 df <- iris |>
   select(-Species) |>
   standardize(type = "norm")
@@ -7,8 +9,8 @@ gf <- iris |>
   standardize(type = "FactoMineR")
 
 test_that("Testing get_eig()", {
-  df_eigs <- get_eig(df)
-  gf_eigs <- get_eig(gf)
+  df_eigs <- get_eigen(df)
+  gf_eigs <- get_eigen(gf)
 
   expect_identical(names(df_eigs), c("values", "vectors"))
   expect_identical(length(df_eigs[[1]]), ncol(df))

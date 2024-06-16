@@ -9,10 +9,10 @@
 #'
 #' iris[,-5] |>
 #'  standardize(type = "norm") |>
-#'  get_eig()
+#'  get_eigen()
 #'
 #' @export
-get_eig <- function(X) {
+get_eigen <- function(X) {
 
   eigs <- X %>%
     cov() %>%
@@ -43,7 +43,7 @@ get_eig <- function(X) {
 #' @export
 eigvalues <- function(X) {
 
-  vct_eigvalues <- get_eig(X) %>%
+  vct_eigvalues <- get_eigen(X) %>%
     extract2(1)
 
   return(vct_eigvalues)
@@ -67,7 +67,7 @@ eigvalues <- function(X) {
 #' @export
 eigvectors <- function(X) {
 
-  mtx_eigvectors <- get_eig(X) %>%
+  mtx_eigvectors <- get_eigen(X) %>%
     extract2(2)
 
     return(mtx_eigvectors)

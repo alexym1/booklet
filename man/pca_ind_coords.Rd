@@ -4,12 +4,12 @@
 \alias{pca_ind_coords}
 \title{Compute coordinates for individuals}
 \usage{
-pca_ind_coords(X, eigvectors)
+pca_ind_coords(X, eigenvectors)
 }
 \arguments{
 \item{X}{X_active}
 
-\item{eigvectors}{eigenvectors}
+\item{eigenvectors}{eigenvectors}
 }
 \description{
 Return principal component for individuals

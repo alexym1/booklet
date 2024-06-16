@@ -1,88 +1,57 @@
 ---
-title: "Extensions"
+title: "Data visualization with factoextra"
 output: rmarkdown::html_vignette
 description: >
-  Start here if this is your first time using dplyr. You'll learn the basic   
-  philosophy, the most important data manipulation verbs, and the pipe, `%>%`, 
-  which allows you to combine multiple verbs together to solve real problems.
+  Extract and Visualize the results of multivariate data analyses.
 vignette: >
-  %\VignetteIndexEntry{Extensions}
+  %\VignetteIndexEntry{Data visualization with factoextra}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r, echo = FALSE, message = FALSE}
+```{r echo=FALSE, message = FALSE, warning=FALSE}
 knitr::opts_chunk$set(collapse = T, comment = "#>")
-options(tibble.print_min = 4L, tibble.print_max = 4L)
+```
+
+
+`FactoMineR2` is an R package that provides an efficient and user-friendly way to perform multivariate data analyses. `factoextra` was initially designed for `FactoMineR` but you can easily use it with `FactoMineR2` for data visualization. This vignette provides a quick overview of how to use `factoextra` with `FactoMineR2`.
+
+
+```{r message = FALSE, warning=FALSE}
 library(dplyr)
-set.seed(1014)
+library(factoextra)
+library(FactoMineR)
+library(FactoMineR2)
+library(magrittr)
+data(decathlon)
 ```
 
-When working with data you must:
 
-* Figure out what you want to do.
-
-* Describe those tasks in the form of a computer program.
-
-* Execute the program.
-
-The dplyr package makes these steps fast and easy:
-
-* By constraining your options, it helps you think about your data manipulation 
-  challenges.
-
-* It provides simple "verbs", functions that correspond to the most common data 
-  manipulation tasks, to help you translate your thoughts into code.
-
-* It uses efficient backends, so you spend less time waiting for the computer.
-
-This document introduces you to dplyr's basic set of tools, and shows you how to apply them to data frames. dplyr also supports databases via the dbplyr package, once you've installed, read `vignette("dbplyr")` to learn more.
-
-## Data: starwars
-
-To explore the basic data manipulation verbs of dplyr, we'll use the dataset `starwars`. This dataset contains `r nrow(starwars)` characters and comes from the [Star Wars API](https://swapi.dev), and is documented in `?starwars`
+## Eigs
 
 ```{r}
-dim(starwars)
-starwars
+X_sup <- decathlon[, 11:13]
+X_active <- decathlon[, -c(11:13)]
+
+eigs <- X_active |>
+  standardize(type = "norm") |>
+  get_eigen()
+
+df_eigs <- eigs |>
+  extract(1) |>
+  as.data.frame() |>
+  rename(eigenvalue = values) |>
+  mutate(
+    `percentage of variance` = eigenvalue / sum(eigenvalue) * 100,
+    `cumulative percentage of variance` = cumsum(`percentage of variance`)
+  )
+
+res_pca2 <- list(
+  eig = df_eigs
+)
+
+class(res_pca2) <- "PCA"
+
+factoextra::fviz_eig(res_pca2)
 ```
 
-Note that `starwars` is a tibble, a modern reimagining of the data frame. It's particularly useful for large datasets because it only prints the first few rows. You can learn more about tibbles at <https://tibble.tidyverse.org>; in particular you can convert data frames to tibbles with `as_tibble()`.
-
-## Single table verbs
-
-dplyr aims to provide a function for each basic verb of data manipulation. These verbs can be organised into three categories based on the component of the dataset that they work with:
-
-* Rows:
-  * `filter()` chooses rows based on column values.
-  * `slice()` chooses rows based on location.
-  * `arrange()` changes the order of the rows.
-  
-* Columns:
-  * `select()` changes whether or not a column is included.
-  * `rename()` changes the name of columns.
-  * `mutate()` changes the values of columns and creates new columns.
-  * `relocate()` changes the order of the columns.
-
-* Groups of rows:
-  * `summarise()` collapses a group into a single row.
-  
-### The pipe
-
-All of the dplyr functions take a data frame (or tibble) as the first argument. Rather than forcing the user to either save intermediate objects or nest functions, dplyr provides the `%>%` operator from magrittr. `x %>% f(y)` turns into `f(x, y)` so the result from one step is then "piped" into the next step. You can use the pipe to rewrite multiple operations that you can read left-to-right, top-to-bottom (reading the pipe operator as "then"). 
-
-### Filter rows with `filter()`
-
-`filter()` allows you to select a subset of rows in a data frame. Like all single verbs, the first argument is the tibble (or data frame). The second and subsequent arguments refer to variables within that data frame, selecting rows where the expression is `TRUE`.
-
-For example, we can select all character with light skin color and brown eyes with:
-
-```{r}
-starwars %>% filter(skin_color == "light", eye_color == "brown")
-```
-
-This is roughly equivalent to this base R code:
-
-```{r, eval = FALSE}
-starwars[starwars$skin_color == "light" & starwars$eye_color == "brown", ]
-```
