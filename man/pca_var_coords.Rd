@@ -2,9 +2,12 @@
 % Please edit documentation in R/pca.R
 \name{pca_var_coords}
 \alias{pca_var_coords}
+\alias{pca_var_cor}
 \title{Compute variable coordinates}
 \usage{
 pca_var_coords(eigenvalues, eigenvectors)
+
+pca_var_cor(eigenvalues, eigenvectors)
 }
 \arguments{
 \item{eigenvalues}{eigenvalues}
@@ -17,7 +20,7 @@ Return variable coordinates
 \examples{
 library(FactoMineR2)
 
-X_active <- iris[,-5] |>
+X_active <- iris[, -5] |>
   standardize(type = "norm")
 
 vectors <- X_active |>

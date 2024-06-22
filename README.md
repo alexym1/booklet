@@ -65,7 +65,7 @@ vectors
 ```
 
 ``` r
-# Get individual coordinates
+# Get principal components
 X_active |> pca_ind_coords(vectors) |> head()
 #>         Dim.1      Dim.2       Dim.3        Dim.4
 #> [1,] 2.257141  0.4784238 -0.12727962 -0.024087508

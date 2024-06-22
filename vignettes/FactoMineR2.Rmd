@@ -62,12 +62,12 @@ df_eigs |> head()
 ### Individuals
 
 ```{r}
-# Get individual coordinates with FactoMineR
+# Get principal components with FactoMineR
 head(res_pca$ind$coord)
 ```
 
 ```{r}
-# Get individual coordinates with FactoMineR2
+# Get principal components with FactoMineR2
 X_active <- X_active |> standardize(type = "FactoMineR", scale.unit = TRUE)
 vectors <- X_active |> eigvectors()
 ind_coords <- X_active |> pca_ind_coords(vectors)
@@ -91,7 +91,7 @@ head(res_pca$ind$contrib)
 ```
 
 ```{r}
-# Get individual cos2 with FactoMineR2
+# Get individual contributions with FactoMineR2
 ind_contrib <- ind_coords |> pca_ind_contrib(df_eigs$eigenvalue)
 ind_contrib[,1:5] |> head()
 ```

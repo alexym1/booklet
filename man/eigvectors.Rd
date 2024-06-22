@@ -15,8 +15,8 @@ Return eigvectors of a matrix
 \examples{
 library(FactoMineR2)
 
-iris[,-5] |>
- standardize(type = "norm") |>
- eigvectors()
+iris[, -5] |>
+  standardize(type = "norm") |>
+  eigvectors()
 
 }

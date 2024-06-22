@@ -7,13 +7,12 @@
 #' @examples
 #' library(FactoMineR2)
 #'
-#' iris[,-5] |>
-#'  standardize(type = "norm") |>
-#'  get_eigen()
+#' iris[, -5] |>
+#'   standardize(type = "norm") |>
+#'   get_eigen()
 #'
 #' @export
 get_eigen <- function(X) {
-
   eigs <- X %>%
     cov() %>%
     eigen()
@@ -24,7 +23,6 @@ get_eigen <- function(X) {
     set_colnames(paste0("Dim.", 1:ncol(X)))
 
   return(eigs)
-
 }
 
 #' Compute eigvalues
@@ -36,18 +34,16 @@ get_eigen <- function(X) {
 #' @examples
 #' library(FactoMineR2)
 #'
-#' iris[,-5] |>
-#'  standardize(type = "norm") |>
-#'  eigvalues()
+#' iris[, -5] |>
+#'   standardize(type = "norm") |>
+#'   eigvalues()
 #'
 #' @export
 eigvalues <- function(X) {
-
   vct_eigvalues <- get_eigen(X) %>%
     extract2(1)
 
   return(vct_eigvalues)
-
 }
 
 
@@ -60,16 +56,14 @@ eigvalues <- function(X) {
 #' @examples
 #' library(FactoMineR2)
 #'
-#' iris[,-5] |>
-#'  standardize(type = "norm") |>
-#'  eigvectors()
+#' iris[, -5] |>
+#'   standardize(type = "norm") |>
+#'   eigvectors()
 #'
 #' @export
 eigvectors <- function(X) {
-
   mtx_eigvectors <- get_eigen(X) %>%
     extract2(2)
 
-    return(mtx_eigvectors)
-
+  return(mtx_eigvectors)
 }

@@ -30,7 +30,7 @@ the data matrix. This is the default standardization in R.
 \examples{
 library(FactoMineR2)
 
-iris[,-5] |>
- standardize(type = "norm")
+iris[, -5] |>
+  standardize(type = "norm")
 
 }

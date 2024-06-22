@@ -15,8 +15,8 @@ Return eigvalues of a matrix
 \examples{
 library(FactoMineR2)
 
-iris[,-5] |>
- standardize(type = "norm") |>
- eigvalues()
+iris[, -5] |>
+  standardize(type = "norm") |>
+  eigvalues()
 
 }

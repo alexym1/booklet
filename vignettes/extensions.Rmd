@@ -33,6 +33,7 @@ data(decathlon)
 X_sup <- decathlon[, 11:13]
 X_active <- decathlon[, -c(11:13)]
 
+### Eigvalues & eigvectors
 eigs <- X_active |>
   standardize(type = "norm") |>
   get_eigen()
@@ -46,12 +47,49 @@ df_eigs <- eigs |>
     `cumulative percentage of variance` = cumsum(`percentage of variance`)
   )
 
-res_pca2 <- list(
-  eig = df_eigs
+
+### Individuals
+X_active <- X_active |> standardize(type = "FactoMineR", scale.unit = TRUE)
+vectors <- X_active |> eigvectors()
+ind_coords <- X_active |> pca_ind_coords(vectors)
+
+lst_ind <- list(
+  coord = ind_coords,
+  cos2 = ind_coords |> pca_ind_cos2(),
+  contrib = ind_coords |> pca_ind_contrib(df_eigs$eigenvalue)
 )
 
-class(res_pca2) <- "PCA"
 
-factoextra::fviz_eig(res_pca2)
+### Variables
+var_coords <- df_eigs$eigenvalue |> pca_var_coords(vectors)
+
+
+### Summary
+lst_var <- list(
+  coord=var_coords,
+  cor=var_coords,
+  cos2=var_coords |> pca_var_cos2(),
+  contrib=var_coords |> pca_var_contrib()
+)
+
+res_pca <- list(
+  eig = df_eigs,
+  var = lst_var,
+  ind = lst_ind,
+  call = list(scale.unit = TRUE)
+)
+
+class(res_pca) <- c("PCA", "list")
 ```
 
+```{r}
+fviz_eig(res_pca)
+```
+
+```{r}
+fviz_pca_ind(res_pca)
+```
+
+```{r}
+fviz_pca_var(res_pca)
+```

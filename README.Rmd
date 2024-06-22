@@ -61,7 +61,7 @@ vectors
 ```
 
 ```{r, message = FALSE, warning = FALSE}
-# Get individual coordinates
+# Get principal components
 X_active |> pca_ind_coords(vectors) |> head()
 ```
 

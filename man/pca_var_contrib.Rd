@@ -15,7 +15,7 @@ Return variable contributions
 \examples{
 library(FactoMineR2)
 
-X_active <- iris[,-5] |>
+X_active <- iris[, -5] |>
   standardize(type = "norm")
 
 vectors <- X_active |>

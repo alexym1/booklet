@@ -8,7 +8,7 @@
 #' @examples
 #' library(FactoMineR2)
 #'
-#' X_active <- iris[,-5] |>
+#' X_active <- iris[, -5] |>
 #'   standardize(type = "norm")
 #'
 #' vectors <- X_active |>
@@ -32,7 +32,7 @@ pca_ind_coords <- function(X, eigenvectors) {
 #' @examples
 #' library(FactoMineR2)
 #'
-#' X_active <- iris[,-5] |>
+#' X_active <- iris[, -5] |>
 #'   standardize(type = "norm")
 #'
 #' vectors <- X_active |>
@@ -44,7 +44,7 @@ pca_ind_coords <- function(X, eigenvectors) {
 #'
 #' @export
 pca_ind_cos2 <- function(ind_coords) {
-  ind_coords <- -1*ind_coords
+  ind_coords <- -1 * ind_coords
   ind_cos2 <- ind_coords^2 / rowSums(ind_coords^2)
   return(ind_cos2)
 }
@@ -60,7 +60,7 @@ pca_ind_cos2 <- function(ind_coords) {
 #' @examples
 #' library(FactoMineR2)
 #'
-#' X_active <- iris[,-5] |>
+#' X_active <- iris[, -5] |>
 #'   standardize(type = "norm")
 #'
 #' vectors <- X_active |>
@@ -91,7 +91,7 @@ pca_ind_contrib <- function(ind_coords, eigenvalues) {
 #' @examples
 #' library(FactoMineR2)
 #'
-#' X_active <- iris[,-5] |>
+#' X_active <- iris[, -5] |>
 #'   standardize(type = "norm")
 #'
 #' vectors <- X_active |>
@@ -103,9 +103,17 @@ pca_ind_contrib <- function(ind_coords, eigenvalues) {
 #'
 #' @export
 pca_var_coords <- function(eigenvalues, eigenvectors) {
-  var_coords <- -1*(eigenvectors %*% (eigenvalues %>% sqrt() %>% diag))
+  var_coords <- -1 * (eigenvectors %*% (eigenvalues %>% sqrt() %>% diag()))
   colnames(var_coords) <- paste0("Dim.", 1:ncol(var_coords))
   return(var_coords)
+}
+
+#' @rdname pca_var_coords
+#' @export
+pca_var_cor <- function(eigenvalues, eigenvectors) {
+  var_cor <- -1 * (eigenvectors %*% (eigenvalues %>% sqrt() %>% diag()))
+  colnames(var_cor) <- paste0("Dim.", 1:ncol(var_cor))
+  return(var_cor)
 }
 
 
@@ -118,7 +126,7 @@ pca_var_coords <- function(eigenvalues, eigenvectors) {
 #' @examples
 #' library(FactoMineR2)
 #'
-#' X_active <- iris[,-5] |>
+#' X_active <- iris[, -5] |>
 #'   standardize(type = "norm")
 #'
 #' vectors <- X_active |>
@@ -145,7 +153,7 @@ pca_var_cos2 <- function(var_coords) {
 #' @examples
 #' library(FactoMineR2)
 #'
-#' X_active <- iris[,-5] |>
+#' X_active <- iris[, -5] |>
 #'   standardize(type = "norm")
 #'
 #' vectors <- X_active |>
