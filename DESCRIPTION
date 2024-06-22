@@ -1,0 +1,29 @@
+Package: FactoMineR2
+Type: Package
+Title: Multivariate exploratory data analysis in R
+Version: 0.1.0
+Authors@R: c(
+    person("Alex", "Martinez", , "yahiaoui-martinez.alex@outlook.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5315-675X"))
+    )
+Description: Perform PCA, MFA, CA, MFA.
+License: MIT + file LICENSE
+URL: https://github.com/alexym1/FactoMineR2
+BugReports: https://github.com/alexym1/FactoMineR2/issues
+Imports:
+    covr,
+    dplyr,
+    factoextra,
+    FactoMineR,
+    knitr,
+    magrittr
+Suggests: 
+    devtools, 
+    renv, 
+    testthat
+VignetteBuilder:
+    knitr
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
