@@ -8,7 +8,7 @@
 ![](https://img.shields.io/badge/github%20version-0.1.0-orange.svg)
 [![R-CMD-check](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/main/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=main)
+coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=master)
 <!-- badges: end -->
 
 > Multivariate exploratory data analysis in R
@@ -81,5 +81,5 @@ X_active |> pca_ind_coords(vectors) |> head()
 ## Code of conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://github.com/alexym1/FactoMineR2/.github/CODE_OF_CONDUCT.md).
+Conduct](https://github.com/alexym1/FactoMineR2/blob/master/.github/CODE_OF_CONDUCT.md).
 By participating in this project you agree to abide by its terms.
