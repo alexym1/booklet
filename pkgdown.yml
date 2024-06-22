@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   extensions: extensions.html
   FactoMineR2: FactoMineR2.html
-last_built: 2024-06-22T14:27Z
+last_built: 2024-06-22T14:37Z
 urls:
   reference: https://alexym1.github.io/FactoMineR2/reference
   article: https://alexym1.github.io/FactoMineR2/articles
