@@ -11,13 +11,13 @@ License: MIT + file LICENSE
 URL: https://github.com/alexym1/FactoMineR2
 BugReports: https://github.com/alexym1/FactoMineR2/issues
 Imports:
+    covr,
     dplyr,
     factoextra,
     FactoMineR,
     knitr,
     magrittr
 Suggests: 
-    covr,
     devtools, 
     renv, 
     testthat
