@@ -9,3 +9,4 @@
 ^pkgdown$
 ^LICENSE\.md$
 ^NEWS\.md$
+^codecov\.yml$
