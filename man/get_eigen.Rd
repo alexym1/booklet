@@ -2,9 +2,15 @@
 % Please edit documentation in R/eig.R
 \name{get_eigen}
 \alias{get_eigen}
+\alias{eigvalues}
+\alias{eigvectors}
 \title{Compute eigvalues and eigvectors}
 \usage{
 get_eigen(X, weights = NULL)
+
+eigvalues(X, weights = NULL)
+
+eigvectors(X, weights = NULL)
 }
 \arguments{
 \item{X}{X_active}

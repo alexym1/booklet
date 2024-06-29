@@ -31,44 +31,19 @@ get_eigen <- function(X, weights = NULL) {
   return(eigs)
 }
 
-#' Compute eigvalues
-#'
-#' Return eigvalues of a matrix
-#'
-#' @param X X_active
-#'
-#' @examples
-#' library(FactoMineR2)
-#'
-#' iris[, -5] |>
-#'   standardize_norm() |>
-#'   eigvalues()
-#'
+#' @rdname get_eigen
 #' @export
-eigvalues <- function(X) {
-  vct_eigvalues <- get_eigen(X) %>%
+eigvalues <- function(X, weights = NULL) {
+  vct_eigvalues <- get_eigen(X, weights) %>%
     extract2(1)
 
   return(vct_eigvalues)
 }
 
-
-#' Compute eigvectors
-#'
-#' Return eigvectors of a matrix
-#'
-#' @param X X_active
-#'
-#' @examples
-#' library(FactoMineR2)
-#'
-#' iris[, -5] |>
-#'   standardize_norm() |>
-#'   eigvectors()
-#'
+#' @rdname get_eigen
 #' @export
-eigvectors <- function(X) {
-  mtx_eigvectors <- get_eigen(X) %>%
+eigvectors <- function(X, weights = NULL) {
+  mtx_eigvectors <- get_eigen(X, weights) %>%
     extract2(2)
 
   return(mtx_eigvectors)
