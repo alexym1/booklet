@@ -34,12 +34,6 @@
     <loc>https://alexym1.github.io/FactoMineR2/news/index.html</loc>
   </url>
   <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/eigvalues.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/eigvectors.html</loc>
-  </url>
-  <url>
     <loc>https://alexym1.github.io/FactoMineR2/reference/get_eigen.html</loc>
   </url>
   <url>
@@ -64,6 +58,6 @@
     <loc>https://alexym1.github.io/FactoMineR2/reference/pca_var_cos2.html</loc>
   </url>
   <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/standardize.html</loc>
+    <loc>https://alexym1.github.io/FactoMineR2/reference/standardize_norm.html</loc>
   </url>
 </urlset>

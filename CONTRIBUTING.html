@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="index.html">FactoMineR2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,9 +96,11 @@
 <h3 id="pull-request">Pull request<a class="anchor" aria-label="anchor" href="#pull-request"></a></h3>
 <ul><li><ol style="list-style-type: decimal"><li>Check unit tests and package’s standards (see Contribution)</li>
 </ol></li>
-<li><ol start="2" style="list-style-type: decimal"><li>For user-facing changes, add a bullet to the top of <code>NEWS.md</code> below the current development version header describing the changes made followed by your GitHub username, and links to relevant issue(s)/PR(s). <code># Update the existing NEWS.md file     pkgdown::build_site()</code>
+<li>
+<ol start="2" style="list-style-type: decimal"><li>For user-facing changes, add a bullet to the top of <code>NEWS.md</code> below the current development version header describing the changes made followed by your GitHub username, and links to relevant issue(s)/PR(s).</li>
+</ol><pre><code><span><span class="co"># Update the existing NEWS.md file</span></span>
+<span><span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">build_site</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </li>
-</ol></li>
 <li><ol start="3" style="list-style-type: decimal"><li>Create a pull request to <code>&lt;your_branch_name&gt;</code> to <code>master</code> or <code>main</code>.</li>
 </ol></li>
 <li><ol start="4" style="list-style-type: decimal"><li>Copy/Paste the latest bullet of <code>NEWS.md</code> in the PR description.</li>
