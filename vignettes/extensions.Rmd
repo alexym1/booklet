@@ -27,7 +27,7 @@ data(decathlon)
 ```
 
 
-## Eigs
+## Data preparation
 
 ```{r}
 X_sup <- decathlon[, 11:13]
@@ -35,7 +35,7 @@ X_active <- decathlon[, -c(11:13)]
 
 ### Eigvalues & eigvectors
 eigs <- X_active |>
-  standardize(type = "norm") |>
+  standardize(scale = TRUE) |>
   get_eigen()
 
 df_eigs <- eigs |>
@@ -49,7 +49,7 @@ df_eigs <- eigs |>
 
 
 ### Individuals
-X_active <- X_active |> standardize(type = "FactoMineR", scale.unit = TRUE)
+X_active <- X_active |> standardize(scale = TRUE)
 vectors <- X_active |> eigvectors()
 ind_coords <- X_active |> pca_ind_coords(vectors)
 
@@ -82,13 +82,19 @@ res_pca <- list(
 class(res_pca) <- c("PCA", "list")
 ```
 
+## Eigs
+
 ```{r}
 fviz_eig(res_pca)
 ```
 
+## Individuals
+
 ```{r}
 fviz_pca_ind(res_pca)
 ```
+
+## Variables
 
 ```{r}
 fviz_pca_var(res_pca)

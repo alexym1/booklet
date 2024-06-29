@@ -3,19 +3,25 @@
 #' Return eigvalues and eigvectors of a matrix
 #'
 #' @param X X_active
+#' @param weights an optional row weights (by default, a vector of 1 for uniform row weights); the weights are given only for the active individuals
 #'
 #' @examples
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize(type = "norm") |>
+#'   standardize_norm() |>
 #'   get_eigen()
 #'
 #' @export
-get_eigen <- function(X) {
-  eigs <- X %>%
-    cov() %>%
-    eigen()
+get_eigen <- function(X, weights = NULL) {
+  if (!is.null(weights)) {
+    svd_res <- svd(t(t(X) * sqrt(weights)))
+    eigs <- list(values = svd_res$d^2, vectors = svd_res$v)
+  } else {
+    eigs <- X %>%
+      cov() %>%
+      eigen()
+  }
 
   eigs[[2]] <- eigs %>%
     extract2(2) %>%
@@ -35,7 +41,7 @@ get_eigen <- function(X) {
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize(type = "norm") |>
+#'   standardize_norm() |>
 #'   eigvalues()
 #'
 #' @export
@@ -57,7 +63,7 @@ eigvalues <- function(X) {
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize(type = "norm") |>
+#'   standardize_norm() |>
 #'   eigvectors()
 #'
 #' @export

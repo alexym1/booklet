@@ -57,6 +57,7 @@ your PR.
 * 2. For user-facing changes, add a bullet to the top of `NEWS.md` below the current
 development version header describing the changes made followed by your GitHub
 username, and links to relevant issue(s)/PR(s).
+
     ```
     # Update the existing NEWS.md file
     pkgdown::build_site()

@@ -18,7 +18,7 @@ Return indivdual contributions for each principal component
 library(FactoMineR2)
 
 X_active <- iris[, -5] |>
-  standardize(type = "norm")
+  standardize_norm()
 
 vectors <- X_active |>
   eigvectors()

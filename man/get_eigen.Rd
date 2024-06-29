@@ -4,10 +4,12 @@
 \alias{get_eigen}
 \title{Compute eigvalues and eigvectors}
 \usage{
-get_eigen(X)
+get_eigen(X, weights = NULL)
 }
 \arguments{
 \item{X}{X_active}
+
+\item{weights}{an optional row weights (by default, a vector of 1 for uniform row weights); the weights are given only for the active individuals}
 }
 \description{
 Return eigvalues and eigvectors of a matrix
@@ -16,7 +18,7 @@ Return eigvalues and eigvectors of a matrix
 library(FactoMineR2)
 
 iris[, -5] |>
-  standardize(type = "norm") |>
+  standardize_norm() |>
   get_eigen()
 
 }

@@ -16,7 +16,7 @@ Return eigvectors of a matrix
 library(FactoMineR2)
 
 iris[, -5] |>
-  standardize(type = "norm") |>
+  standardize_norm() |>
   eigvectors()
 
 }

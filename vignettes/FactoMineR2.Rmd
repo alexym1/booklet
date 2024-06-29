@@ -41,7 +41,7 @@ X_sup <- decathlon[, 11:13]
 X_active <- decathlon[, -c(11:13)]
 
 eigs <- X_active |>
-    standardize(type = "norm") |>
+    standardize_norm(scale = TRUE) |>
     get_eigen()
 
 df_eigs <- eigs |>
@@ -68,7 +68,7 @@ head(res_pca$ind$coord)
 
 ```{r}
 # Get principal components with FactoMineR2
-X_active <- X_active |> standardize(type = "FactoMineR", scale.unit = TRUE)
+X_active <- X_active |> standardize(scale = TRUE)
 vectors <- X_active |> eigvectors()
 ind_coords <- X_active |> pca_ind_coords(vectors)
 ind_coords[,1:5]  |> head()

@@ -2,11 +2,11 @@ library(dplyr)
 
 df <- iris |>
   select(-Species) |>
-  standardize(type = "norm")
+  standardize_norm()
 
 gf <- iris |>
   select(-Species) |>
-  standardize(type = "FactoMineR")
+  standardize()
 
 df_eigvectors <- df |>
   eigvectors()

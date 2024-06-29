@@ -1,6 +1,10 @@
-# FactoMineR2 (development version)
+# FactoMineR2 0.1.1
 
-* `README`: Code of Conduct's hyperlink works as expected. Codecov badge uses the `master` branch instead of `main`.
+* `standardize()` now works as expected with `scale = FALSE` (#1)
+
+* `standardize_norm()` has replaced `standardize(type = "norm", ...)`
+
+* Codecov badge has been fixed and now use `master` instead of `main` branch for coding coverage.
 
 
 # FactoMineR2 0.1.0
