@@ -5,10 +5,10 @@
 
 <!-- badges: start -->
 
-![](https://img.shields.io/badge/github%20version-0.1.0-orange.svg)
+![](https://img.shields.io/badge/github%20version-0.1.1-orange.svg)
 [![R-CMD-check](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/main/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=main)
+coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=master)
 <!-- badges: end -->
 
 > Multivariate exploratory data analysis in R
@@ -25,12 +25,6 @@ implemented. However, the main functions are already available.
 
 ## Installation
 
-`FactoMineR2` can be installed from CRAN as follows:
-
-``` r
-install.packages("fusionchartsR")
-```
-
 The latest version can be installed from GitHub as follows:
 
 ``` r
@@ -44,7 +38,7 @@ devtools::install_github("alexym1/FactoMineR2")
 library(FactoMineR2)
 
 # Get active individuals
-X_active <- iris[,-5] |> standardize(type = "norm")
+X_active <- iris[,-5] |> standardize_norm()
 X_active |> head()
 #>      Sepal.Length Sepal.Width Petal.Length Petal.Width
 #> [1,]   -0.8976739  1.01560199    -1.335752   -1.311052
@@ -81,5 +75,5 @@ X_active |> pca_ind_coords(vectors) |> head()
 ## Code of conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://github.com/alexym1/FactoMineR2/.github/CODE_OF_CONDUCT.md).
-By participating in this project you agree to abide by its terms.
+Conduct](https://alexym1.github.io/FactoMineR2/CONTRIBUTING.html). By
+participating in this project you agree to abide by its terms.

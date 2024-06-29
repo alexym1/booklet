@@ -9,7 +9,7 @@
 #' library(FactoMineR2)
 #'
 #' X_active <- iris[, -5] |>
-#'   standardize(type = "norm")
+#'   standardize_norm()
 #'
 #' vectors <- X_active |>
 #'   eigvectors()
@@ -33,7 +33,7 @@ pca_ind_coords <- function(X, eigenvectors) {
 #' library(FactoMineR2)
 #'
 #' X_active <- iris[, -5] |>
-#'   standardize(type = "norm")
+#'   standardize_norm()
 #'
 #' vectors <- X_active |>
 #'   eigvectors()
@@ -61,7 +61,7 @@ pca_ind_cos2 <- function(ind_coords) {
 #' library(FactoMineR2)
 #'
 #' X_active <- iris[, -5] |>
-#'   standardize(type = "norm")
+#'   standardize_norm()
 #'
 #' vectors <- X_active |>
 #'   eigvectors()
@@ -92,7 +92,7 @@ pca_ind_contrib <- function(ind_coords, eigenvalues) {
 #' library(FactoMineR2)
 #'
 #' X_active <- iris[, -5] |>
-#'   standardize(type = "norm")
+#'   standardize_norm()
 #'
 #' vectors <- X_active |>
 #'   eigvectors()
@@ -127,7 +127,7 @@ pca_var_cor <- function(eigenvalues, eigenvectors) {
 #' library(FactoMineR2)
 #'
 #' X_active <- iris[, -5] |>
-#'   standardize(type = "norm")
+#'   standardize_norm()
 #'
 #' vectors <- X_active |>
 #'   eigvectors()
@@ -154,7 +154,7 @@ pca_var_cos2 <- function(var_coords) {
 #' library(FactoMineR2)
 #'
 #' X_active <- iris[, -5] |>
-#'   standardize(type = "norm")
+#'   standardize_norm()
 #'
 #' vectors <- X_active |>
 #'   eigvectors()

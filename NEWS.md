@@ -1,4 +1,15 @@
-# FactoMineR2 (development version)
+# FactoMineR2 0.1.1
+
+* `standardize()` now works as expected with `scale = FALSE` (#1)
+
+* A new argument called `weights` has been added to `get_eigen()`, `eigvalues()` and `eigvectors()` functions. This argument allows to weight the variables in the PCA.
+
+* `standardize_norm()` has replaced `standardize(type = "norm", ...)`
+
+* Codecov badge has been fixed and now use `master` instead of `main` branch for coding coverage.
+
+
+# FactoMineR2 0.1.0
 
 * `get_eig()` is a wrapper function that returns eigenvalues and eigenvectors.
 
