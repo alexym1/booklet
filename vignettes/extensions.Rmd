@@ -30,12 +30,11 @@ data(decathlon)
 ## Data preparation
 
 ```{r}
-X_sup <- decathlon[, 11:13]
-X_active <- decathlon[, -c(11:13)]
+X_active <- decathlon[, -c(11:13)] |>
+  standardize(scale = TRUE)
 
 ### Eigvalues & eigvectors
 eigs <- X_active |>
-  standardize(scale = TRUE) |>
   get_eigen()
 
 df_eigs <- eigs |>
@@ -49,9 +48,7 @@ df_eigs <- eigs |>
 
 
 ### Individuals
-X_active <- X_active |> standardize(scale = TRUE)
-vectors <- X_active |> eigvectors()
-ind_coords <- X_active |> pca_ind_coords(vectors)
+ind_coords <- X_active |> pca_ind_coords(eigs$vectors)
 
 lst_ind <- list(
   coord = ind_coords,
@@ -61,7 +58,7 @@ lst_ind <- list(
 
 
 ### Variables
-var_coords <- df_eigs$eigenvalue |> pca_var_coords(vectors)
+var_coords <- df_eigs$eigenvalue |> pca_var_coords(eigs$vectors)
 
 
 ### Summary

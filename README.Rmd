@@ -42,6 +42,7 @@ devtools::install_github("alexym1/FactoMineR2")
 
 ```{r, message = FALSE, warning = FALSE}
 library(FactoMineR2)
+library(magrittr)
 
 # Get active individuals
 X_active <- iris[,-5] |> standardize_norm()
@@ -50,13 +51,13 @@ X_active |> head()
 
 ```{r, message = FALSE, warning = FALSE}
 # Get eigenvectors
-vectors <- X_active |> eigvectors()
-vectors
+eigen_vectors <- X_active |> get_eigen() |> extract2(2)
+eigen_vectors |> head()
 ```
 
 ```{r, message = FALSE, warning = FALSE}
 # Get principal components
-X_active |> pca_ind_coords(vectors) |> head()
+X_active |> pca_ind_coords(eigen_vectors) |> head()
 ```
 
 

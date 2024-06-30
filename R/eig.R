@@ -3,7 +3,15 @@
 #' Return eigvalues and eigvectors of a matrix
 #'
 #' @param X X_active
-#' @param weights an optional row weights (by default, a vector of 1 for uniform row weights); the weights are given only for the active individuals
+#'
+#' @details
+#' Standardization depends on what you need to perform factor analysis. We
+#' implemented two types:
+#'
+#' * \code{get_weighted_eigen}: This is the default method in FactoMineR to compute
+#' eigvalues and eigvectors.
+#'
+#' * \code{get_eigen}:
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -13,38 +21,27 @@
 #'   get_eigen()
 #'
 #' @export
-get_eigen <- function(X, weights = NULL) {
-  if (!is.null(weights)) {
-    svd_res <- svd(t(t(X) * sqrt(weights)))
-    eigs <- list(values = svd_res$d^2, vectors = svd_res$v)
-  } else {
-    eigs <- X %>%
-      cov() %>%
-      eigen()
-  }
+get_eigen <- function(X) {
+  covariance <- cov(X)
+  eigs <- eigen(covariance)
 
-  eigs[[2]] <- eigs %>%
-    extract2(2) %>%
-    set_rownames(colnames(X)) %>%
-    set_colnames(paste0("Dim.", 1:ncol(X)))
+  colnames(eigs[[2]]) <- paste0("Dim.", 1:ncol(X))
+  rownames(eigs[[2]]) <- colnames(X)
 
   return(eigs)
 }
 
 #' @rdname get_eigen
 #' @export
-eigvalues <- function(X, weights = NULL) {
-  vct_eigvalues <- get_eigen(X, weights) %>%
-    extract2(1)
+get_weighted_eigen <- function(X) {
+  row.w <- rep(1, nrow(X))
+  weights <- row.w / sum(row.w)
 
-  return(vct_eigvalues)
-}
+  svd_res <- svd(t(t(X) * sqrt(weights)))
+  eigs <- list(values = svd_res$d^2, vectors = svd_res$v)
 
-#' @rdname get_eigen
-#' @export
-eigvectors <- function(X, weights = NULL) {
-  mtx_eigvectors <- get_eigen(X, weights) %>%
-    extract2(2)
+  colnames(eigs[[2]]) <- paste0("Dim.", 1:ncol(X))
+  rownames(eigs[[2]]) <- colnames(X)
 
-  return(mtx_eigvectors)
+  return(eigs)
 }

@@ -7,7 +7,7 @@
 \usage{
 standardize_norm(X, center = TRUE, scale = TRUE)
 
-standardize(X, scale = TRUE, row.w = NULL)
+standardize(X, scale = TRUE)
 }
 \arguments{
 \item{X}{matrix}
@@ -15,8 +15,6 @@ standardize(X, scale = TRUE, row.w = NULL)
 \item{center}{centering by the mean}
 
 \item{scale}{scaling by the standard deviation}
-
-\item{row.w}{an optional row weights (by default, a vector of 1 for uniform row weights); the weights are given only for the active individuals}
 }
 \description{
 Perform data standardization for multivariate exploratory data analysis.
@@ -27,7 +25,7 @@ implemented two types:
 \itemize{
 \item \code{standardize}: standardization is performed by centering the
 data matrix and dividing by the square root of the sum of squares of the
-weights. This is the default standardization in FactoMineR::PCA(..., scale.unit = TRUE).
+weights. This is the default standardization in FactoMineR::PCA().
 \item \code{standardize_norm}: standardization is performed by centering and scaling
 the data matrix. (X - µ) / σ, where µ is the mean and σ is the standard deviation.
 }
@@ -36,6 +34,7 @@ the data matrix. (X - µ) / σ, where µ is the mean and σ is the standard devi
 library(FactoMineR2)
 
 iris[, -5] |>
-  standardize_norm()
+  standardize_norm() |>
+  head()
 
 }

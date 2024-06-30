@@ -2,23 +2,27 @@
 % Please edit documentation in R/eig.R
 \name{get_eigen}
 \alias{get_eigen}
-\alias{eigvalues}
-\alias{eigvectors}
+\alias{get_weighted_eigen}
 \title{Compute eigvalues and eigvectors}
 \usage{
-get_eigen(X, weights = NULL)
+get_eigen(X)
 
-eigvalues(X, weights = NULL)
-
-eigvectors(X, weights = NULL)
+get_weighted_eigen(X)
 }
 \arguments{
 \item{X}{X_active}
-
-\item{weights}{an optional row weights (by default, a vector of 1 for uniform row weights); the weights are given only for the active individuals}
 }
 \description{
 Return eigvalues and eigvectors of a matrix
+}
+\details{
+Standardization depends on what you need to perform factor analysis. We
+implemented two types:
+\itemize{
+\item \code{get_weighted_eigen}: This is the default method in FactoMineR to compute
+eigvalues and eigvectors.
+\item \code{get_eigen}:
+}
 }
 \examples{
 library(FactoMineR2)

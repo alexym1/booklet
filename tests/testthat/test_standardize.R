@@ -15,18 +15,12 @@ test_that("standardize_norm(X, center = TRUE, scale = FALSE)", {
   expect_identical(obs, expected)
 })
 
-test_that("standardize(X, scale = TRUE, row.w = NULL)", {
+test_that("standardize(X, scale = TRUE)", {
   df_active <- standardize(df, scale = TRUE)
   expect_identical(dim(df_active), dim(df))
 })
 
-test_that("standardize(X, scale = FALSE, row.w = NULL)", {
+test_that("standardize(X, scale = FALSE)", {
   df_active <- standardize(df, scale = FALSE)
-  expect_identical(dim(df_active), dim(df))
-})
-
-test_that("standardize(X, scale = TRUE, row.w = weights)", {
-  weights <- rep(1/nrow(df), times = nrow(df))
-  df_active <- standardize(df, scale = TRUE, row.w = weights)
   expect_identical(dim(df_active), dim(df))
 })
