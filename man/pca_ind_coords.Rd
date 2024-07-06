@@ -20,10 +20,9 @@ library(FactoMineR2)
 X_active <- iris[, -5] |>
   standardize_norm()
 
-vectors <- X_active |>
-  eigvectors()
+eigs <- X_active |>
+  get_eigen()
 
 X_active |>
-  pca_ind_coords(vectors)
-
+  pca_ind_coords(eigs$vectors)
 }

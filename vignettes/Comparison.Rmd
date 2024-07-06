@@ -1,0 +1,133 @@
+---
+title: "Comparison with FactoMineR"
+output: rmarkdown::html_vignette
+description: >
+  Start here if this is your first time using FactoMineR2.
+  This document deals with the differences between FactoMineR and FactoMineR2.
+vignette: >
+  %\VignetteIndexEntry{Comparison with FactoMineR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+```
+
+`FactoMineR2` was designed to return same result as `FactoMineR` but with a more modern and tidyverse-friendly syntax. This document aims to show the differences between the two packages.
+
+
+```{r message = FALSE, warning=FALSE}
+library(dplyr)
+library(FactoMineR)
+library(FactoMineR2)
+library(magrittr)
+data(decathlon)
+```
+
+
+## Eigs
+
+```{r}
+# Get eigvalues and eigvectors with FactoMineR
+res_pca <- PCA(decathlon, quanti.sup = 11:12, quali.sup=13, graph = FALSE, scale = FALSE, ncp = 5)
+head(res_pca$eig)
+```
+
+
+```{r}
+# Get eigvalues and eigvectors with FactoMineR2
+X_active <- decathlon[, -c(11:13)] |>
+  standardize(scale = FALSE)
+
+eigs <- X_active |>
+    get_weighted_eigen()
+
+df_eigs <- eigs |>
+  extract(1) |>
+  as.data.frame() |>
+  rename(eigenvalue = values) |>
+  mutate(
+    `percentage of variance` = eigenvalue / sum(eigenvalue) * 100,
+    `cumulative percentage of variance` = cumsum(`percentage of variance`)
+  ) |>
+  set_rownames(paste0("comp.", 1:nrow(eigs$vectors)))
+  
+df_eigs |> head()
+```
+
+## PCA
+
+### Individuals
+
+```{r}
+# Get principal components with FactoMineR
+head(res_pca$ind$coord)
+```
+
+```{r}
+# Get principal components with FactoMineR2
+ind_coords <- X_active |> pca_ind_coords(eigs$vectors)
+ind_coords[,1:5]  |> head()
+```
+
+```{r}
+# Get individual cos2 with FactoMineR
+head(res_pca$ind$cos2)
+```
+
+```{r}
+# Get individual cos2 with FactoMineR2
+ind_cos2 <- ind_coords |> pca_ind_cos2()
+ind_cos2[,1:5] |> head()
+```
+
+```{r}
+# Get individual contributions with FactoMineR
+head(res_pca$ind$contrib)
+```
+
+```{r}
+# Get individual contributions with FactoMineR2
+ind_contrib <- ind_coords |> pca_ind_contrib(df_eigs$eigenvalue)
+ind_contrib[,1:5] |> head()
+```
+
+
+### Variables
+
+```{r}
+# Get variable coordinates with FactoMineR
+head(res_pca$var$coord)
+```
+
+```{r}
+# Get variable coordinates with FactoMineR2
+var_coords <- df_eigs$eigenvalue |> pca_var_coords(eigs$vectors)
+var_coords[,1:5] |> head()
+```
+
+```{r}
+# Get variable cos2 with FactoMineR
+head(res_pca$var$cos2)
+```
+
+```{r}
+# Get variable cos2 with FactoMineR2
+var_cos2 <- var_coords |> pca_var_cos2()
+var_cos2[,1:5] |> head()
+```
+
+```{r}
+# Get variable contributions with FactoMineR
+head(res_pca$var$contrib)
+```
+
+```{r}
+# Get variable contributions with FactoMineR2
+var_contrib <- var_coords |> pca_var_contrib()
+var_contrib[,1:5] |> head()
+```
+
+
+

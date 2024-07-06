@@ -25,7 +25,7 @@ implemented two types:
 \itemize{
 \item \code{standardize}: standardization is performed by centering the
 data matrix and dividing by the square root of the sum of squares of the
-weights. This is the default standardization in FactoMineR::PCA().
+weights. This is the default standardization in \code{FactoMineR::PCA()}.
 \item \code{standardize_norm}: standardization is performed by centering and scaling
 the data matrix. (X - µ) / σ, where µ is the mean and σ is the standard deviation.
 }
@@ -36,5 +36,4 @@ library(FactoMineR2)
 iris[, -5] |>
   standardize_norm() |>
   head()
-
 }

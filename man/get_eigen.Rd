@@ -30,5 +30,4 @@ library(FactoMineR2)
 iris[, -5] |>
   standardize_norm() |>
   get_eigen()
-
 }

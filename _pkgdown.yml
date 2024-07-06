@@ -11,7 +11,8 @@ articles:
 - title: Extensions
   navbar: ~
   contents:
-  - extensions
+  - Comparison
+  - Extensions
 
 reference:
 - title: Eigen

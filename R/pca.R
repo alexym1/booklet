@@ -11,12 +11,11 @@
 #' X_active <- iris[, -5] |>
 #'   standardize_norm()
 #'
-#' vectors <- X_active |>
-#'   eigvectors()
+#' eigs <- X_active |>
+#'   get_eigen()
 #'
 #' X_active |>
-#'   pca_ind_coords(vectors)
-#'
+#'   pca_ind_coords(eigs$vectors)
 #' @export
 pca_ind_coords <- function(X, eigenvectors) {
   return(-1 * X %*% eigenvectors)
@@ -35,13 +34,12 @@ pca_ind_coords <- function(X, eigenvectors) {
 #' X_active <- iris[, -5] |>
 #'   standardize_norm()
 #'
-#' vectors <- X_active |>
-#'   eigvectors()
+#' eigs <- X_active |>
+#'   get_eigen()
 #'
 #' X_active |>
-#'   pca_ind_coords(vectors) |>
+#'   pca_ind_coords(eigs$vectors) |>
 #'   pca_ind_cos2()
-#'
 #' @export
 pca_ind_cos2 <- function(ind_coords) {
   ind_coords <- -1 * ind_coords
@@ -63,16 +61,12 @@ pca_ind_cos2 <- function(ind_coords) {
 #' X_active <- iris[, -5] |>
 #'   standardize_norm()
 #'
-#' vectors <- X_active |>
-#'   eigvectors()
-#'
-#' values <- X_active |>
-#'   eigvalues()
+#' eigs <- X_active |>
+#'   get_eigen()
 #'
 #' X_active |>
-#'   pca_ind_coords(vectors) |>
-#'   pca_ind_contrib(values)
-#'
+#'   pca_ind_coords(eigs$vectors) |>
+#'   pca_ind_contrib(eigs$values)
 #' @export
 pca_ind_contrib <- function(ind_coords, eigenvalues) {
   contrib <- sweep(ind_coords^2, 2, eigenvalues, FUN = "/")
@@ -94,13 +88,11 @@ pca_ind_contrib <- function(ind_coords, eigenvalues) {
 #' X_active <- iris[, -5] |>
 #'   standardize_norm()
 #'
-#' vectors <- X_active |>
-#'   eigvectors()
+#' eigs <- X_active |>
+#'   get_eigen()
 #'
-#' X_active |>
-#'   eigvalues() |>
-#'   pca_var_coords(vectors)
-#'
+#' eigs$values |>
+#'   pca_var_coords(eigs$vectors)
 #' @export
 pca_var_coords <- function(eigenvalues, eigenvectors) {
   var_coords <- -1 * (eigenvectors %*% (eigenvalues %>% sqrt() %>% diag()))
@@ -129,14 +121,12 @@ pca_var_cor <- function(eigenvalues, eigenvectors) {
 #' X_active <- iris[, -5] |>
 #'   standardize_norm()
 #'
-#' vectors <- X_active |>
-#'   eigvectors()
+#' eigs <- X_active |>
+#'   get_eigen()
 #'
-#' X_active |>
-#'   eigvalues() |>
-#'   pca_var_coords(vectors) |>
+#' eigs$values |>
+#'   pca_var_coords(eigs$vectors) |>
 #'   pca_var_cos2()
-#'
 #' @export
 pca_var_cos2 <- function(var_coords) {
   var_cos2 <- var_coords^2 / rowSums(var_coords^2)
@@ -156,14 +146,12 @@ pca_var_cos2 <- function(var_coords) {
 #' X_active <- iris[, -5] |>
 #'   standardize_norm()
 #'
-#' vectors <- X_active |>
-#'   eigvectors()
+#' eigs <- X_active |>
+#'   get_eigen()
 #'
-#' X_active |>
-#'   eigvalues() |>
-#'   pca_var_coords(vectors) |>
+#' eigs$values |>
+#'   pca_var_coords(eigs$vectors) |>
 #'   pca_var_contrib()
-#'
 #' @export
 pca_var_contrib <- function(var_coords) {
   loadings_squared <- var_coords^2

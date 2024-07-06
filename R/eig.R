@@ -19,7 +19,6 @@
 #' iris[, -5] |>
 #'   standardize_norm() |>
 #'   get_eigen()
-#'
 #' @export
 get_eigen <- function(X) {
   covariance <- cov(X)
