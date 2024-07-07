@@ -1,35 +1,17 @@
-library(dplyr)
-library(magrittr)
+df <- standardize_norm(iris[,-5])
+gf <- standardize(iris[,-5])
 
-df <- iris |>
-  select(-Species) |>
-  standardize_norm()
+df_eigs <- get_eigen(df)
+gf_eigs <- get_eigen(gf)
 
-gf <- iris |>
-  select(-Species) |>
-  standardize()
+df_eigenvalues <- df_eigs$values
+gf_eigenvalues <- gf_eigs$values
 
-df_eigenvalues <- df |>
-  get_eigen() |>
-  extract2(1)
+df_eigvectors <- df_eigs$vectors
+gf_eigvectors <- gf_eigs$vectors
 
-gf_eigenvalues <- gf |>
-  get_eigen() |>
-  extract2(1)
-
-df_eigvectors <- df |>
-  get_eigen() |>
-  extract2(2)
-
-gf_eigvectors <- gf |>
-  get_weighted_eigen() |>
-  extract2(2)
-
-df_coords <- df |>
-  pca_ind_coords(df_eigvectors)
-
-gf_coords <- gf |>
-  pca_ind_coords(gf_eigvectors)
+df_coords <- pca_ind_coords(df, df_eigvectors)
+gf_coords <- pca_ind_coords(gf, gf_eigvectors)
 
 test_that("Testing active individuals - coordinates", {
   expect_identical(is.matrix(df_coords), TRUE)

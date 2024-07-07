@@ -11,7 +11,7 @@
 #' * \code{get_weighted_eigen}: This is the default method in FactoMineR to compute
 #' eigvalues, eigvectors.
 #'
-#' * \code{get_eigen}:
+#' * \code{get_eigen}: This is the standard method to compute eigvalues, eigvectors.
 #'
 #' @examples
 #' library(FactoMineR2)

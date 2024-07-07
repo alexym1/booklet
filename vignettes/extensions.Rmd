@@ -13,7 +13,6 @@ vignette: >
 knitr::opts_chunk$set(collapse = T, comment = "#>")
 ```
 
-
 `FactoMineR2` is an R package that provides an efficient and user-friendly way to perform multivariate data analyses. `factoextra` was initially designed for `FactoMineR` but you can easily use it with `FactoMineR2` for data visualization. This vignette provides a quick overview of how to use `factoextra` with `FactoMineR2`.
 
 
@@ -22,7 +21,6 @@ library(dplyr)
 library(factoextra)
 library(FactoMineR)
 library(FactoMineR2)
-library(magrittr)
 data(decathlon)
 ```
 
@@ -30,53 +28,8 @@ data(decathlon)
 ## Data preparation
 
 ```{r}
-X_active <- decathlon[, -c(11:13)] |>
-  standardize(scale = TRUE)
-
-### Eigvalues & eigvectors
-eigs <- X_active |>
-  get_eigen()
-
-df_eigs <- eigs |>
-  extract(1) |>
-  as.data.frame() |>
-  rename(eigenvalue = values) |>
-  mutate(
-    `percentage of variance` = eigenvalue / sum(eigenvalue) * 100,
-    `cumulative percentage of variance` = cumsum(`percentage of variance`)
-  )
-
-
-### Individuals
-ind_coords <- X_active |> pca_ind_coords(eigs$vectors)
-
-lst_ind <- list(
-  coord = ind_coords,
-  cos2 = ind_coords |> pca_ind_cos2(),
-  contrib = ind_coords |> pca_ind_contrib(df_eigs$eigenvalue)
-)
-
-
-### Variables
-var_coords <- df_eigs$eigenvalue |> pca_var_coords(eigs$vectors)
-
-
-### Summary
-lst_var <- list(
-  coord=var_coords,
-  cor=var_coords,
-  cos2=var_coords |> pca_var_cos2(),
-  contrib=var_coords |> pca_var_contrib()
-)
-
-res_pca <- list(
-  eig = df_eigs,
-  var = lst_var,
-  ind = lst_ind,
-  call = list(scale.unit = TRUE)
-)
-
-class(res_pca) <- c("PCA", "list")
+X <- decathlon[,-c(11:13)]
+res_pca <- facto_pca(X, ncp = 5, quanti_sup = 10)
 ```
 
 ## Eigs

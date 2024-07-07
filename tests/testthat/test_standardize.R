@@ -1,7 +1,4 @@
-library(dplyr)
-
-df <- iris |>
-  select(-Species)
+df <- iris[,-5]
 
 test_that("standardize_norm(X, center = TRUE, scale = TRUE)", {
   obs <- standardize_norm(df, scale = TRUE)

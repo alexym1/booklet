@@ -1,12 +1,5 @@
-library(dplyr)
-
-df <- iris |>
-  select(-Species) |>
-  standardize_norm()
-
-gf <- iris |>
-  select(-Species) |>
-  standardize()
+df <- standardize_norm(iris[,-5])
+gf <- standardize(iris[,-5])
 
 test_that("Testing get_eigen()", {
   df_eigs <- get_eigen(df)
@@ -21,7 +14,7 @@ test_that("Testing get_eigen()", {
   expect_identical(dim(gf_eigs[[2]]), c(ncol(gf), ncol(gf)))
 })
 
-test_that("Testing get_eigen() with ponderation", {
+test_that("Testing get_weighted_eigen()", {
   df_eigs <- get_weighted_eigen(df)
   gf_eigs <- get_weighted_eigen(gf)
 

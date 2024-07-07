@@ -18,10 +18,8 @@ knitr::opts_chunk$set(collapse = T, comment = "#>")
 
 
 ```{r message = FALSE, warning=FALSE}
-library(dplyr)
 library(FactoMineR)
 library(FactoMineR2)
-library(magrittr)
 data(decathlon)
 ```
 
@@ -46,15 +44,13 @@ X_active_scaled <- X_active |>
 eigs <- X_active_scaled |>
     get_weighted_eigen()
 
-df_eigs <- eigs |>
-  extract(1) |>
-  as.data.frame() |>
-  rename(eigenvalue = values) |>
-  mutate(
-    `percentage of variance` = eigenvalue / sum(eigenvalue) * 100,
-    `cumulative percentage of variance` = cumsum(`percentage of variance`)
-  ) |>
-  set_rownames(paste0("comp.", 1:nrow(eigs$vectors)))
+df_eigs <- data.frame(
+    eigenvalue = eigs$values,
+    `percentage of variance` = eigs$values / sum(eigs$values) * 100,
+    `cumulative percentage of variance` = cumsum(eigs$values / sum(eigs$values))
+  )
+
+rownames(df_eigs) <- paste0("comp ", 1:nrow(df_eigs))
   
 df_eigs |> head()
 ```

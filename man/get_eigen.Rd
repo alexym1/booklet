@@ -21,7 +21,7 @@ implemented two types:
 \itemize{
 \item \code{get_weighted_eigen}: This is the default method in FactoMineR to compute
 eigvalues, eigvectors.
-\item \code{get_eigen}:
+\item \code{get_eigen}: This is the standard method to compute eigvalues, eigvectors.
 }
 }
 \examples{
