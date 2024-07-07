@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-![](https://img.shields.io/badge/github%20version-0.1.1-orange.svg)
+![](https://img.shields.io/badge/github%20version-0.2.0-orange.svg)
 [![R-CMD-check](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=master)

@@ -19,17 +19,18 @@ reference:
   desc:  Compute eigenvalues and eigenvectors.
   contents:
   - get_eigen
-  - eigvalues
-  - eigvectors
+  - get_weighted_eigen
 
 - title: Standardization
   desc:  Standardize a dataset.
   contents:
+  - standardize_norm
   - standardize
 
 - title: PCA
   desc: Perform PCA.
   contents:
+  - facto_pca
   - pca_ind_coords
   - pca_ind_cos2
   - pca_ind_contrib

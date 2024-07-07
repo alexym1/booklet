@@ -25,7 +25,7 @@
 #'   head()
 #' @export
 standardize_norm <- function(X, center = TRUE, scale = TRUE) {
-  X <- scale(X, center = center, scale = scale)
+  X_scaled <- scale(X, center = center, scale = scale)
   return(X)
 }
 

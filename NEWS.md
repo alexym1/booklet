@@ -1,3 +1,16 @@
+# FactoMineR2 0.2.0
+
+* `facto_pca()` is a wrapper function that mimics `FactoMineR::PCA()`.
+
+* `get_weighted_eigen()` calculates the same eigs as FactoMineR, whereas `get_eigen()` calculates the eigs in the unweighted case.
+
+* `eigvalues()` and `eigvectors()` were removed.
+
+* `pca_var_cos2()` now works as expected.
+
+* `Comparison.Rmd` has been updated allowing to compute supplementary ind./var. coordinates.
+
+
 # FactoMineR2 0.1.1
 
 * `standardize()` now works as expected with `scale = FALSE` (#1)

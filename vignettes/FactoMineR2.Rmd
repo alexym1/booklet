@@ -14,10 +14,45 @@ vignette: >
 knitr::opts_chunk$set(collapse = T, comment = "#>")
 ```
 
-todo: Add a brief description of the package and its purpose.
+## Introduction
+
+The R package FactoMineR2 is designed for multivariate data analysis. It offers a wide array of statistical techniques for exploratory data analysis, including principal component analysis (PCA). FactoMineR2 is user-friendly and provides comprehensive tools for visualizing and interpreting complex data structures, making it a valuable resource for researchers and data analysts. 
 
 ```{r message = FALSE, warning=FALSE}
-library(FactoMineR)
 library(FactoMineR2)
-data(decathlon)
+X <- iris[,1:4]
+head(X)
+```
+
+## Standardize the dataset
+
+Before performing a PCA, it is important to standardize the dataset. This ensures that all variables are on the same scale, which is necessary for accurate results. In this example, the dataset is standardized by subtracting the mean and dividing by the standard deviation.
+
+$$ (X - \bar{X}) / \sigma $$
+
+```{r}
+X_scaled <- standardize_norm(X, center = TRUE, scale = TRUE)
+head(X_scaled)
+```
+
+## Compute eigenvalues
+
+The next step is to compute the eigenvalues and eigenvectors of the covariance matrix. This is done using the `get_eigen()` function in R. The eigenvalues represent the variance explained by each principal component, while the eigenvectors represent the direction of the principal components in the original feature space.
+
+```{r}
+# You can also use the `get_eigen()`.
+covariance <- cov(X_scaled)
+eigs <- eigen(covariance)
+eigs$values
+eigs$vectors
+```
+
+## Perform PCA
+
+Finally, we can perform a principal component analysis (PCA) on the standardized dataset. This will reduce the dimensionality of the data and identify the principal components that explain the most variance.
+
+```{r}
+# You can also use the `pca_ind_coords()` function.
+ind_coords <- -1 * as.matrix(X_scaled) %*% eigs$vectors
+head(ind_coords)
 ```
