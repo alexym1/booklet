@@ -15,7 +15,8 @@
 #'   get_eigen()
 #'
 #' X_active |>
-#'   pca_ind_coords(eigs$vectors)
+#'   pca_ind_coords(eigs$vectors) |>
+#'   head()
 #' @export
 pca_ind_coords <- function(X, eigenvectors) {
   return(-1 * as.matrix(X) %*% eigenvectors)
@@ -39,7 +40,8 @@ pca_ind_coords <- function(X, eigenvectors) {
 #'
 #' X_active |>
 #'   pca_ind_coords(eigs$vectors) |>
-#'   pca_ind_cos2()
+#'   pca_ind_cos2() |>
+#'   head()
 #' @export
 pca_ind_cos2 <- function(ind_coords) {
   ind_coords <- -1 * ind_coords
@@ -66,7 +68,8 @@ pca_ind_cos2 <- function(ind_coords) {
 #'
 #' X_active |>
 #'   pca_ind_coords(eigs$vectors) |>
-#'   pca_ind_contrib(eigs$values)
+#'   pca_ind_contrib(eigs$values) |>
+#'   head()
 #' @export
 pca_ind_contrib <- function(ind_coords, eigenvalues) {
   contrib <- sweep(ind_coords^2, 2, eigenvalues, FUN = "/")
@@ -92,10 +95,11 @@ pca_ind_contrib <- function(ind_coords, eigenvalues) {
 #'   get_eigen()
 #'
 #' eigs$values |>
-#'   pca_var_coords(eigs$vectors)
+#'   pca_var_coords(eigs$vectors) |>
+#'   head()
 #' @export
 pca_var_coords <- function(eigenvalues, eigenvectors) {
-  var_coords <- -1 * (eigenvectors %*% (eigenvalues %>% sqrt() %>% diag()))
+  var_coords <- -1 * (eigenvectors %*% diag(sqrt(eigenvalues)))
   colnames(var_coords) <- paste0("Dim.", 1:ncol(var_coords))
   return(var_coords)
 }
@@ -103,7 +107,7 @@ pca_var_coords <- function(eigenvalues, eigenvectors) {
 #' @rdname pca_var_coords
 #' @export
 pca_var_cor <- function(eigenvalues, eigenvectors) {
-  var_cor <- -1 * (eigenvectors %*% (eigenvalues %>% sqrt() %>% diag()))
+  var_cor <- -1 * (eigenvectors %*% diag(sqrt(eigenvalues)))
   colnames(var_cor) <- paste0("Dim.", 1:ncol(var_cor))
   return(var_cor)
 }
@@ -126,11 +130,11 @@ pca_var_cor <- function(eigenvalues, eigenvectors) {
 #'
 #' eigs$values |>
 #'   pca_var_coords(eigs$vectors) |>
-#'   pca_var_cos2()
+#'   pca_var_cos2() |>
+#'   head()
 #' @export
 pca_var_cos2 <- function(var_coords) {
-  var_cos2 <- var_coords^2
-  return(var_cos2)
+  return(var_coords^2)
 }
 
 
@@ -138,7 +142,7 @@ pca_var_cos2 <- function(var_coords) {
 #'
 #' Return variable contributions
 #'
-#' @param var_coords variable coordinates
+#' @param var_cos2 variable coordinates
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -151,11 +155,11 @@ pca_var_cos2 <- function(var_coords) {
 #'
 #' eigs$values |>
 #'   pca_var_coords(eigs$vectors) |>
-#'   pca_var_contrib()
+#'   pca_var_cos2() |>
+#'   pca_var_contrib() |>
+#'   head()
 #' @export
-pca_var_contrib <- function(var_coords) {
-  loadings_squared <- var_coords^2
-  total_loadings_squared <- colSums(loadings_squared)
-  var_contrib <- sweep(loadings_squared, 2, total_loadings_squared, FUN = "/") * 100
+pca_var_contrib <- function(var_cos2) {
+  var_contrib <- sweep(var_cos2, 2, colSums(var_cos2), FUN = "/") * 100
   return(var_contrib)
 }

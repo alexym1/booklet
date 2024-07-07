@@ -23,5 +23,6 @@ eigs <- X_active |>
 
 eigs$values |>
   pca_var_coords(eigs$vectors) |>
-  pca_var_cos2()
+  pca_var_cos2() |>
+  head()
 }

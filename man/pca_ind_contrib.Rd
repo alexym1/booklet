@@ -25,5 +25,6 @@ eigs <- X_active |>
 
 X_active |>
   pca_ind_coords(eigs$vectors) |>
-  pca_ind_contrib(eigs$values)
+  pca_ind_contrib(eigs$values) |>
+  head()
 }

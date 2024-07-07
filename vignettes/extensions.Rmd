@@ -17,7 +17,6 @@ knitr::opts_chunk$set(collapse = T, comment = "#>")
 
 
 ```{r message = FALSE, warning=FALSE}
-library(dplyr)
 library(factoextra)
 library(FactoMineR)
 library(FactoMineR2)

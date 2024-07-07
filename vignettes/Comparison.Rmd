@@ -154,7 +154,7 @@ head(res_pca$var$contrib)
 
 ```{r}
 # Get variable contributions with FactoMineR2
-var_contrib <- var_coords |> pca_var_contrib()
+var_contrib <- var_cos2 |> pca_var_contrib()
 var_contrib[,1:5] |> head()
 ```
 

@@ -4,10 +4,10 @@
 \alias{pca_var_contrib}
 \title{Compute variable contributions}
 \usage{
-pca_var_contrib(var_coords)
+pca_var_contrib(var_cos2)
 }
 \arguments{
-\item{var_coords}{variable coordinates}
+\item{var_cos2}{variable coordinates}
 }
 \description{
 Return variable contributions
@@ -23,5 +23,7 @@ eigs <- X_active |>
 
 eigs$values |>
   pca_var_coords(eigs$vectors) |>
-  pca_var_contrib()
+  pca_var_cos2() |>
+  pca_var_contrib() |>
+  head()
 }

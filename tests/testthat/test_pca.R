@@ -88,10 +88,12 @@ test_that("Testing active variables - cos2", {
 test_that("Testing active variables - contrib", {
   df_contrib <- df_eigenvalues |>
     pca_var_coords(df_eigvectors) |>
+    pca_var_cos2() |>
     pca_var_contrib()
 
   gf_contrib <- gf_eigenvalues |>
     pca_var_coords(gf_eigvectors) |>
+    pca_var_cos2() |>
     pca_var_contrib()
 
   expect_identical(is.matrix(df_contrib), TRUE)
