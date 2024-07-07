@@ -50,14 +50,14 @@ X_active |> head()
 ```
 
 ```{r, message = FALSE, warning = FALSE}
-# Get eigenvectors
-eigen_vectors <- X_active |> get_eigen() |> extract2(2)
-eigen_vectors |> head()
+# Get eigs
+eigs <- X_active |> get_eigen()
+print(eigs)
 ```
 
 ```{r, message = FALSE, warning = FALSE}
 # Get principal components
-X_active |> pca_ind_coords(eigen_vectors) |> head()
+X_active |> pca_ind_coords(eigs$vectors) |> head()
 ```
 
 

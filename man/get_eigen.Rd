@@ -20,7 +20,7 @@ Standardization depends on what you need to perform factor analysis. We
 implemented two types:
 \itemize{
 \item \code{get_weighted_eigen}: This is the default method in FactoMineR to compute
-eigvalues and eigvectors.
+eigvalues, eigvectors.
 \item \code{get_eigen}:
 }
 }

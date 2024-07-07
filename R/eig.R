@@ -9,7 +9,7 @@
 #' implemented two types:
 #'
 #' * \code{get_weighted_eigen}: This is the default method in FactoMineR to compute
-#' eigvalues and eigvectors.
+#' eigvalues, eigvectors.
 #'
 #' * \code{get_eigen}:
 #'

@@ -18,7 +18,7 @@
 #'   pca_ind_coords(eigs$vectors)
 #' @export
 pca_ind_coords <- function(X, eigenvectors) {
-  return(-1 * X %*% eigenvectors)
+  return(-1 * as.matrix(X) %*% eigenvectors)
 }
 
 
@@ -129,7 +129,7 @@ pca_var_cor <- function(eigenvalues, eigenvectors) {
 #'   pca_var_cos2()
 #' @export
 pca_var_cos2 <- function(var_coords) {
-  var_cos2 <- var_coords^2 / rowSums(var_coords^2)
+  var_cos2 <- var_coords^2
   return(var_cos2)
 }
 
