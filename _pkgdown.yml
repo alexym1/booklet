@@ -11,8 +11,8 @@ articles:
 - title: More
   navbar: ~
   contents:
-  - Comparison with FactoMineR
-  - Data visualization with factoextra
+  - Comparison
+  - Data
 
 reference:
 - title: Eigen
