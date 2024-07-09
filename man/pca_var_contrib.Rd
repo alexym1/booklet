@@ -4,10 +4,10 @@
 \alias{pca_var_contrib}
 \title{Compute variable contributions}
 \usage{
-pca_var_contrib(var_coords)
+pca_var_contrib(var_cos2)
 }
 \arguments{
-\item{var_coords}{variable coordinates}
+\item{var_cos2}{variable coordinates}
 }
 \description{
 Return variable contributions
@@ -18,12 +18,12 @@ library(FactoMineR2)
 X_active <- iris[, -5] |>
   standardize_norm()
 
-vectors <- X_active |>
-  eigvectors()
+eigs <- X_active |>
+  get_eigen()
 
-X_active |>
-  eigvalues() |>
-  pca_var_coords(vectors) |>
-  pca_var_contrib()
-
+eigs$values |>
+  pca_var_coords(eigs$vectors) |>
+  pca_var_cos2() |>
+  pca_var_contrib() |>
+  head()
 }

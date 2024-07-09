@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-![](https://img.shields.io/badge/github%20version-0.1.1-orange.svg)
+![](https://img.shields.io/badge/github%20version-0.2.0-orange.svg)
 [![R-CMD-check](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=master)
@@ -50,9 +50,14 @@ X_active |> head()
 ```
 
 ``` r
-# Get eigenvectors
-vectors <- X_active |> eigvectors()
-vectors
+# Get eigs
+eigs <- X_active |> get_eigen()
+print(eigs)
+#> eigen() decomposition
+#> $values
+#> [1] 2.91849782 0.91403047 0.14675688 0.02071484
+#> 
+#> $vectors
 #>                   Dim.1       Dim.2      Dim.3      Dim.4
 #> Sepal.Length  0.5210659 -0.37741762  0.7195664  0.2612863
 #> Sepal.Width  -0.2693474 -0.92329566 -0.2443818 -0.1235096
@@ -62,7 +67,7 @@ vectors
 
 ``` r
 # Get principal components
-X_active |> pca_ind_coords(vectors) |> head()
+X_active |> pca_ind_coords(eigs$vectors) |> head()
 #>         Dim.1      Dim.2       Dim.3        Dim.4
 #> [1,] 2.257141  0.4784238 -0.12727962 -0.024087508
 #> [2,] 2.074013 -0.6718827 -0.23382552 -0.102662845

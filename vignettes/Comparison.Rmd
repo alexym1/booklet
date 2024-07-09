@@ -1,0 +1,190 @@
+---
+title: "Comparison with FactoMineR"
+output: rmarkdown::html_vignette
+description: >
+  Start here if this is your first time using FactoMineR2.
+  This document deals with the differences between FactoMineR and FactoMineR2.
+vignette: >
+  %\VignetteIndexEntry{Comparison with FactoMineR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+```
+
+`FactoMineR2` was designed to return same result as `FactoMineR` but with a more modern and tidyverse-friendly syntax. This document aims to show the differences between the two packages.
+
+
+```{r message = FALSE, warning=FALSE}
+library(FactoMineR)
+library(FactoMineR2)
+data(decathlon)
+```
+
+
+## Eigs
+
+```{r}
+# Get eigvalues and eigvectors with FactoMineR
+X <- decathlon[, -c(11:13)]
+res_pca <- PCA(X, quanti.sup = 10, ind.sup = 1, graph = FALSE)
+head(res_pca$eig)
+```
+
+
+```{r}
+# Get eigvalues and eigvectors with FactoMineR2
+X_active <- X[-1, -10]
+
+X_active_scaled <- X_active |>
+  standardize(scale = TRUE)
+
+eigs <- X_active_scaled |>
+    get_weighted_eigen()
+
+df_eigs <- data.frame(
+    eigenvalue = eigs$values,
+    `percentage of variance` = eigs$values / sum(eigs$values) * 100,
+    `cumulative percentage of variance` = cumsum(eigs$values / sum(eigs$values))
+  )
+
+rownames(df_eigs) <- paste0("comp ", 1:nrow(df_eigs))
+  
+df_eigs |> head()
+```
+
+## PCA
+
+### Individuals
+
+```{r}
+# Get principal components with FactoMineR
+head(res_pca$ind$coord)
+```
+
+```{r}
+# Get principal components with FactoMineR2
+ind_coords <- X_active_scaled |> pca_ind_coords(eigs$vectors)
+ind_coords[,1:5]  |> head()
+```
+
+```{r}
+# Get individual cos2 with FactoMineR
+head(res_pca$ind$cos2)
+```
+
+```{r}
+# Get individual cos2 with FactoMineR2
+ind_cos2 <- ind_coords |> pca_ind_cos2()
+ind_cos2[,1:5] |> head()
+```
+
+```{r}
+# Get individual contributions with FactoMineR
+head(res_pca$ind$contrib)
+```
+
+```{r}
+# Get individual contributions with FactoMineR2
+ind_contrib <- ind_coords |> pca_ind_contrib(df_eigs$eigenvalue)
+ind_contrib[,1:5] |> head()
+```
+
+### Supplementary individuals
+
+```{r}
+# Get supplementary individuals with FactoMineR
+res_pca$ind.sup$coord
+```
+
+```{r}
+# Get supplementary individuals with FactoMineR2
+weights <- rep(1, nrow(X_active)) / nrow(X_active)
+center <- colMeans(X_active)
+std <- sqrt(as.vector(crossprod(weights, as.matrix(X_active^2)) - center^2)) 
+
+X_sup <- X[1, -10]
+X_sup_scaled <- (X_sup - center) / std 
+ind_sup_coords <- X_sup_scaled |> pca_ind_coords(eigs$vectors)
+ind_sup_coords[,1:5]
+```
+
+```{r}
+# Get supplementary individuals cos2 with FactoMineR
+res_pca$ind.sup$cos2
+```
+
+```{r}
+# Get supplementary individuals cos2 with FactoMineR2
+ind_sup_cos2 <- ind_sup_coords |> pca_ind_cos2()
+ind_sup_cos2[,1:5]
+```
+
+
+### Variables
+
+```{r}
+# Get variable coordinates with FactoMineR
+head(res_pca$var$coord)
+```
+
+```{r}
+# Get variable coordinates with FactoMineR2
+var_coords <- df_eigs$eigenvalue |> pca_var_coords(eigs$vectors)
+var_coords[,1:5] |> head()
+```
+
+```{r}
+# Get variable cos2 with FactoMineR
+head(res_pca$var$cos2)
+```
+
+```{r}
+# Get variable cos2 with FactoMineR2
+var_cos2 <- var_coords |> pca_var_cos2()
+var_cos2[,1:5] |> head()
+```
+
+```{r}
+# Get variable contributions with FactoMineR
+head(res_pca$var$contrib)
+```
+
+```{r}
+# Get variable contributions with FactoMineR2
+var_contrib <- var_cos2 |> pca_var_contrib()
+var_contrib[,1:5] |> head()
+```
+
+### Supplementary variables
+
+```{r}
+# Get supplementary variables coordinates with FactoMineR
+res_pca$quanti.sup$coord
+```
+```{r}
+# Get supplementary CONTINUOUS variables coordinates with FactoMineR2
+X_sup <- X[-1, 10, drop = FALSE]
+
+center <- as.vector(crossprod(weights, as.matrix(X_sup)))
+std <- sqrt(as.vector(crossprod(weights, as.matrix(X_sup^2)) - center^2)) 
+X_sup_scaled <- (X_sup - center) / std 
+
+A <- t(X_sup_scaled * weights)
+U <- svd.triplet(X_active_scaled)$U
+var_sup_coords <- A %*% U
+var_sup_coords[,1:5]
+```
+
+```{r}
+# Get supplementary variables cos2 with FactoMineR
+res_pca$quanti.sup$cos2
+```
+
+```{r}
+# Get supplementary variables cos2 with FactoMineR2
+var_sup_cos2 <- var_sup_coords |> pca_var_cos2()
+var_sup_cos2[,1:5]
+```

@@ -8,15 +8,13 @@ Authors@R: c(
     )
 Description: Perform PCA, MFA, CA, MFA.
 License: MIT + file LICENSE
-URL: https://github.com/alexym1/FactoMineR2
+URL: https://github.com/alexym1/FactoMineR2, https://alexym1.github.io/FactoMineR2
 BugReports: https://github.com/alexym1/FactoMineR2/issues
 Imports:
     covr,
-    dplyr,
     factoextra,
     FactoMineR,
-    knitr,
-    magrittr
+    knitr
 Suggests: 
     devtools, 
     renv, 

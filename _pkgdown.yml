@@ -1,4 +1,4 @@
-url: https://alexym1.github.io/FactoMineR2/
+url: https://alexym1.github.io/FactoMineR2
 
 template:
   bootstrap: 5
@@ -8,9 +8,10 @@ authors:
     href: https://github.com/alexym1
 
 articles:
-- title: Extensions
+- title: More
   navbar: ~
   contents:
+  - Comparison
   - extensions
 
 reference:
@@ -18,17 +19,18 @@ reference:
   desc:  Compute eigenvalues and eigenvectors.
   contents:
   - get_eigen
-  - eigvalues
-  - eigvectors
+  - get_weighted_eigen
 
 - title: Standardization
   desc:  Standardize a dataset.
   contents:
+  - standardize_norm
   - standardize
 
 - title: PCA
   desc: Perform PCA.
   contents:
+  - facto_pca
   - pca_ind_coords
   - pca_ind_cos2
   - pca_ind_contrib

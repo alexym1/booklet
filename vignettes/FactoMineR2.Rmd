@@ -14,123 +14,45 @@ vignette: >
 knitr::opts_chunk$set(collapse = T, comment = "#>")
 ```
 
-`FactoMineR2` was designed to return same result as `FactoMineR` but with a more modern and tidyverse-friendly syntax. This document aims to show the differences between the two packages.
+## Introduction
 
+The R package FactoMineR2 is designed for multivariate data analysis. It offers a wide array of statistical techniques for exploratory data analysis, including principal component analysis (PCA). FactoMineR2 is user-friendly and provides comprehensive tools for visualizing and interpreting complex data structures, making it a valuable resource for researchers and data analysts. 
 
 ```{r message = FALSE, warning=FALSE}
-library(dplyr)
-library(FactoMineR)
 library(FactoMineR2)
-library(magrittr)
-data(decathlon)
+X <- iris[,1:4]
+head(X)
 ```
 
+## Standardize the dataset
 
-## Eigs
+Before performing a PCA, it is important to standardize the dataset. This ensures that all variables are on the same scale, which is necessary for accurate results. In this example, the dataset is standardized by subtracting the mean and dividing by the standard deviation.
+
+$$ (X - \bar{X}) / \sigma $$
 
 ```{r}
-# Get eigvalues and eigvectors with FactoMineR
-res_pca <- PCA(decathlon, quanti.sup = 11:12, quali.sup=13, graph = FALSE, scale = TRUE, ncp = 5)
-head(res_pca$eig)
+X_scaled <- standardize_norm(X, center = TRUE, scale = TRUE)
+head(X_scaled)
 ```
 
+## Compute eigenvalues
+
+The next step is to compute the eigenvalues and eigenvectors of the covariance matrix. This is done using the `get_eigen()` function in R. The eigenvalues represent the variance explained by each principal component, while the eigenvectors represent the direction of the principal components in the original feature space.
 
 ```{r}
-# Get eigvalues and eigvectors with FactoMineR2
-X_sup <- decathlon[, 11:13]
-X_active <- decathlon[, -c(11:13)]
-
-eigs <- X_active |>
-    standardize_norm(scale = TRUE) |>
-    get_eigen()
-
-df_eigs <- eigs |>
-  extract(1) |>
-  as.data.frame() |>
-  rename(eigenvalue = values) |>
-  mutate(
-    `percentage of variance` = eigenvalue / sum(eigenvalue) * 100,
-    `cumulative percentage of variance` = cumsum(`percentage of variance`)
-  ) |>
-  set_rownames(paste0("comp.", 1:nrow(eigs$vectors)))
-  
-df_eigs |> head()
+# You can also use the `get_eigen()`.
+covariance <- cov(X_scaled)
+eigs <- eigen(covariance)
+eigs$values
+eigs$vectors
 ```
 
-## PCA
+## Perform PCA
 
-### Individuals
+Finally, we can perform a principal component analysis (PCA) on the standardized dataset. This will reduce the dimensionality of the data and identify the principal components that explain the most variance.
 
 ```{r}
-# Get principal components with FactoMineR
-head(res_pca$ind$coord)
+# You can also use the `pca_ind_coords()` function.
+ind_coords <- -1 * as.matrix(X_scaled) %*% eigs$vectors
+head(ind_coords)
 ```
-
-```{r}
-# Get principal components with FactoMineR2
-X_active <- X_active |> standardize(scale = TRUE)
-vectors <- X_active |> eigvectors()
-ind_coords <- X_active |> pca_ind_coords(vectors)
-ind_coords[,1:5]  |> head()
-```
-
-```{r}
-# Get individual cos2 with FactoMineR
-head(res_pca$ind$cos2)
-```
-
-```{r}
-# Get individual cos2 with FactoMineR2
-ind_cos2 <- ind_coords |> pca_ind_cos2()
-ind_cos2[,1:5] |> head()
-```
-
-```{r}
-# Get individual contributions with FactoMineR
-head(res_pca$ind$contrib)
-```
-
-```{r}
-# Get individual contributions with FactoMineR2
-ind_contrib <- ind_coords |> pca_ind_contrib(df_eigs$eigenvalue)
-ind_contrib[,1:5] |> head()
-```
-
-
-### Variables
-
-```{r}
-# Get variable coordinates with FactoMineR
-head(res_pca$var$coord)
-```
-
-```{r}
-# Get variable coordinates with FactoMineR2
-var_coords <- df_eigs$eigenvalue |> pca_var_coords(vectors)
-var_coords[,1:5] |> head()
-```
-
-```{r}
-# Get variable cos2 with FactoMineR
-head(res_pca$var$cos2)
-```
-
-```{r}
-# Get variable cos2 with FactoMineR2
-var_cos2 <- var_coords |> pca_var_cos2()
-var_cos2[,1:5] |> head()
-```
-
-```{r}
-# Get variable contributions with FactoMineR
-head(res_pca$var$contrib)
-```
-
-```{r}
-# Get variable contributions with FactoMineR2
-var_contrib <- var_coords |> pca_var_contrib()
-var_contrib[,1:5] |> head()
-```
-
-
-

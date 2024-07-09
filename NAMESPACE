@@ -1,8 +1,6 @@
 exportPattern("^[[:alpha:]]+")
-import(dplyr)
 import(factoextra)
 import(FactoMineR)
 import(knitr)
-importFrom(magrittr, "%>%", extract2, set_colnames, set_rownames)
 importFrom(stats, cov)
 import(covr)
