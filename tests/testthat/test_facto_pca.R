@@ -1,4 +1,4 @@
-X <- iris[,-5]
+X <- iris[, -5]
 res_pca <- facto_pca(X, ncp = 3, ind_sup = 1, quanti_sup = 1)
 
 test_that("Testing facto_pca(X, ncp = 3, ind_sup = 1, quanti_sup = 1)", {
@@ -25,6 +25,6 @@ test_that("Testing facto_pca(X, ncp = 3, ind_sup = 1, quanti_sup = 1)", {
 
   expect_identical(names(res_pca$var.sup), c("coord", "cor", "cos2"))
   expect_identical(res_pca$var.sup$coord, res_pca$var.sup$cor)
-  expect_equal(dim(res_pca$var.sup$coord), c(1,3))
-  expect_equal(dim(res_pca$var.sup$cos2), c(1,3))
+  expect_equal(dim(res_pca$var.sup$coord), c(1, 3))
+  expect_equal(dim(res_pca$var.sup$cos2), c(1, 3))
 })

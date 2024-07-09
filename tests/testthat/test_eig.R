@@ -1,5 +1,5 @@
-df <- standardize_norm(iris[,-5])
-gf <- standardize(iris[,-5])
+df <- standardize_norm(iris[, -5])
+gf <- standardize(iris[, -5])
 
 test_that("Testing get_eigen()", {
   df_eigs <- get_eigen(df)

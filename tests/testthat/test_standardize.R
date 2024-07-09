@@ -1,4 +1,4 @@
-df <- iris[,-5]
+df <- iris[, -5]
 
 test_that("standardize_norm(X, center = TRUE, scale = TRUE)", {
   obs <- standardize_norm(df, scale = TRUE)

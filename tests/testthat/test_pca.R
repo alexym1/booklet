@@ -1,5 +1,5 @@
-df <- standardize_norm(iris[,-5])
-gf <- standardize(iris[,-5])
+df <- standardize_norm(iris[, -5])
+gf <- standardize(iris[, -5])
 
 df_eigs <- get_eigen(df)
 gf_eigs <- get_eigen(gf)
@@ -49,7 +49,6 @@ test_that("Testing active individuals - contribution", {
   expect_identical(nrow(gf_contrib), nrow(gf))
 })
 
-
 test_that("Testing active variables - coordinates", {
   df_coords <- pca_var_coords(df_eigenvalues, df_eigvectors)
   gf_coords <- pca_var_coords(gf_eigenvalues, gf_eigvectors)
@@ -63,6 +62,21 @@ test_that("Testing active variables - coordinates", {
   expect_identical(colnames(gf_coords), paste0("Dim.", 1:ncol(gf)))
   expect_identical(dim(gf_coords), c(ncol(gf), ncol(gf)))
   expect_identical(dim(gf_coords)[1], dim(gf_coords)[2])
+})
+
+test_that("Testing active variables - correlation", {
+  df_cor <- pca_var_cor(df_eigenvalues, df_eigvectors)
+  gf_cor <- pca_var_cor(gf_eigenvalues, gf_eigvectors)
+
+  expect_identical(is.matrix(df_cor), TRUE)
+  expect_identical(colnames(df_cor), paste0("Dim.", 1:ncol(df)))
+  expect_identical(dim(df_cor), c(ncol(df), ncol(df)))
+  expect_identical(dim(df_cor)[1], dim(df_cor)[2])
+
+  expect_identical(is.matrix(gf_cor), TRUE)
+  expect_identical(colnames(gf_cor), paste0("Dim.", 1:ncol(gf)))
+  expect_identical(dim(gf_cor), c(ncol(gf), ncol(gf)))
+  expect_identical(dim(gf_cor)[1], dim(gf_cor)[2])
 })
 
 test_that("Testing active variables - cos2", {

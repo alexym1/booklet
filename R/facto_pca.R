@@ -77,7 +77,7 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     center <- colMeans(X_active)
     std <- sqrt(as.vector(crossprod(weights, as.matrix(X_active^2)) - center^2))
 
-    if(!is.null(quanti_sup)){
+    if (!is.null(quanti_sup)) {
       X_sup <- X[ind_sup, -quanti_sup]
     } else {
       X_sup <- X[ind_sup, ]
@@ -93,8 +93,7 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
   }
 
   if (!is.null(quanti_sup)) {
-
-    if(!is.null(ind_sup)){
+    if (!is.null(ind_sup)) {
       X_sup <- X[-ind_sup, quanti_sup, drop = FALSE]
     } else {
       X_sup <- X[, quanti_sup, drop = FALSE]

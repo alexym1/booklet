@@ -4,11 +4,11 @@
 
 * `get_weighted_eigen()` calculates the same eigs as FactoMineR, whereas `get_eigen()` calculates the eigs in the unweighted case.
 
-* `eigvalues()` and `eigvectors()` were removed.
+* `eigvalues()` and `eigvectors()` were deprecated.
 
 * `pca_var_cos2()` now works as expected.
 
-* `Comparison.Rmd` has been updated allowing to compute supplementary ind./var. coordinates.
+* `Comparison.Rmd` has been updated allowing to compute either supplementary individual coordinates or supplementary variable coordinates.
 
 
 # FactoMineR2 0.1.1
