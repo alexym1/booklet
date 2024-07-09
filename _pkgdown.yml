@@ -12,7 +12,7 @@ articles:
   navbar: ~
   contents:
   - Comparison
-  - Data
+  - extensions
 
 reference:
 - title: Eigen
