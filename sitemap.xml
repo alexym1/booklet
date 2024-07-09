@@ -1,63 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/404.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/articles/FactoMineR2.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/articles/extensions.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/index.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/get_eigen.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/pca_ind_contrib.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/pca_ind_coords.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/pca_ind_cos2.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/pca_var_contrib.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/pca_var_coords.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/pca_var_cos2.html</loc>
-  </url>
-  <url>
-    <loc>https://alexym1.github.io/FactoMineR2/reference/standardize_norm.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://alexym1.github.io/FactoMineR2/404.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/CONTRIBUTING.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/LICENSE-text.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/LICENSE.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/articles/Comparison.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/articles/FactoMineR2.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/articles/extensions.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/articles/index.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/authors.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/index.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/news/index.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/facto_pca.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/get_eigen.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/index.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/pca_ind_contrib.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/pca_ind_coords.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/pca_ind_cos2.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/pca_var_contrib.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/pca_var_coords.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/pca_var_cos2.html</loc></url>
+<url><loc>https://alexym1.github.io/FactoMineR2/reference/standardize_norm.html</loc></url>
 </urlset>
+
