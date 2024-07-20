@@ -10,12 +10,13 @@ Description: Perform PCA, MFA, CA, MFA.
 License: MIT + file LICENSE
 URL: https://github.com/alexym1/FactoMineR2, https://alexym1.github.io/FactoMineR2
 BugReports: https://github.com/alexym1/FactoMineR2/issues
-Suggests: 
+Imports:
     covr,
-    devtools, 
     factoextra,
     FactoMineR,
-    knitr,
+    knitr
+Suggests: 
+    devtools, 
     renv, 
     testthat
 VignetteBuilder:

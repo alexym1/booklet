@@ -44,9 +44,9 @@ get_weighted_eigen <- function(X) {
   mult[mult == 0] <- 1
   U <- t(t(U) * mult)
   V <- t(t(V) * mult)
-  U <- U/sqrt(weights)
+  U <- U / sqrt(weights)
 
-  eigs <- list(values=svd_res$d^2, vectors=V, U=U)
+  eigs <- list(values = svd_res$d^2, vectors = V, U = U)
 
   colnames(eigs[[2]]) <- paste0("Dim.", 1:ncol(X))
   rownames(eigs[[2]]) <- colnames(X)
