@@ -99,13 +99,8 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
       X_sup <- X[, quanti_sup, drop = FALSE]
     }
 
-    center <- as.vector(crossprod(weights, as.matrix(X_sup)))
-    std <- sqrt(as.vector(crossprod(weights, as.matrix(X_sup^2)) - center^2))
-    X_sup_scaled <- (X_sup - center) / std
-
-    A <- t(X_sup_scaled * weights)
-    U <- FactoMineR::svd.triplet(X_active_scaled)$U
-    var_sup_coords <- A %*% U
+    X_sup_scaled <- standardize(X_sup, scale = scale.unit)
+    var_sup_coords <- t(X_sup_scaled * weights) %*% eigs$U
 
     res_pca$var.sup <- list(
       coord = var_sup_coords,

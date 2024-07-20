@@ -1,3 +1,10 @@
+# FactoMineR2 0.2.1
+
+* `get_weighted_eigen()` now returns U matrix as expected (#4)
+* `pca_ind_coords()` & `pca_var_coords()` return same signs of the corresponding coordinates as FactoMineR.
+* `facto_pca()` has been updated. Now, it returns the same output as `FactoMineR::PCA()`.
+
+
 # FactoMineR2 0.2.0
 
 * `facto_pca()` is a wrapper function that mimics `FactoMineR::PCA()`.
