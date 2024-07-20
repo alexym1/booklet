@@ -30,7 +30,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">FactoMineR2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,12 +103,9 @@ packages.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get eigvalues and eigvectors with FactoMineR2</span></span>
 <span><span class="va">X_active</span> <span class="op">&lt;-</span> <span class="va">X</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">10</span><span class="op">]</span></span>
+<span><span class="va">X_active_scaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/standardize_norm.html">standardize</a></span><span class="op">(</span><span class="va">X_active</span>, scale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">X_active_scaled</span> <span class="op">&lt;-</span> <span class="va">X_active</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/standardize_norm.html">standardize</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">eigs</span> <span class="op">&lt;-</span> <span class="va">X_active_scaled</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/get_eigen.html">get_weighted_eigen</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">eigs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_eigen.html">get_weighted_eigen</a></span><span class="op">(</span><span class="va">X_active_scaled</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df_eigs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>    eigenvalue <span class="op">=</span> <span class="va">eigs</span><span class="op">$</span><span class="va">values</span>,</span>
@@ -145,15 +142,15 @@ packages.</p>
 <span><span class="co">#&gt; ZSIVOCZKY  0.2692284 -0.4794763 -1.9969562 -0.258190426 -0.13749027</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get principal components with FactoMineR2</span></span>
-<span><span class="va">ind_coords</span> <span class="op">&lt;-</span> <span class="va">X_active_scaled</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_ind_coords.html">pca_ind_coords</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">$</span><span class="va">vectors</span><span class="op">)</span></span>
-<span><span class="va">ind_coords</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>  <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ind_coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_ind_coords.html">pca_ind_coords</a></span><span class="op">(</span><span class="va">X_active_scaled</span>, <span class="va">eigs</span><span class="op">$</span><span class="va">vectors</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ind_coords</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                Dim.1      Dim.2      Dim.3        Dim.4       Dim.5</span></span>
-<span><span class="co">#&gt; CLAY       1.3100544  0.4159492  0.5208056 -0.369856466  2.17766124</span></span>
-<span><span class="co">#&gt; KARPOV     1.4371854  0.4206194 -0.9485451 -2.055098128  0.08739926</span></span>
-<span><span class="co">#&gt; BERNARD   -0.6048025  1.1039234  2.2461329  0.308551094 -0.52147527</span></span>
-<span><span class="co">#&gt; YURKOV    -0.5701719 -2.4598460  0.6145443 -0.002631539 -1.26970612</span></span>
-<span><span class="co">#&gt; WARNERS    0.3739047  1.8369980 -0.4725537 -0.728066088 -0.69493980</span></span>
-<span><span class="co">#&gt; ZSIVOCZKY  0.2692284  0.4794763 -1.9969562  0.258190426  0.13749027</span></span></code></pre></div>
+<span><span class="co">#&gt; CLAY       1.3100544 -0.4159492  0.5208056  0.369856466 -2.17766124</span></span>
+<span><span class="co">#&gt; KARPOV     1.4371854 -0.4206194 -0.9485451  2.055098128 -0.08739926</span></span>
+<span><span class="co">#&gt; BERNARD   -0.6048025 -1.1039234  2.2461329 -0.308551094  0.52147527</span></span>
+<span><span class="co">#&gt; YURKOV    -0.5701719  2.4598460  0.6145443  0.002631539  1.26970612</span></span>
+<span><span class="co">#&gt; WARNERS    0.3739047 -1.8369980 -0.4725537  0.728066088  0.69493980</span></span>
+<span><span class="co">#&gt; ZSIVOCZKY  0.2692284 -0.4794763 -1.9969562 -0.258190426 -0.13749027</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get individual cos2 with FactoMineR</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res_pca</span><span class="op">$</span><span class="va">ind</span><span class="op">$</span><span class="va">cos2</span><span class="op">)</span></span>
@@ -166,8 +163,8 @@ packages.</p>
 <span><span class="co">#&gt; ZSIVOCZKY 0.01324414 0.04200650 0.72865053 1.218043e-02 0.003454030</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get individual cos2 with FactoMineR2</span></span>
-<span><span class="va">ind_cos2</span> <span class="op">&lt;-</span> <span class="va">ind_coords</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_ind_cos2.html">pca_ind_cos2</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">ind_cos2</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ind_cos2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_ind_cos2.html">pca_ind_cos2</a></span><span class="op">(</span><span class="va">ind_coords</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ind_cos2</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                Dim.1      Dim.2      Dim.3        Dim.4       Dim.5</span></span>
 <span><span class="co">#&gt; CLAY      0.20619906 0.02078684 0.03258812 1.643518e-02 0.569755684</span></span>
 <span><span class="co">#&gt; KARPOV    0.25723191 0.02203321 0.11205086 5.259741e-01 0.000951294</span></span>
@@ -187,8 +184,8 @@ packages.</p>
 <span><span class="co">#&gt; ZSIVOCZKY 0.05521748 0.3402134  9.3620727 1.943986e-01  0.07443229</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get individual contributions with FactoMineR2</span></span>
-<span><span class="va">ind_contrib</span> <span class="op">&lt;-</span> <span class="va">ind_coords</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_ind_contrib.html">pca_ind_contrib</a></span><span class="op">(</span><span class="va">df_eigs</span><span class="op">$</span><span class="va">eigenvalue</span><span class="op">)</span></span>
-<span><span class="va">ind_contrib</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ind_contrib</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_ind_contrib.html">pca_ind_contrib</a></span><span class="op">(</span><span class="va">ind_coords</span>, <span class="va">df_eigs</span><span class="op">$</span><span class="va">eigenvalue</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ind_contrib</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                Dim.1     Dim.2      Dim.3        Dim.4       Dim.5</span></span>
 <span><span class="co">#&gt; CLAY      1.30741518 0.2560340  0.6367752 3.989140e-01 18.67231141</span></span>
 <span><span class="co">#&gt; KARPOV    1.57347720 0.2618157  2.1122769 1.231623e+01  0.03007689</span></span>
@@ -216,7 +213,7 @@ packages.</p>
 <span><span class="va">ind_sup_coords</span> <span class="op">&lt;-</span> <span class="va">X_sup_scaled</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_ind_coords.html">pca_ind_coords</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">$</span><span class="va">vectors</span><span class="op">)</span></span>
 <span><span class="va">ind_sup_coords</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
 <span><span class="co">#&gt;      Dim.1      Dim.2      Dim.3      Dim.4      Dim.5 </span></span>
-<span><span class="co">#&gt;  0.8344973 -0.3186264  1.2145584  0.2014840 -1.2818827</span></span></code></pre></div>
+<span><span class="co">#&gt;  0.8344973  0.3186264  1.2145584 -0.2014840  1.2818827</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get supplementary individuals cos2 with FactoMineR</span></span>
 <span><span class="va">res_pca</span><span class="op">$</span><span class="va">ind.sup</span><span class="op">$</span><span class="va">cos2</span></span>
@@ -224,7 +221,7 @@ packages.</p>
 <span><span class="co">#&gt; SEBRLE 0.1505617 0.02194968 0.3189345 0.008776992 0.3552722</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get supplementary individuals cos2 with FactoMineR2</span></span>
-<span><span class="va">ind_sup_cos2</span> <span class="op">&lt;-</span> <span class="va">ind_sup_coords</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_ind_cos2.html">pca_ind_cos2</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ind_sup_cos2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_ind_cos2.html">pca_ind_cos2</a></span><span class="op">(</span><span class="va">ind_sup_coords</span><span class="op">)</span></span>
 <span><span class="va">ind_sup_cos2</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
 <span><span class="co">#&gt;       Dim.1       Dim.2       Dim.3       Dim.4       Dim.5 </span></span>
 <span><span class="co">#&gt; 0.150561716 0.021949682 0.318934499 0.008776992 0.355272243</span></span></code></pre></div>
@@ -244,15 +241,15 @@ packages.</p>
 <span><span class="co">#&gt; 110m.hurdle -0.7510101  0.2498147  0.23834558 -0.06295776  0.22508937</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get variable coordinates with FactoMineR2</span></span>
-<span><span class="va">var_coords</span> <span class="op">&lt;-</span> <span class="va">df_eigs</span><span class="op">$</span><span class="va">eigenvalue</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_var_coords.html">pca_var_coords</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">$</span><span class="va">vectors</span><span class="op">)</span></span>
-<span><span class="va">var_coords</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">var_coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_var_coords.html">pca_var_coords</a></span><span class="op">(</span><span class="va">df_eigs</span><span class="op">$</span><span class="va">eigenvalue</span>, <span class="va">eigs</span><span class="op">$</span><span class="va">vectors</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">var_coords</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  Dim.1      Dim.2       Dim.3       Dim.4       Dim.5</span></span>
-<span><span class="co">#&gt; 100m        -0.7802087 -0.2474540 -0.07802294 -0.15739065 -0.10348090</span></span>
-<span><span class="co">#&gt; Long.jump    0.7418925  0.4073126  0.05696965  0.10200465 -0.12853454</span></span>
-<span><span class="co">#&gt; Shot.put     0.6230146 -0.5713999  0.28623659 -0.22239225  0.02547125</span></span>
-<span><span class="co">#&gt; High.jump    0.5704197 -0.4191676 -0.24210464 -0.09178538 -0.63728214</span></span>
-<span><span class="co">#&gt; 400m        -0.6756524 -0.4720254  0.12379407 -0.12444012  0.02216888</span></span>
-<span><span class="co">#&gt; 110m.hurdle -0.7510101 -0.2498147  0.23834558  0.06295776 -0.22508937</span></span></code></pre></div>
+<span><span class="co">#&gt; 100m        -0.7802087  0.2474540 -0.07802294  0.15739065  0.10348090</span></span>
+<span><span class="co">#&gt; Long.jump    0.7418925 -0.4073126  0.05696965 -0.10200465  0.12853454</span></span>
+<span><span class="co">#&gt; Shot.put     0.6230146  0.5713999  0.28623659  0.22239225 -0.02547125</span></span>
+<span><span class="co">#&gt; High.jump    0.5704197  0.4191676 -0.24210464  0.09178538  0.63728214</span></span>
+<span><span class="co">#&gt; 400m        -0.6756524  0.4720254  0.12379407  0.12444012 -0.02216888</span></span>
+<span><span class="co">#&gt; 110m.hurdle -0.7510101  0.2498147  0.23834558 -0.06295776  0.22508937</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get variable cos2 with FactoMineR</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res_pca</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">cos2</span><span class="op">)</span></span>
@@ -265,8 +262,8 @@ packages.</p>
 <span><span class="co">#&gt; 110m.hurdle 0.5640162 0.06240739 0.056808617 0.003963679 0.0506652236</span></span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get variable cos2 with FactoMineR2</span></span>
-<span><span class="va">var_cos2</span> <span class="op">&lt;-</span> <span class="va">var_coords</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_var_cos2.html">pca_var_cos2</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">var_cos2</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">var_cos2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_var_cos2.html">pca_var_cos2</a></span><span class="op">(</span><span class="va">var_coords</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">var_cos2</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 Dim.1      Dim.2       Dim.3       Dim.4        Dim.5</span></span>
 <span><span class="co">#&gt; 100m        0.6087256 0.06123346 0.006087579 0.024771818 0.0107082970</span></span>
 <span><span class="co">#&gt; Long.jump   0.5504045 0.16590352 0.003245541 0.010404949 0.0165211277</span></span>
@@ -286,8 +283,8 @@ packages.</p>
 <span><span class="co">#&gt; 110m.hurdle 17.18646  3.694139 5.3346892 0.4623504  7.97971527</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get variable contributions with FactoMineR2</span></span>
-<span><span class="va">var_contrib</span> <span class="op">&lt;-</span> <span class="va">var_cos2</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_var_contrib.html">pca_var_contrib</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">var_contrib</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">var_contrib</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_var_contrib.html">pca_var_contrib</a></span><span class="op">(</span><span class="va">var_cos2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">var_contrib</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                Dim.1     Dim.2     Dim.3     Dim.4       Dim.5</span></span>
 <span><span class="co">#&gt; 100m        18.54882  3.624649 0.5716623 2.8895531  1.68654464</span></span>
 <span><span class="co">#&gt; Long.jump   16.77169  9.820481 0.3047769 1.2137039  2.60205888</span></span>
@@ -307,14 +304,9 @@ packages.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get supplementary CONTINUOUS variables coordinates with FactoMineR2</span></span>
 <span><span class="va">X_sup</span> <span class="op">&lt;-</span> <span class="va">X</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">10</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
+<span><span class="va">X_sup_scaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/standardize_norm.html">standardize</a></span><span class="op">(</span><span class="va">X_sup</span>, scale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">center</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="va">weights</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">X_sup</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">std</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="va">weights</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">X_sup</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="va">center</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> </span>
-<span><span class="va">X_sup_scaled</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">X_sup</span> <span class="op">-</span> <span class="va">center</span><span class="op">)</span> <span class="op">/</span> <span class="va">std</span> </span>
-<span></span>
-<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">X_sup_scaled</span> <span class="op">*</span> <span class="va">weights</span><span class="op">)</span></span>
-<span><span class="va">U</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FactoMineR/man/svd.triplet.html" class="external-link">svd.triplet</a></span><span class="op">(</span><span class="va">X_active_scaled</span><span class="op">)</span><span class="op">$</span><span class="va">U</span></span>
-<span><span class="va">var_sup_coords</span> <span class="op">&lt;-</span> <span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">U</span></span>
+<span><span class="va">var_sup_coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">X_sup_scaled</span> <span class="op">*</span> <span class="va">weights</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">eigs</span><span class="op">$</span><span class="va">U</span></span>
 <span><span class="va">var_sup_coords</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] -0.05231146  0.11429210  0.13963364  0.46213713 -0.19646090</span></span></code></pre></div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
@@ -324,7 +316,7 @@ packages.</p>
 <span><span class="co">#&gt; 1500m 0.002736489 0.01306268 0.01949755 0.2135707 0.03859689</span></span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get supplementary variables cos2 with FactoMineR2</span></span>
-<span><span class="va">var_sup_cos2</span> <span class="op">&lt;-</span> <span class="va">var_sup_coords</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/pca_var_cos2.html">pca_var_cos2</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">var_sup_cos2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_var_cos2.html">pca_var_cos2</a></span><span class="op">(</span><span class="va">var_sup_coords</span><span class="op">)</span></span>
 <span><span class="va">var_sup_cos2</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 0.002736489 0.013062684 0.019497553 0.213570730 0.038596885</span></span></code></pre></div>
 </div>
