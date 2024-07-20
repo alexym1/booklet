@@ -37,12 +37,9 @@ head(res_pca$eig)
 ```{r}
 # Get eigvalues and eigvectors with FactoMineR2
 X_active <- X[-1, -10]
+X_active_scaled <- standardize(X_active, scale = TRUE)
 
-X_active_scaled <- X_active |>
-  standardize(scale = TRUE)
-
-eigs <- X_active_scaled |>
-    get_weighted_eigen()
+eigs <- get_weighted_eigen(X_active_scaled)
 
 df_eigs <- data.frame(
     eigenvalue = eigs$values,
@@ -66,8 +63,8 @@ head(res_pca$ind$coord)
 
 ```{r}
 # Get principal components with FactoMineR2
-ind_coords <- X_active_scaled |> pca_ind_coords(eigs$vectors)
-ind_coords[,1:5]  |> head()
+ind_coords <- pca_ind_coords(X_active_scaled, eigs$vectors)
+head(ind_coords[,1:5])
 ```
 
 ```{r}
@@ -77,8 +74,8 @@ head(res_pca$ind$cos2)
 
 ```{r}
 # Get individual cos2 with FactoMineR2
-ind_cos2 <- ind_coords |> pca_ind_cos2()
-ind_cos2[,1:5] |> head()
+ind_cos2 <- pca_ind_cos2(ind_coords)
+head(ind_cos2[,1:5])
 ```
 
 ```{r}
@@ -88,8 +85,8 @@ head(res_pca$ind$contrib)
 
 ```{r}
 # Get individual contributions with FactoMineR2
-ind_contrib <- ind_coords |> pca_ind_contrib(df_eigs$eigenvalue)
-ind_contrib[,1:5] |> head()
+ind_contrib <- pca_ind_contrib(ind_coords, df_eigs$eigenvalue)
+head(ind_contrib[,1:5])
 ```
 
 ### Supplementary individuals
@@ -118,7 +115,7 @@ res_pca$ind.sup$cos2
 
 ```{r}
 # Get supplementary individuals cos2 with FactoMineR2
-ind_sup_cos2 <- ind_sup_coords |> pca_ind_cos2()
+ind_sup_cos2 <- pca_ind_cos2(ind_sup_coords)
 ind_sup_cos2[,1:5]
 ```
 
@@ -132,8 +129,8 @@ head(res_pca$var$coord)
 
 ```{r}
 # Get variable coordinates with FactoMineR2
-var_coords <- df_eigs$eigenvalue |> pca_var_coords(eigs$vectors)
-var_coords[,1:5] |> head()
+var_coords <- pca_var_coords(df_eigs$eigenvalue, eigs$vectors)
+head(var_coords[,1:5])
 ```
 
 ```{r}
@@ -143,8 +140,8 @@ head(res_pca$var$cos2)
 
 ```{r}
 # Get variable cos2 with FactoMineR2
-var_cos2 <- var_coords |> pca_var_cos2()
-var_cos2[,1:5] |> head()
+var_cos2 <- pca_var_cos2(var_coords)
+head(var_cos2[,1:5])
 ```
 
 ```{r}
@@ -154,8 +151,8 @@ head(res_pca$var$contrib)
 
 ```{r}
 # Get variable contributions with FactoMineR2
-var_contrib <- var_cos2 |> pca_var_contrib()
-var_contrib[,1:5] |> head()
+var_contrib <- pca_var_contrib(var_cos2)
+head(var_contrib[,1:5])
 ```
 
 ### Supplementary variables
@@ -167,14 +164,9 @@ res_pca$quanti.sup$coord
 ```{r}
 # Get supplementary CONTINUOUS variables coordinates with FactoMineR2
 X_sup <- X[-1, 10, drop = FALSE]
+X_sup_scaled <- standardize(X_sup, scale = TRUE)
 
-center <- as.vector(crossprod(weights, as.matrix(X_sup)))
-std <- sqrt(as.vector(crossprod(weights, as.matrix(X_sup^2)) - center^2)) 
-X_sup_scaled <- (X_sup - center) / std 
-
-A <- t(X_sup_scaled * weights)
-U <- svd.triplet(X_active_scaled)$U
-var_sup_coords <- A %*% U
+var_sup_coords <- t(X_sup_scaled * weights) %*% eigs$U
 var_sup_coords[,1:5]
 ```
 
@@ -185,6 +177,6 @@ res_pca$quanti.sup$cos2
 
 ```{r}
 # Get supplementary variables cos2 with FactoMineR2
-var_sup_cos2 <- var_sup_coords |> pca_var_cos2()
+var_sup_cos2 <- pca_var_cos2(var_sup_coords)
 var_sup_cos2[,1:5]
 ```

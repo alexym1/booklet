@@ -67,7 +67,7 @@ username, and links to relevant issue(s)/PR(s).
 
 * 4. Copy/Paste the latest bullet of `NEWS.md` in the PR description.
 
-* 5. If your code is approved, bump to version the following files:
+* 5. Bump to version the following files:
 
     * `Description`
     * `NEWS.md`

@@ -37,7 +37,16 @@ get_weighted_eigen <- function(X) {
   weights <- row.w / sum(row.w)
 
   svd_res <- svd(t(t(X) * sqrt(weights)))
-  eigs <- list(values = svd_res$d^2, vectors = svd_res$v)
+  V <- svd_res$v
+  U <- svd_res$u
+
+  mult <- sign(as.vector(crossprod(rep(1, nrow(V)), as.matrix(V))))
+  mult[mult == 0] <- 1
+  U <- t(t(U) * mult)
+  V <- t(t(V) * mult)
+  U <- U / sqrt(weights)
+
+  eigs <- list(values = svd_res$d^2, vectors = V, U = U)
 
   colnames(eigs[[2]]) <- paste0("Dim.", 1:ncol(X))
   rownames(eigs[[2]]) <- colnames(X)
