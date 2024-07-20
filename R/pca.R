@@ -19,7 +19,7 @@
 #'   head()
 #' @export
 pca_ind_coords <- function(X, eigenvectors) {
-  return(-1 * as.matrix(X) %*% eigenvectors)
+  return(as.matrix(X) %*% eigenvectors)
 }
 
 
@@ -99,7 +99,7 @@ pca_ind_contrib <- function(ind_coords, eigenvalues) {
 #'   head()
 #' @export
 pca_var_coords <- function(eigenvalues, eigenvectors) {
-  var_coords <- -1 * (eigenvectors %*% diag(sqrt(eigenvalues)))
+  var_coords <- eigenvectors %*% diag(sqrt(eigenvalues))
   colnames(var_coords) <- paste0("Dim.", 1:ncol(var_coords))
   return(var_coords)
 }
