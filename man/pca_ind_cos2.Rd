@@ -15,14 +15,10 @@ Return indivdual squared cosines for each principal component
 \examples{
 library(FactoMineR2)
 
-X_active <- iris[, -5] |>
-  standardize_norm()
-
-eigs <- X_active |>
-  get_eigen()
-
-X_active |>
-  pca_ind_coords(eigs$vectors) |>
+iris[, -5] |>
+  standardize_norm() |>
+  get_weighted_eigen() |>
+  pca_ind_coords() |>
   pca_ind_cos2() |>
   head()
 }

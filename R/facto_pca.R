@@ -7,6 +7,7 @@
 #' @param scale.unit a boolean, if TRUE (value set by default) then data are scaled to unit variance
 #' @param ind_sup a vector indicating the indexes of the supplementary individuals
 #' @param quanti_sup a vector indicating the indexes of the quantitative supplementary variables
+#' @param weighted_col column weights
 #'
 #' @examples
 #' library(FactoMineR)
@@ -16,7 +17,7 @@
 #' X <- decathlon[, -c(11:13)]
 #' res <- facto_pca(X, ncp = 5, ind_sup = 1, quanti_sup = 10)
 #' @export
-facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup = NULL) {
+facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup = NULL, weighted_col = rep(1, ncol(X))) {
   if (!is.null(ind_sup) & !is.null(quanti_sup)) {
     X_active <- X[-ind_sup, -quanti_sup]
   } else if (!is.null(ind_sup) & is.null(quanti_sup)) {
@@ -29,35 +30,37 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
 
   X_active_scaled <- standardize(X_active, scale = scale.unit)
 
-  eigs <- get_weighted_eigen(X_active_scaled)
+  eigs <- get_weighted_eigen(X_active_scaled, weighted_col = weighted_col)
   eigvalues <- eigs$values
-  eigvectors <- eigs$vectors
 
   df_eigs <- data.frame(
     eigenvalue = eigvalues,
     `percentage of variance` = eigvalues / sum(eigvalues) * 100,
-    `cumulative percentage of variance` = cumsum(eigvalues / sum(eigvalues))
+    `cumulative percentage of variance` = cumsum(eigvalues / sum(eigvalues)) * 100
   )
 
   rownames(df_eigs) <- paste0("comp ", 1:nrow(df_eigs))
 
-  ind_coords <- pca_ind_coords(X_active_scaled, eigvectors)
-  ind_coords <- ind_coords[, 1:ncp]
+  ind_coords <- pca_ind_coords(eigs)
+  ind_cos2 <- pca_ind_cos2(ind_coords)
+  ind_contrib <- pca_ind_contrib(ind_cos2, eigs)
 
   lst_ind <- list(
-    coord = ind_coords,
-    cos2 = pca_ind_cos2(ind_coords),
-    contrib = pca_ind_contrib(ind_coords, eigvalues[1:ncp])
+    coord = ind_coords[, 1:ncp],
+    cos2 = ind_cos2[, 1:ncp],
+    contrib = ind_contrib[, 1:ncp]
   )
 
-  var_coords <- pca_var_coords(eigvalues, eigvectors)
-  var_coords <- var_coords[, 1:ncp]
+  var_coords <- pca_var_coords(eigs)
+  var_cor <- pca_var_cor(eigs)
+  var_cos2 <- pca_var_cos2(var_coords)
+  var_contrib <- pca_var_contrib(var_cos2, eigs, weighted_col)
 
   lst_var <- list(
-    coord = var_coords,
-    cor = var_coords,
-    cos2 = pca_var_cos2(var_coords),
-    contrib = pca_var_contrib(var_coords)
+    coord = var_coords[, 1:ncp],
+    cor = var_cor[, 1:ncp],
+    cos2 = var_cos2[, 1:ncp],
+    contrib = var_contrib[, 1:ncp]
   )
 
   weights <- rep(1, nrow(X_active)) / nrow(X_active)
@@ -68,6 +71,7 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     ind = lst_ind,
     call = list(
       row.w = weights,
+      col.w = weighted_col,
       scale.unit = scale.unit,
       ncp = ncp
     )

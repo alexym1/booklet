@@ -40,11 +40,7 @@ head(X_scaled)
 The next step is to compute the eigenvalues and eigenvectors of the covariance matrix. This is done using the `get_eigen()` function in R. The eigenvalues represent the variance explained by each principal component, while the eigenvectors represent the direction of the principal components in the original feature space.
 
 ```{r}
-# You can also use the `get_eigen()`.
-covariance <- cov(X_scaled)
-eigs <- eigen(covariance)
-eigs$values
-eigs$vectors
+eigs <- get_eigen(X_active)
 ```
 
 ## Perform PCA
@@ -53,6 +49,6 @@ Finally, we can perform a principal component analysis (PCA) on the standardized
 
 ```{r}
 # You can also use the `pca_ind_coords()` function.
-ind_coords <- -1 * as.matrix(X_scaled) %*% eigs$vectors
+ind_coords <- t(t(as.matrix(eigs[["U"]])) * sqrt(eigs[["values"]]))
 head(ind_coords)
 ```

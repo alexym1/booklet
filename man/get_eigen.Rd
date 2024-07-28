@@ -7,10 +7,18 @@
 \usage{
 get_eigen(X)
 
-get_weighted_eigen(X)
+get_weighted_eigen(
+  X,
+  weighted_row = rep(1, nrow(X))/nrow(X),
+  weighted_col = rep(1, ncol(X))
+)
 }
 \arguments{
 \item{X}{X_active}
+
+\item{weighted_row}{row weights}
+
+\item{weighted_col}{column weights}
 }
 \description{
 Return eigvalues and eigvectors of a matrix
@@ -20,7 +28,7 @@ Standardization depends on what you need to perform factor analysis. We
 implemented two types:
 \itemize{
 \item \code{get_weighted_eigen}: This is the default method in FactoMineR to compute
-eigvalues, eigvectors.
+eigvalues, eigvectors and U matrix.
 \item \code{get_eigen}: This is the standard method to compute eigvalues, eigvectors.
 }
 }

@@ -44,7 +44,7 @@ eigs <- get_weighted_eigen(X_active_scaled)
 df_eigs <- data.frame(
     eigenvalue = eigs$values,
     `percentage of variance` = eigs$values / sum(eigs$values) * 100,
-    `cumulative percentage of variance` = cumsum(eigs$values / sum(eigs$values))
+    `cumulative percentage of variance` = cumsum(eigs$values / sum(eigs$values)) * 100
   )
 
 rownames(df_eigs) <- paste0("comp ", 1:nrow(df_eigs))
@@ -63,7 +63,7 @@ head(res_pca$ind$coord)
 
 ```{r}
 # Get principal components with FactoMineR2
-ind_coords <- pca_ind_coords(X_active_scaled, eigs$vectors)
+ind_coords <- pca_ind_coords(eigs)
 head(ind_coords[,1:5])
 ```
 
@@ -85,7 +85,7 @@ head(res_pca$ind$contrib)
 
 ```{r}
 # Get individual contributions with FactoMineR2
-ind_contrib <- pca_ind_contrib(ind_coords, df_eigs$eigenvalue)
+ind_contrib <- pca_ind_contrib(ind_cos2, eigs)
 head(ind_contrib[,1:5])
 ```
 
@@ -104,7 +104,7 @@ std <- sqrt(as.vector(crossprod(weights, as.matrix(X_active^2)) - center^2))
 
 X_sup <- X[1, -10]
 X_sup_scaled <- (X_sup - center) / std 
-ind_sup_coords <- X_sup_scaled |> pca_ind_coords(eigs$vectors)
+ind_sup_coords <- pca_sup_ind_coords(X_sup_scaled, eigs)
 ind_sup_coords[,1:5]
 ```
 
@@ -129,7 +129,7 @@ head(res_pca$var$coord)
 
 ```{r}
 # Get variable coordinates with FactoMineR2
-var_coords <- pca_var_coords(df_eigs$eigenvalue, eigs$vectors)
+var_coords <- pca_var_coords(eigs)
 head(var_coords[,1:5])
 ```
 
@@ -151,7 +151,7 @@ head(res_pca$var$contrib)
 
 ```{r}
 # Get variable contributions with FactoMineR2
-var_contrib <- pca_var_contrib(var_cos2)
+var_contrib <- pca_var_contrib(var_cos2, eigs)
 head(var_contrib[,1:5])
 ```
 

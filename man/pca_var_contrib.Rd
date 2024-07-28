@@ -4,7 +4,7 @@
 \alias{pca_var_contrib}
 \title{Compute variable contributions}
 \usage{
-pca_var_contrib(var_cos2)
+pca_var_contrib(var_cos2, eigs = NULL, weighted_col = rep(1, ncol(var_cos2)))
 }
 \arguments{
 \item{var_cos2}{variable coordinates}
@@ -15,15 +15,13 @@ Return variable contributions
 \examples{
 library(FactoMineR2)
 
-X_active <- iris[, -5] |>
-  standardize_norm()
+eigs <- iris[, -5] |>
+  standardize_norm() |>
+  get_weighted_eigen()
 
-eigs <- X_active |>
-  get_eigen()
-
-eigs$values |>
-  pca_var_coords(eigs$vectors) |>
+eigs |>
+  pca_var_coords() |>
   pca_var_cos2() |>
-  pca_var_contrib() |>
+  pca_var_contrib(eigs) |>
   head()
 }
