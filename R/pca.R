@@ -2,7 +2,6 @@
 #'
 #' Return principal component for individuals
 #'
-#' @param X a data frame with n rows (individuals) and p columns (numeric variables)
 #' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
 #'
 #' @examples
@@ -20,18 +19,12 @@ pca_ind_coords <- function(eigs) {
   return(ind_coords)
 }
 
-#' @rdname pca_ind_coords
-#' @export
-pca_sup_ind_coords <- function(X, eigs) {
-  return(as.matrix(X) %*% eigs[["vectors"]])
-}
-
-
 #' Compute individual squared cosines
 #'
 #' Return indivdual squared cosines for each principal component
 #'
 #' @param ind_coords individual coordinates
+#' @param weighted_col column weights
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -43,8 +36,8 @@ pca_sup_ind_coords <- function(X, eigs) {
 #'   pca_ind_cos2() |>
 #'   head()
 #' @export
-pca_ind_cos2 <- function(ind_coords) {
-  ind_cos2 <- ind_coords^2 / rowSums(ind_coords^2)
+pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
+  ind_cos2 <- ind_coords^2 / rowSums(t(t(ind_coords^2) * weighted_col))
   return(ind_cos2)
 }
 
@@ -55,6 +48,7 @@ pca_ind_cos2 <- function(ind_coords) {
 #'
 #' @param ind_cos2 individual cos2
 #' @param eigenvalues eigenvalues
+#' @param weighted_row row weights
 #'
 #' @details
 #' If you want to compute the contributions of the individuals to the principal
@@ -68,16 +62,12 @@ pca_ind_cos2 <- function(ind_coords) {
 #'   get_weighted_eigen()
 #'
 #' eigs |>
-#'   pca_ind_coords(eigs$vectors) |>
-#'   pca_ind_cos2() |>
+#'   pca_ind_coords() |>
 #'   pca_ind_contrib(eigs) |>
 #'   head()
 #' @export
-pca_ind_contrib <- function(ind_cos2, eigs, weighted_row = rep(1, nrow(ind_cos2)) / nrow(ind_cos2)) {
-  contrib <- sweep(ind_cos2, 2, eigs[["values"]], FUN = "/")
-  ind_contrib <- 100 * contrib / nrow(contrib)
-
-  # ind_contrib <- t(t(ind_cos2 * weighted_row) / eigs[["values"]]) * 100
+pca_ind_contrib <- function(ind_coord, eigs, weighted_row = rep(1, nrow(ind_coord)) / nrow(ind_coord)) {
+  ind_contrib <- t(t(ind_coord^2 * weighted_row) / eigs[["values"]]) * 100
   return(ind_contrib)
 }
 
@@ -103,12 +93,25 @@ pca_var_coords <- function(eigs) {
   return(var_coords)
 }
 
-#' @rdname pca_var_coords
+#' Compute variable correlation
+#'
+#' Return variable correlation
+#'
+#' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
+#'
+#' @examples
+#' library(FactoMineR2)
+#'
+#' iris[, -5] |>
+#'   standardize_norm() |>
+#'   get_weighted_eigen() |>
+#'   pca_var_cor() |>
+#'   head()
 #' @export
 pca_var_cor <- function(eigs) {
-  var_coords <- t(t(as.matrix(eigs[["vectors"]])) * sqrt(eigs[["values"]]))
-  colnames(var_coords) <- paste0("Dim.", 1:ncol(var_coords))
-  return(var_coords)
+  var_cor <- -1 * (eigs[["vectors"]] %*% diag(sqrt(eigs[["values"]])))
+  colnames(var_cor) <- paste0("Dim.", 1:ncol(var_cor))
+  return(var_cor)
 }
 
 
@@ -138,6 +141,8 @@ pca_var_cos2 <- function(var_coords) {
 #' Return variable contributions
 #'
 #' @param var_cos2 variable coordinates
+#' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
+#' @param weighted_col column weights
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -152,7 +157,7 @@ pca_var_cos2 <- function(var_coords) {
 #'   pca_var_contrib(eigs) |>
 #'   head()
 #' @export
-pca_var_contrib <- function(var_cos2, eigs=NULL, weighted_col = rep(1, ncol(var_cos2))) {
+pca_var_contrib <- function(var_cos2, eigs, weighted_col = rep(1, ncol(var_cos2))) {
   var_contrib <- t(t(var_cos2) / eigs[["values"]]) * weighted_col * 100
   return(var_contrib)
 }

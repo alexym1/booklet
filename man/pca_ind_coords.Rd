@@ -2,17 +2,12 @@
 % Please edit documentation in R/pca.R
 \name{pca_ind_coords}
 \alias{pca_ind_coords}
-\alias{pca_sup_ind_coords}
 \title{Compute coordinates for individuals}
 \usage{
 pca_ind_coords(eigs)
-
-pca_sup_ind_coords(X, eigs)
 }
 \arguments{
 \item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
-
-\item{X}{a data frame with n rows (individuals) and p columns (numeric variables)}
 }
 \description{
 Return principal component for individuals

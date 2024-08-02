@@ -17,7 +17,7 @@ test_that("Testing facto_pca(X, ncp = 3, ind_sup = 1, quanti_sup = 1)", {
   expect_equal(nrow(res_pca$ind$cos2), 149)
   expect_equal(nrow(res_pca$ind$contrib), 149)
 
-  expect_identical(names(res_pca$call), c("row.w", "scale.unit", "ncp"))
+  expect_identical(names(res_pca$call), c("row.w", "col.w", "scale.unit", "ncp"))
 
   expect_identical(names(res_pca$ind.sup), c("coord", "cos2"))
   expect_equal(length(res_pca$ind.sup$coord), 3)

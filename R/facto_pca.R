@@ -42,8 +42,8 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
   rownames(df_eigs) <- paste0("comp ", 1:nrow(df_eigs))
 
   ind_coords <- pca_ind_coords(eigs)
-  ind_cos2 <- pca_ind_cos2(ind_coords)
-  ind_contrib <- pca_ind_contrib(ind_cos2, eigs)
+  ind_cos2 <- pca_ind_cos2(ind_coords, weighted_col = rep(1, ncol(ind_coords)))
+  ind_contrib <- pca_ind_contrib(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coords)) / nrow(ind_coords))
 
   lst_ind <- list(
     coord = ind_coords[, 1:ncp],
@@ -64,6 +64,7 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
   )
 
   weights <- rep(1, nrow(X_active)) / nrow(X_active)
+  weighted_col <- rep(1, ncol(X_active))
 
   res_pca <- list(
     eig = df_eigs,
@@ -88,7 +89,7 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     }
 
     X_sup_scaled <- (X_sup - center) / std
-    ind_sup_coords <- pca_ind_coords(X_sup_scaled, eigvectors)
+    ind_sup_coords <- as.matrix(X_sup_scaled) %*% eigs$vectors
 
     res_pca$ind.sup <- list(
       coord = ind_sup_coords[, 1:ncp],

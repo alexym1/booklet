@@ -5,12 +5,14 @@
 \title{Compute individual contributions}
 \usage{
 pca_ind_contrib(
-  ind_cos2,
+  ind_coord,
   eigs,
-  weighted_row = rep(1, nrow(ind_cos2))/nrow(ind_cos2)
+  weighted_row = rep(1, nrow(ind_coord))/nrow(ind_coord)
 )
 }
 \arguments{
+\item{weighted_row}{row weights}
+
 \item{ind_cos2}{individual cos2}
 
 \item{eigenvalues}{eigenvalues}
@@ -30,8 +32,7 @@ eigs <- iris[, -5] |>
   get_weighted_eigen()
 
 eigs |>
-  pca_ind_coords(eigs$vectors) |>
-  pca_ind_cos2() |>
+  pca_ind_coords() |>
   pca_ind_contrib(eigs) |>
   head()
 }

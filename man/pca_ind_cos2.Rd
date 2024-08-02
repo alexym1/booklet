@@ -4,10 +4,12 @@
 \alias{pca_ind_cos2}
 \title{Compute individual squared cosines}
 \usage{
-pca_ind_cos2(ind_coords)
+pca_ind_cos2(ind_coords, weighted_col = rep(1, ncol(ind_coords)))
 }
 \arguments{
 \item{ind_coords}{individual coordinates}
+
+\item{weighted_col}{column weights}
 }
 \description{
 Return indivdual squared cosines for each principal component

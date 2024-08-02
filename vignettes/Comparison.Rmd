@@ -85,7 +85,7 @@ head(res_pca$ind$contrib)
 
 ```{r}
 # Get individual contributions with FactoMineR2
-ind_contrib <- pca_ind_contrib(ind_cos2, eigs)
+ind_contrib <- pca_ind_contrib(ind_coords, eigs)
 head(ind_contrib[,1:5])
 ```
 
@@ -104,7 +104,7 @@ std <- sqrt(as.vector(crossprod(weights, as.matrix(X_active^2)) - center^2))
 
 X_sup <- X[1, -10]
 X_sup_scaled <- (X_sup - center) / std 
-ind_sup_coords <- pca_sup_ind_coords(X_sup_scaled, eigs)
+ind_sup_coords <- as.matrix(X_sup_scaled) %*% eigs$vectors
 ind_sup_coords[,1:5]
 ```
 
