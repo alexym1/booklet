@@ -4,10 +4,12 @@
 \alias{pca_ind_cos2}
 \title{Compute individual squared cosines}
 \usage{
-pca_ind_cos2(ind_coords)
+pca_ind_cos2(ind_coords, weighted_col = rep(1, ncol(ind_coords)))
 }
 \arguments{
 \item{ind_coords}{individual coordinates}
+
+\item{weighted_col}{column weights}
 }
 \description{
 Return indivdual squared cosines for each principal component
@@ -15,14 +17,10 @@ Return indivdual squared cosines for each principal component
 \examples{
 library(FactoMineR2)
 
-X_active <- iris[, -5] |>
-  standardize_norm()
-
-eigs <- X_active |>
-  get_eigen()
-
-X_active |>
-  pca_ind_coords(eigs$vectors) |>
+iris[, -5] |>
+  standardize_norm() |>
+  get_weighted_eigen() |>
+  pca_ind_coords() |>
   pca_ind_cos2() |>
   head()
 }

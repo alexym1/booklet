@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-![](https://img.shields.io/badge/github%20version-0.2.1-orange.svg)
+![](https://img.shields.io/badge/github%20version-0.3.0-orange.svg)
 [![R-CMD-check](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=master)
@@ -38,8 +38,8 @@ devtools::install_github("alexym1/FactoMineR2")
 library(FactoMineR2)
 
 # Get active individuals
-X_active <- iris[,-5] |> standardize_norm()
-X_active |> head()
+X_active <- standardize_norm(iris[,-5])
+head(X_active)
 #>      Sepal.Length Sepal.Width Petal.Length Petal.Width
 #> [1,]   -0.8976739  1.01560199    -1.335752   -1.311052
 #> [2,]   -1.1392005 -0.13153881    -1.335752   -1.311052
@@ -51,13 +51,13 @@ X_active |> head()
 
 ``` r
 # Get eigs
-eigs <- X_active |> get_eigen()
-print(eigs)
-#> eigen() decomposition
-#> $values
-#> [1] 2.91849782 0.91403047 0.14675688 0.02071484
-#> 
-#> $vectors
+eigs <- get_eigen(X_active)
+eigs$values
+#> [1] 434.856175 136.190540  21.866774   3.086511
+```
+
+``` r
+eigs$vectors
 #>                   Dim.1       Dim.2      Dim.3      Dim.4
 #> Sepal.Length  0.5210659 -0.37741762  0.7195664  0.2612863
 #> Sepal.Width  -0.2693474 -0.92329566 -0.2443818 -0.1235096
@@ -66,15 +66,27 @@ print(eigs)
 ```
 
 ``` r
+head(eigs$U)
+#>             [,1]        [,2]         [,3]         [,4]
+#> [1,] -0.10823953 -0.04099580  0.027218646  0.013710648
+#> [2,] -0.09945776  0.05757315  0.050003401  0.058435855
+#> [3,] -0.11299630  0.02920003 -0.009420891  0.016098333
+#> [4,] -0.10989710  0.05101939 -0.019457133 -0.037416661
+#> [5,] -0.11422046 -0.05524180 -0.003354363 -0.020379051
+#> [6,] -0.09920300 -0.12718049 -0.005747892  0.003748828
+```
+
+``` r
 # Get principal components
-X_active |> pca_ind_coords(eigs$vectors) |> head()
-#>         Dim.1      Dim.2       Dim.3        Dim.4
-#> [1,] 2.257141  0.4784238 -0.12727962 -0.024087508
-#> [2,] 2.074013 -0.6718827 -0.23382552 -0.102662845
-#> [3,] 2.356335 -0.3407664  0.04405390 -0.028282305
-#> [4,] 2.291707 -0.5953999  0.09098530  0.065735340
-#> [5,] 2.381863  0.6446757  0.01568565  0.035802870
-#> [6,] 2.068701  1.4842053  0.02687825 -0.006586116
+ind_coords <- pca_ind_coords(eigs)
+head(ind_coords)
+#>           [,1]       [,2]        [,3]         [,4]
+#> [1,] -2.257141 -0.4784238  0.12727962  0.024087508
+#> [2,] -2.074013  0.6718827  0.23382552  0.102662845
+#> [3,] -2.356335  0.3407664 -0.04405390  0.028282305
+#> [4,] -2.291707  0.5953999 -0.09098530 -0.065735340
+#> [5,] -2.381863 -0.6446757 -0.01568565 -0.035802870
+#> [6,] -2.068701 -1.4842053 -0.02687825  0.006586116
 ```
 
 ## Code of conduct

@@ -4,27 +4,35 @@
 \alias{pca_ind_contrib}
 \title{Compute individual contributions}
 \usage{
-pca_ind_contrib(ind_coords, eigenvalues)
+pca_ind_contrib(
+  ind_coords,
+  eigs,
+  weighted_row = rep(1, nrow(ind_coords))/nrow(ind_coords)
+)
 }
 \arguments{
 \item{ind_coords}{individual coordinates}
 
-\item{eigenvalues}{eigenvalues}
+\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
+
+\item{weighted_row}{row weights}
 }
 \description{
 Return indivdual contributions for each principal component
 }
+\details{
+If you want to compute the contributions of the individuals to the principal
+components, you have to change the weighted_col argument to rep(1, nrow(ind_cos2)).
+}
 \examples{
 library(FactoMineR2)
 
-X_active <- iris[, -5] |>
-  standardize_norm()
+eigs <- iris[, -5] |>
+  standardize_norm() |>
+  get_weighted_eigen()
 
-eigs <- X_active |>
-  get_eigen()
-
-X_active |>
-  pca_ind_coords(eigs$vectors) |>
-  pca_ind_contrib(eigs$values) |>
+eigs |>
+  pca_ind_coords() |>
+  pca_ind_contrib(eigs) |>
   head()
 }

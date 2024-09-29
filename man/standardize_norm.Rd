@@ -7,7 +7,7 @@
 \usage{
 standardize_norm(X, center = TRUE, scale = TRUE)
 
-standardize(X, scale = TRUE)
+standardize(X, scale = TRUE, weighted_row = rep(1, nrow(X))/nrow(X))
 }
 \arguments{
 \item{X}{matrix}
@@ -15,17 +15,19 @@ standardize(X, scale = TRUE)
 \item{center}{centering by the mean}
 
 \item{scale}{scaling by the standard deviation}
+
+\item{weighted_row}{row weights}
 }
 \description{
 Perform data standardization for multivariate exploratory data analysis.
 }
 \details{
-Standardization depends on what you need to perform factor analysis. We
-implemented two types:
+Standardization depends on what you need to perform factor analysis. Two
+methods are implemented:
 \itemize{
 \item \code{standardize}: standardization is performed by centering the
 data matrix and dividing by the square root of the sum of squares of the
-weights. This is the default standardization in \code{FactoMineR::PCA()}.
+weights. This is the same method used in \code{FactoMineR::PCA()}.
 \item \code{standardize_norm}: standardization is performed by centering and scaling
 the data matrix. (X - µ) / σ, where µ is the mean and σ is the standard deviation.
 }

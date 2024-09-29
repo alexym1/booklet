@@ -4,12 +4,10 @@
 \alias{pca_ind_coords}
 \title{Compute coordinates for individuals}
 \usage{
-pca_ind_coords(X, eigenvectors)
+pca_ind_coords(eigs)
 }
 \arguments{
-\item{X}{X_active}
-
-\item{eigenvectors}{eigenvectors}
+\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
 }
 \description{
 Return principal component for individuals
@@ -17,13 +15,9 @@ Return principal component for individuals
 \examples{
 library(FactoMineR2)
 
-X_active <- iris[, -5] |>
-  standardize_norm()
-
-eigs <- X_active |>
-  get_eigen()
-
-X_active |>
-  pca_ind_coords(eigs$vectors) |>
+iris[, -5] |>
+  standardize_norm() |>
+  get_weighted_eigen() |>
+  pca_ind_coords() |>
   head()
 }

@@ -4,7 +4,14 @@
 \alias{facto_pca}
 \title{Perform PCA with FactoMineR's style}
 \usage{
-facto_pca(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup = NULL)
+facto_pca(
+  X,
+  ncp = 5,
+  scale.unit = TRUE,
+  ind_sup = NULL,
+  quanti_sup = NULL,
+  weighted_col = NULL
+)
 }
 \arguments{
 \item{X}{a data frame with n rows (individuals) and p columns (numeric variables)}
@@ -16,15 +23,14 @@ facto_pca(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup = NULL)
 \item{ind_sup}{a vector indicating the indexes of the supplementary individuals}
 
 \item{quanti_sup}{a vector indicating the indexes of the quantitative supplementary variables}
+
+\item{weighted_col}{column weights}
 }
 \description{
 Return PCA results with FactoMineR's style
 }
 \examples{
-library(FactoMineR)
 library(FactoMineR2)
-data(decathlon)
 
-X <- decathlon[, -c(11:13)]
-res <- facto_pca(X, ncp = 5, ind_sup = 1, quanti_sup = 10)
+res <- facto_pca(iris[, -5], ncp = 2, ind_sup = 1, quanti_sup = 1)
 }

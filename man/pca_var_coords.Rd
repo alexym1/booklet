@@ -2,17 +2,12 @@
 % Please edit documentation in R/pca.R
 \name{pca_var_coords}
 \alias{pca_var_coords}
-\alias{pca_var_cor}
 \title{Compute variable coordinates}
 \usage{
-pca_var_coords(eigenvalues, eigenvectors)
-
-pca_var_cor(eigenvalues, eigenvectors)
+pca_var_coords(eigs)
 }
 \arguments{
-\item{eigenvalues}{eigenvalues}
-
-\item{eigenvectors}{eigenvectors}
+\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
 }
 \description{
 Return variable coordinates
@@ -20,13 +15,9 @@ Return variable coordinates
 \examples{
 library(FactoMineR2)
 
-X_active <- iris[, -5] |>
-  standardize_norm()
-
-eigs <- X_active |>
-  get_eigen()
-
-eigs$values |>
-  pca_var_coords(eigs$vectors) |>
+iris[, -5] |>
+  standardize_norm() |>
+  get_weighted_eigen() |>
+  pca_var_coords() |>
   head()
 }
