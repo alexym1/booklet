@@ -5,17 +5,17 @@
 \title{Compute individual contributions}
 \usage{
 pca_ind_contrib(
-  ind_coord,
+  ind_coords,
   eigs,
-  weighted_row = rep(1, nrow(ind_coord))/nrow(ind_coord)
+  weighted_row = rep(1, nrow(ind_coords))/nrow(ind_coords)
 )
 }
 \arguments{
+\item{ind_coords}{individual coordinates}
+
 \item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
 
 \item{weighted_row}{row weights}
-
-\item{ind_coords}{individual coordinates}
 }
 \description{
 Return indivdual contributions for each principal component

@@ -66,8 +66,8 @@ pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
 #'   pca_ind_contrib(eigs) |>
 #'   head()
 #' @export
-pca_ind_contrib <- function(ind_coord, eigs, weighted_row = rep(1, nrow(ind_coord)) / nrow(ind_coord)) {
-  ind_contrib <- t(t(ind_coord^2 * weighted_row) / eigs[["values"]]) * 100
+pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coords)) / nrow(ind_coords)) {
+  ind_contrib <- t(t(ind_coords^2 * weighted_row) / eigs[["values"]]) * 100
   return(ind_contrib)
 }
 

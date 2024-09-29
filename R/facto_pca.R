@@ -10,12 +10,9 @@
 #' @param weighted_col column weights
 #'
 #' @examples
-#' library(FactoMineR)
 #' library(FactoMineR2)
-#' data(decathlon)
 #'
-#' X <- decathlon[, -c(11:13)]
-#' res <- facto_pca(X, ncp = 5, ind_sup = 1, quanti_sup = 10)
+#' res <- facto_pca(iris[, -5], ncp = 2, ind_sup = 1, quanti_sup = 1)
 #' @export
 facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup = NULL, weighted_col = NULL) {
   if (!is.null(ind_sup) & !is.null(quanti_sup)) {
@@ -28,8 +25,8 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     X_active <- X
   }
 
-  if(is.null(weighted_col)){
-    weighted_col = rep(1, ncol(X_active))
+  if (is.null(weighted_col)) {
+    weighted_col <- rep(1, ncol(X_active))
   }
 
   X_active_scaled <- standardize(X_active, scale = scale.unit)

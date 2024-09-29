@@ -30,10 +30,7 @@ facto_pca(
 Return PCA results with FactoMineR's style
 }
 \examples{
-library(FactoMineR)
 library(FactoMineR2)
-data(decathlon)
 
-X <- decathlon[, -c(11:13)]
-res <- facto_pca(X, ncp = 5, ind_sup = 1, quanti_sup = 10)
+res <- facto_pca(iris[, -5], ncp = 2, ind_sup = 1, quanti_sup = 1)
 }

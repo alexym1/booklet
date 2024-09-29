@@ -2,27 +2,22 @@
 % Please edit documentation in R/facto_mfa.R
 \name{facto_mfa}
 \alias{facto_mfa}
-\title{Perform PCA with FactoMineR's style}
+\title{Perform MFA with FactoMineR's style}
 \usage{
-facto_mfa(X, group, ncp = 2, ind_sup = NULL, quanti_sup = NULL)
+facto_mfa(X, groups, ncp = 2)
 }
 \arguments{
 \item{X}{a data frame with n rows (individuals) and p columns (numeric variables)}
 
+\item{groups}{a vector indicating the group of each variable}
+
 \item{ncp}{an integer, the number of components to keep (value set by default)}
-
-\item{ind_sup}{a vector indicating the indexes of the supplementary individuals}
-
-\item{quanti_sup}{a vector indicating the indexes of the quantitative supplementary variables}
 }
 \description{
-Return PCA results with FactoMineR's style
+Return MFA results with FactoMineR's style
 }
 \examples{
-library(FactoMineR)
 library(FactoMineR2)
-data(decathlon)
 
-X <- decathlon[, -c(11:13)]
-res <- facto_pca(X, ncp = 5, ind_sup = 1, quanti_sup = 10)
+res <- facto_mfa(X = iris[, -c(5)], groups = c(2, 2), ncp = 2)
 }
