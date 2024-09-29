@@ -35,8 +35,14 @@ reference:
   - pca_ind_cos2
   - pca_ind_contrib
   - pca_var_coords
+  - pca_var_cor
   - pca_var_cos2
   - pca_var_contrib
+
+- title: MFA
+  desc: Perform MFA.
+  contents:
+  - facto_mfa
 
 
 development:
