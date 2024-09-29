@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">FactoMineR2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,8 +89,8 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alexym1/FactoMineR2" class="external-link">FactoMineR2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get active individuals</span></span>
-<span><span class="va">X_active</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/standardize_norm.html">standardize_norm</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">X_active</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">X_active</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/standardize_norm.html">standardize_norm</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">X_active</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
 <span><span class="co">#&gt; [1,]   -0.8976739  1.01560199    -1.335752   -1.311052</span></span>
 <span><span class="co">#&gt; [2,]   -1.1392005 -0.13153881    -1.335752   -1.311052</span></span>
@@ -100,28 +100,36 @@
 <span><span class="co">#&gt; [6,]   -0.5353840  1.93331463    -1.165809   -1.048667</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get eigs</span></span>
-<span><span class="va">eigs</span> <span class="op">&lt;-</span> <span class="va">X_active</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/get_eigen.html">get_eigen</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; eigen() decomposition</span></span>
-<span><span class="co">#&gt; $values</span></span>
-<span><span class="co">#&gt; [1] 2.91849782 0.91403047 0.14675688 0.02071484</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $vectors</span></span>
+<span><span class="va">eigs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_eigen.html">get_eigen</a></span><span class="op">(</span><span class="va">X_active</span><span class="op">)</span></span>
+<span><span class="va">eigs</span><span class="op">$</span><span class="va">values</span></span>
+<span><span class="co">#&gt; [1] 434.856175 136.190540  21.866774   3.086511</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">eigs</span><span class="op">$</span><span class="va">vectors</span></span>
 <span><span class="co">#&gt;                   Dim.1       Dim.2      Dim.3      Dim.4</span></span>
 <span><span class="co">#&gt; Sepal.Length  0.5210659 -0.37741762  0.7195664  0.2612863</span></span>
 <span><span class="co">#&gt; Sepal.Width  -0.2693474 -0.92329566 -0.2443818 -0.1235096</span></span>
 <span><span class="co">#&gt; Petal.Length  0.5804131 -0.02449161 -0.1421264 -0.8014492</span></span>
 <span><span class="co">#&gt; Petal.Width   0.5648565 -0.06694199 -0.6342727  0.5235971</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">$</span><span class="va">U</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             [,1]        [,2]         [,3]         [,4]</span></span>
+<span><span class="co">#&gt; [1,] -0.10823953 -0.04099580  0.027218646  0.013710648</span></span>
+<span><span class="co">#&gt; [2,] -0.09945776  0.05757315  0.050003401  0.058435855</span></span>
+<span><span class="co">#&gt; [3,] -0.11299630  0.02920003 -0.009420891  0.016098333</span></span>
+<span><span class="co">#&gt; [4,] -0.10989710  0.05101939 -0.019457133 -0.037416661</span></span>
+<span><span class="co">#&gt; [5,] -0.11422046 -0.05524180 -0.003354363 -0.020379051</span></span>
+<span><span class="co">#&gt; [6,] -0.09920300 -0.12718049 -0.005747892  0.003748828</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get principal components</span></span>
-<span><span class="va">X_active</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/pca_ind_coords.html">pca_ind_coords</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">$</span><span class="va">vectors</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;         Dim.1      Dim.2       Dim.3        Dim.4</span></span>
-<span><span class="co">#&gt; [1,] 2.257141  0.4784238 -0.12727962 -0.024087508</span></span>
-<span><span class="co">#&gt; [2,] 2.074013 -0.6718827 -0.23382552 -0.102662845</span></span>
-<span><span class="co">#&gt; [3,] 2.356335 -0.3407664  0.04405390 -0.028282305</span></span>
-<span><span class="co">#&gt; [4,] 2.291707 -0.5953999  0.09098530  0.065735340</span></span>
-<span><span class="co">#&gt; [5,] 2.381863  0.6446757  0.01568565  0.035802870</span></span>
-<span><span class="co">#&gt; [6,] 2.068701  1.4842053  0.02687825 -0.006586116</span></span></code></pre></div>
+<span><span class="va">ind_coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pca_ind_coords.html">pca_ind_coords</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ind_coords</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           [,1]       [,2]        [,3]         [,4]</span></span>
+<span><span class="co">#&gt; [1,] -2.257141 -0.4784238  0.12727962  0.024087508</span></span>
+<span><span class="co">#&gt; [2,] -2.074013  0.6718827  0.23382552  0.102662845</span></span>
+<span><span class="co">#&gt; [3,] -2.356335  0.3407664 -0.04405390  0.028282305</span></span>
+<span><span class="co">#&gt; [4,] -2.291707  0.5953999 -0.09098530 -0.065735340</span></span>
+<span><span class="co">#&gt; [5,] -2.381863 -0.6446757 -0.01568565 -0.035802870</span></span>
+<span><span class="co">#&gt; [6,] -2.068701 -1.4842053 -0.02687825  0.006586116</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
@@ -179,7 +187,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
