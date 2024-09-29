@@ -1,30 +1,17 @@
+expected_df_eigs <- readRDS("data/eigs/expected_df_eigs.rds")
+expected_gf_eigs <- readRDS("data/eigs/expected_gf_eigs.rds")
+expected_df_weighted_eigs <- readRDS("data/eigs/expected_df_weighted_eigs.rds")
+expected_gf_weighted_eigs <- readRDS("data/eigs/expected_gf_weighted_eigs.rds")
+
 df <- standardize_norm(iris[, -5])
 gf <- standardize(iris[, -5])
 
 test_that("Testing get_eigen()", {
-  df_eigs <- get_eigen(df)
-  gf_eigs <- get_eigen(gf)
-
-  expect_identical(names(df_eigs), c("values", "vectors", "U"))
-  expect_identical(length(df_eigs[[1]]), ncol(df))
-  expect_identical(dim(df_eigs[[2]]), c(ncol(df), ncol(df)))
-
-  expect_identical(names(gf_eigs), c("values", "vectors", "U"))
-  expect_identical(length(gf_eigs[[1]]), ncol(gf))
-  expect_identical(dim(gf_eigs[[2]]), c(ncol(gf), ncol(gf)))
+  expect_identical(get_eigen(df), expected_df_eigs)
+  expect_identical(get_eigen(gf), expected_gf_eigs)
 })
 
 test_that("Testing get_weighted_eigen()", {
-  df_eigs <- get_weighted_eigen(df)
-  gf_eigs <- get_weighted_eigen(gf)
-
-  expect_identical(names(df_eigs), c("values", "vectors", "U"))
-  expect_identical(length(df_eigs[[1]]), ncol(df))
-  expect_identical(dim(df_eigs[[2]]), c(ncol(df), ncol(df)))
-  expect_identical(dim(df_eigs[[3]]), c(nrow(df), ncol(df)))
-
-  expect_identical(names(gf_eigs), c("values", "vectors", "U"))
-  expect_identical(length(gf_eigs[[1]]), ncol(gf))
-  expect_identical(dim(gf_eigs[[2]]), c(ncol(gf), ncol(gf)))
-  expect_identical(dim(gf_eigs[[3]]), c(nrow(gf), ncol(gf)))
+  expect_identical(get_weighted_eigen(df), expected_df_weighted_eigs)
+  expect_identical(get_weighted_eigen(gf), expected_gf_weighted_eigs)
 })

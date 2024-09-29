@@ -1,3 +1,9 @@
+# FactoMineR2 0.3.0
+
+* Add `facto_mfa()` function to perform Multiple Factor Analysis (MFA) (#7)
+* Update unit tests for better testing and coverage
+
+
 # FactoMineR2 0.2.1
 
 * `get_weighted_eigen()` now returns U matrix as expected (#4)

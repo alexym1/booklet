@@ -46,8 +46,8 @@ pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
 #'
 #' Return indivdual contributions for each principal component
 #'
-#' @param ind_cos2 individual cos2
-#' @param eigenvalues eigenvalues
+#' @param ind_coords individual coordinates
+#' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
 #' @param weighted_row row weights
 #'
 #' @details

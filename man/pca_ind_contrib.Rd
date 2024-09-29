@@ -11,11 +11,11 @@ pca_ind_contrib(
 )
 }
 \arguments{
+\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
+
 \item{weighted_row}{row weights}
 
-\item{ind_cos2}{individual cos2}
-
-\item{eigenvalues}{eigenvalues}
+\item{ind_coords}{individual coordinates}
 }
 \description{
 Return indivdual contributions for each principal component
