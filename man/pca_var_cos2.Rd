@@ -16,7 +16,7 @@ Return variable squared cosines
 library(FactoMineR2)
 
 iris[, -5] |>
-  standardize_norm() |>
+  pca_standardize_norm() |>
   pca_weighted_eigen() |>
   pca_var_coords() |>
   pca_var_cos2() |>

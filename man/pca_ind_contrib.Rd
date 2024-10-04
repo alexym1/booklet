@@ -28,7 +28,7 @@ components, you have to change the weighted_col argument to rep(1, nrow(ind_cos2
 library(FactoMineR2)
 
 eigs <- iris[, -5] |>
-  standardize_norm() |>
+  pca_standardize_norm() |>
   pca_weighted_eigen()
 
 eigs |>

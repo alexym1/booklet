@@ -16,7 +16,7 @@ facto_mfa <- function(X, groups, ncp = 2) {
     stop("The number of groups must be equal to the number of components")
   }
 
-  X_scaled <- standardize(X, scale = TRUE)
+  X_scaled <- pca_standardize(X, scale = TRUE)
 
   weights <- list()
   start_idx <- 1

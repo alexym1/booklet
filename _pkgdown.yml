@@ -24,8 +24,8 @@ reference:
 - title: Standardization
   desc:  Standardize a dataset.
   contents:
-  - standardize_norm
-  - standardize
+  - pca_standardize_norm
+  - pca_standardize
 
 - title: PCA
   desc: Perform PCA.

@@ -3,8 +3,8 @@ expected_gf_eigs <- readRDS("data/eigs/expected_gf_eigs.rds")
 expected_df_weighted_eigs <- readRDS("data/eigs/expected_df_weighted_eigs.rds")
 expected_gf_weighted_eigs <- readRDS("data/eigs/expected_gf_weighted_eigs.rds")
 
-df <- standardize_norm(iris[, -5])
-gf <- standardize(iris[, -5])
+df <- pca_standardize_norm(iris[, -5])
+gf <- pca_standardize(iris[, -5])
 
 test_that("Testing get_eigen()", {
   expect_equal(pca_eigen(df), expected_df_eigs)

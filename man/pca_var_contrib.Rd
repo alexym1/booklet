@@ -20,7 +20,7 @@ Return variable contributions
 library(FactoMineR2)
 
 eigs <- iris[, -5] |>
-  standardize_norm() |>
+  pca_standardize_norm() |>
   pca_weighted_eigen()
 
 eigs |>

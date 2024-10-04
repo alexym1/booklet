@@ -8,7 +8,7 @@
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   pca_weighted_eigen() |>
 #'   pca_ind_coords() |>
 #'   head()
@@ -30,7 +30,7 @@ pca_ind_coords <- function(eigs) {
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   pca_weighted_eigen() |>
 #'   pca_ind_coords() |>
 #'   pca_ind_cos2() |>
@@ -58,7 +58,7 @@ pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
 #' library(FactoMineR2)
 #'
 #' eigs <- iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   pca_weighted_eigen()
 #'
 #' eigs |>
@@ -82,7 +82,7 @@ pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coo
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   pca_weighted_eigen() |>
 #'   pca_var_coords() |>
 #'   head()
@@ -103,7 +103,7 @@ pca_var_coords <- function(eigs) {
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   pca_weighted_eigen() |>
 #'   pca_var_cor() |>
 #'   head()
@@ -125,7 +125,7 @@ pca_var_cor <- function(eigs) {
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   pca_weighted_eigen() |>
 #'   pca_var_coords() |>
 #'   pca_var_cos2() |>
@@ -148,7 +148,7 @@ pca_var_cos2 <- function(var_coords) {
 #' library(FactoMineR2)
 #'
 #' eigs <- iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   pca_weighted_eigen()
 #'
 #' eigs |>

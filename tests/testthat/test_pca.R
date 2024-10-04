@@ -1,6 +1,6 @@
 # Observed results
-df <- standardize_norm(iris[, -5])
-gf <- standardize(iris[, -5])
+df <- pca_standardize_norm(iris[, -5])
+gf <- pca_standardize(iris[, -5])
 
 df_eigs <- pca_eigen(df)
 gf_eigs <- pca_weighted_eigen(gf)

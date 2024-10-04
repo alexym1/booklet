@@ -1,3 +1,9 @@
+# FactoMineR2 0.4.0
+
+* Replace `standardize()` and `standardize_norm()` by `pca_standardize()` and `pca_standardize_norm()`
+* Replace `get_eig()` and `get_weighted_eigen()` by `pca_eigen()` and `pca_weighted_eigen()`
+
+
 # FactoMineR2 0.3.0
 
 * Add `facto_mfa()` function to perform Multiple Factor Analysis (MFA) (#7)

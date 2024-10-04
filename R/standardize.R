@@ -1,4 +1,4 @@
-#' Data standardization
+#' Data standardization for PCA
 #'
 #' Perform data standardization for multivariate exploratory data analysis.
 #'
@@ -22,17 +22,17 @@
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   head()
 #' @export
-standardize_norm <- function(X, center = TRUE, scale = TRUE) {
+pca_standardize_norm <- function(X, center = TRUE, scale = TRUE) {
   X <- scale(X, center = center, scale = scale)
   return(X)
 }
 
 #' @rdname standardize_norm
 #' @export
-standardize <- function(X, scale = TRUE, weighted_row = rep(1, nrow(X)) / nrow(X)) {
+pca_standardize <- function(X, scale = TRUE, weighted_row = rep(1, nrow(X)) / nrow(X)) {
   weighted_ind <- weighted_row / sum(weighted_row)
 
   center <- crossprod(weighted_ind, as.matrix(X))

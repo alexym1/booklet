@@ -29,7 +29,7 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     weighted_col <- rep(1, ncol(X_active))
   }
 
-  X_active_scaled <- standardize(X_active, scale = scale.unit)
+  X_active_scaled <- pca_standardize(X_active, scale = scale.unit)
 
   eigs <- pca_weighted_eigen(X_active_scaled, weighted_col = weighted_col)
   eigvalues <- eigs$values
