@@ -19,7 +19,7 @@
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize_norm() |>
+#'   pca_standardize_norm() |>
 #'   pca_eigen()
 #' @export
 pca_eigen <- function(X) {
@@ -33,7 +33,7 @@ pca_eigen <- function(X) {
   return(eigs)
 }
 
-#' @rdname get_eigen
+#' @rdname pca_eigen
 #' @export
 pca_weighted_eigen <- function(X, weighted_row = rep(1, nrow(X)) / nrow(X), weighted_col = rep(1, ncol(X))) {
   svd_res <- svd(t(t(X) * sqrt(weighted_col)) * sqrt(weighted_row))

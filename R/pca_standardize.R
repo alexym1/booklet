@@ -30,7 +30,7 @@ pca_standardize_norm <- function(X, center = TRUE, scale = TRUE) {
   return(X)
 }
 
-#' @rdname standardize_norm
+#' @rdname pca_standardize_norm
 #' @export
 pca_standardize <- function(X, scale = TRUE, weighted_row = rep(1, nrow(X)) / nrow(X)) {
   weighted_ind <- weighted_row / sum(weighted_row)

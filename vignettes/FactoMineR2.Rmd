@@ -31,7 +31,7 @@ Before performing a PCA, it is important to standardize the dataset. This ensure
 $$ (X - \bar{X}) / \sigma $$
 
 ```{r}
-X_scaled <- standardize_norm(X, center = TRUE, scale = TRUE)
+X_scaled <- pca_standardize_norm(X, center = TRUE, scale = TRUE)
 head(X_scaled)
 ```
 

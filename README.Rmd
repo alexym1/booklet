@@ -44,13 +44,13 @@ devtools::install_github("alexym1/FactoMineR2")
 library(FactoMineR2)
 
 # Get active individuals
-X_active <- standardize_norm(iris[,-5])
+X_active <- pca_standardize_norm(iris[,-5])
 head(X_active)
 ```
 
 ```{r, message = FALSE, warning = FALSE}
 # Get eigs
-eigs <- get_eigen(X_active)
+eigs <- pca_eigen(X_active)
 eigs$values
 eigs$vectors
 head(eigs$U)

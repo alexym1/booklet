@@ -37,7 +37,7 @@ head(res_pca$eig)
 ```{r}
 # Get eigvalues and eigvectors with FactoMineR2
 X_active <- X[-1, -10]
-X_active_scaled <- standardize(X_active, scale = TRUE)
+X_active_scaled <- pca_standardize(X_active, scale = TRUE)
 
 eigs <- pca_weighted_eigen(X_active_scaled)
 
@@ -164,7 +164,7 @@ res_pca$quanti.sup$coord
 ```{r}
 # Get supplementary CONTINUOUS variables coordinates with FactoMineR2
 X_sup <- X[-1, 10, drop = FALSE]
-X_sup_scaled <- standardize(X_sup, scale = TRUE)
+X_sup_scaled <- pca_standardize(X_sup, scale = TRUE)
 
 var_sup_coords <- t(X_sup_scaled * weights) %*% eigs$U
 var_sup_coords[,1:5]

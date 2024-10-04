@@ -105,7 +105,7 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
       X_sup <- X[, quanti_sup, drop = FALSE]
     }
 
-    X_sup_scaled <- standardize(X_sup, scale = scale.unit)
+    X_sup_scaled <- pca_standardize(X_sup, scale = scale.unit)
     var_sup_coords <- t(X_sup_scaled * weights) %*% eigs$U
 
     res_pca$var.sup <- list(
