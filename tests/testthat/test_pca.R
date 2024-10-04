@@ -2,8 +2,8 @@
 df <- standardize_norm(iris[, -5])
 gf <- standardize(iris[, -5])
 
-df_eigs <- get_eigen(df)
-gf_eigs <- get_weighted_eigen(gf)
+df_eigs <- pca_eigen(df)
+gf_eigs <- pca_weighted_eigen(gf)
 
 df_coords <- pca_ind_coords(df_eigs)
 gf_coords <- pca_ind_coords(gf_eigs)

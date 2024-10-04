@@ -21,7 +21,7 @@ library(FactoMineR2)
 
 eigs <- iris[, -5] |>
   standardize_norm() |>
-  get_weighted_eigen()
+  pca_weighted_eigen()
 
 eigs |>
   pca_var_coords() |>

@@ -17,7 +17,7 @@ library(FactoMineR2)
 
 iris[, -5] |>
   standardize_norm() |>
-  get_weighted_eigen() |>
+  pca_weighted_eigen() |>
   pca_ind_coords() |>
   head()
 }

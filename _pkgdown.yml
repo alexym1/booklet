@@ -18,8 +18,8 @@ reference:
 - title: Eigen
   desc:  Compute eigenvalues and eigenvectors.
   contents:
-  - get_eigen
-  - get_weighted_eigen
+  - pca_eigen
+  - pca_weighted_eigen
 
 - title: Standardization
   desc:  Standardize a dataset.

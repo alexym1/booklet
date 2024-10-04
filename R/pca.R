@@ -9,7 +9,7 @@
 #'
 #' iris[, -5] |>
 #'   standardize_norm() |>
-#'   get_weighted_eigen() |>
+#'   pca_weighted_eigen() |>
 #'   pca_ind_coords() |>
 #'   head()
 #' @export
@@ -31,7 +31,7 @@ pca_ind_coords <- function(eigs) {
 #'
 #' iris[, -5] |>
 #'   standardize_norm() |>
-#'   get_weighted_eigen() |>
+#'   pca_weighted_eigen() |>
 #'   pca_ind_coords() |>
 #'   pca_ind_cos2() |>
 #'   head()
@@ -59,7 +59,7 @@ pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
 #'
 #' eigs <- iris[, -5] |>
 #'   standardize_norm() |>
-#'   get_weighted_eigen()
+#'   pca_weighted_eigen()
 #'
 #' eigs |>
 #'   pca_ind_coords() |>
@@ -83,7 +83,7 @@ pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coo
 #'
 #' iris[, -5] |>
 #'   standardize_norm() |>
-#'   get_weighted_eigen() |>
+#'   pca_weighted_eigen() |>
 #'   pca_var_coords() |>
 #'   head()
 #' @export
@@ -104,7 +104,7 @@ pca_var_coords <- function(eigs) {
 #'
 #' iris[, -5] |>
 #'   standardize_norm() |>
-#'   get_weighted_eigen() |>
+#'   pca_weighted_eigen() |>
 #'   pca_var_cor() |>
 #'   head()
 #' @export
@@ -126,7 +126,7 @@ pca_var_cor <- function(eigs) {
 #'
 #' iris[, -5] |>
 #'   standardize_norm() |>
-#'   get_weighted_eigen() |>
+#'   pca_weighted_eigen() |>
 #'   pca_var_coords() |>
 #'   pca_var_cos2() |>
 #'   head()
@@ -149,7 +149,7 @@ pca_var_cos2 <- function(var_coords) {
 #'
 #' eigs <- iris[, -5] |>
 #'   standardize_norm() |>
-#'   get_weighted_eigen()
+#'   pca_weighted_eigen()
 #'
 #' eigs |>
 #'   pca_var_coords() |>
