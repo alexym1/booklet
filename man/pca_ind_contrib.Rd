@@ -13,12 +13,12 @@ pca_ind_contrib(
 \arguments{
 \item{ind_coords}{individual coordinates}
 
-\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
+\item{eigs}{eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}}
 
 \item{weighted_row}{row weights}
 }
 \description{
-Return indivdual contributions for each principal component
+Return individual contributions for each principal component
 }
 \details{
 If you want to compute the contributions of the individuals to the principal

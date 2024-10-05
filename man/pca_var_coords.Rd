@@ -7,7 +7,7 @@
 pca_var_coords(eigs)
 }
 \arguments{
-\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
+\item{eigs}{eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}}
 }
 \description{
 Return variable coordinates

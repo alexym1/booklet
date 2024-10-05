@@ -2,7 +2,7 @@
 #'
 #' Return principal component for individuals
 #'
-#' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
+#' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -21,7 +21,7 @@ pca_ind_coords <- function(eigs) {
 
 #' Compute individual squared cosines
 #'
-#' Return indivdual squared cosines for each principal component
+#' Return individual squared cosines for each principal component
 #'
 #' @param ind_coords individual coordinates
 #' @param weighted_col column weights
@@ -44,10 +44,10 @@ pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
 
 #' Compute individual contributions
 #'
-#' Return indivdual contributions for each principal component
+#' Return individual contributions for each principal component
 #'
 #' @param ind_coords individual coordinates
-#' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
+#' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #' @param weighted_row row weights
 #'
 #' @details
@@ -76,7 +76,7 @@ pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coo
 #'
 #' Return variable coordinates
 #'
-#' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
+#' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -97,7 +97,7 @@ pca_var_coords <- function(eigs) {
 #'
 #' Return variable correlation
 #'
-#' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
+#' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -141,7 +141,7 @@ pca_var_cos2 <- function(var_coords) {
 #' Return variable contributions
 #'
 #' @param var_cos2 variable coordinates
-#' @param eigs eigs computed by \code{get_eigen} or \code{get_weighted_eigen}
+#' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #' @param weighted_col column weights
 #'
 #' @examples

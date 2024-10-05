@@ -12,7 +12,7 @@ pca_ind_cos2(ind_coords, weighted_col = rep(1, ncol(ind_coords)))
 \item{weighted_col}{column weights}
 }
 \description{
-Return indivdual squared cosines for each principal component
+Return individual squared cosines for each principal component
 }
 \examples{
 library(FactoMineR2)

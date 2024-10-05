@@ -9,7 +9,7 @@ pca_var_contrib(var_cos2, eigs, weighted_col = rep(1, ncol(var_cos2)))
 \arguments{
 \item{var_cos2}{variable coordinates}
 
-\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
+\item{eigs}{eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}}
 
 \item{weighted_col}{column weights}
 }

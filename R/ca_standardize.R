@@ -8,7 +8,7 @@
 #' @examples
 #' library(FactoMineR2)
 #'
-#' iris[,-5] |>
+#' mtcars[,c(2,8:11)] |>
 #'   ca_standardize()
 #' @export
 ca_standardize <- function(X, weighted_row = rep(1, nrow(X))){
