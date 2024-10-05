@@ -25,8 +25,6 @@ ca_row_coords <- function(eigs) {
 #'
 #' @param row_coords row coordinates
 #' @param X standardized matrix
-#' @param weighted_row row weights
-#' @param weighted_col column weights
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -40,9 +38,8 @@ ca_row_coords <- function(eigs) {
 #'   ca_row_cos2(X_scaled) |>
 #'   head()
 #' @export
-ca_row_cos2 <- function(row_coords, X, weighted_row = rowSums(X), weighted_col = colSums(X)) {
-  CA_scaled <- t(t(X / weighted_row) / weighted_col) - 1
-  row_cos2 <- row_coords^2 / rowSums(t(t(CA_scaled^2) * weighted_col))
+ca_row_cos2 <- function(row_coords, X) {
+  row_cos2 <- row_coords^2 / rowSums(t(t(X[["CA_scaled"]]^2) * X[["weighted_col"]]))
   return(row_cos2)
 }
 
@@ -53,8 +50,7 @@ ca_row_cos2 <- function(row_coords, X, weighted_row = rowSums(X), weighted_col =
 #'
 #' @param row_coords row coordinates
 #' @param X standardized matrix
-#' @param weighted_row row weights
-#' @param weighted_col column weights
+#' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -62,15 +58,16 @@ ca_row_cos2 <- function(row_coords, X, weighted_row = rowSums(X), weighted_col =
 #' X_scaled <- mtcars[,c(2,8:11)] |>
 #'   ca_standardize()
 #'
-#' X_scaled |>
-#'   ca_weighted_eigen() |>
+#' eigs <- X_scaled |>
+#'   ca_weighted_eigen()
+#'
+#' eigs |>
 #'   ca_row_coords() |>
-#'   ca_row_contrib(X_scaled) |>
+#'   ca_row_contrib(X_scaled, eigs) |>
 #'   head()
 #' @export
-ca_row_contrib <- function(row_coords, X, weighted_row = rowSums(X), weighted_col = colSums(X)) {
-  CA_scaled <- t(t(X / weighted_row) / weighted_col) - 1
-  row_contrib <- t(t(row_coords^2 * weighted_row) / eigs[["values"]])
+ca_row_contrib <- function(row_coords, X, eigs) {
+  row_contrib <- t(t(row_coords^2 * X[["weighted_row"]]) / eigs[["values"]])
   return(row_contrib)
 }
 
@@ -79,10 +76,7 @@ ca_row_contrib <- function(row_coords, X, weighted_row = rowSums(X), weighted_co
 #'
 #' Return row contributions for each correspondence component
 #'
-#' @param row_coords row coordinates
 #' @param X standardized matrix
-#' @param weighted_row row weights
-#' @param weighted_col column weights
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -91,8 +85,7 @@ ca_row_contrib <- function(row_coords, X, weighted_row = rowSums(X), weighted_co
 #'   ca_standardize() |>
 #'   ca_row_inertia()
 #' @export
-ca_row_inertia <- function(X, weighted_row = rowSums(X), weighted_col = colSums(X)) {
-  CA_scaled <- t(t(X / weighted_row) / weighted_col) - 1
-  row_inertia <- weighted_row * rowSums(t(t(CA_scaled^2) * weighted_col))
+ca_row_inertia <- function(X) {
+  row_inertia <- X[["weighted_row"]] * rowSums(t(t(X[["CA_scaled"]]^2) * X[["weighted_col"]]))
   return(row_inertia)
 }

@@ -4,21 +4,12 @@
 \alias{ca_row_cos2}
 \title{Compute row squared cosines}
 \usage{
-ca_row_cos2(
-  row_coords,
-  X,
-  weighted_row = rowSums(X),
-  weighted_col = colSums(X)
-)
+ca_row_cos2(row_coords, X)
 }
 \arguments{
 \item{row_coords}{row coordinates}
 
 \item{X}{standardized matrix}
-
-\item{weighted_row}{row weights}
-
-\item{weighted_col}{column weights}
 }
 \description{
 Return row squared cosines for each correspondence component

@@ -17,6 +17,6 @@ Perform data standardization for multivariate exploratory data analysis.
 \examples{
 library(FactoMineR2)
 
-mtcars[,c(2,8:11)] |>
+mtcars[, c(2, 8:11)] |>
   ca_standardize()
 }

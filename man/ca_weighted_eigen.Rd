@@ -4,14 +4,10 @@
 \alias{ca_weighted_eigen}
 \title{Compute eigvalues and eigvectors for CA}
 \usage{
-ca_weighted_eigen(X, weighted_row = rowSums(X), weighted_col = colSums(X))
+ca_weighted_eigen(X)
 }
 \arguments{
 \item{X}{X_active}
-
-\item{weighted_row}{row weights}
-
-\item{weighted_col}{column weights}
 }
 \description{
 Return eigvalues and eigvectors of a matrix
@@ -19,7 +15,7 @@ Return eigvalues and eigvectors of a matrix
 \examples{
 library(FactoMineR2)
 
-iris[,-5] |>
+iris[, -5] |>
   ca_standardize() |>
   ca_weighted_eigen()
 }

@@ -4,21 +4,14 @@
 \alias{ca_row_contrib}
 \title{Compute row contributions}
 \usage{
-ca_row_contrib(
-  row_coords,
-  X,
-  weighted_row = rowSums(X),
-  weighted_col = colSums(X)
-)
+ca_row_contrib(row_coords, X, eigs)
 }
 \arguments{
 \item{row_coords}{row coordinates}
 
 \item{X}{standardized matrix}
 
-\item{weighted_row}{row weights}
-
-\item{weighted_col}{column weights}
+\item{eigs}{eigs computed by \code{ca_weighted_eigen}}
 }
 \description{
 Return row contributions for each correspondence component
@@ -29,9 +22,11 @@ library(FactoMineR2)
 X_scaled <- mtcars[,c(2,8:11)] |>
   ca_standardize()
 
-X_scaled |>
-  ca_weighted_eigen() |>
+eigs <- X_scaled |>
+  ca_weighted_eigen()
+
+eigs |>
   ca_row_coords() |>
-  ca_row_contrib(X_scaled) |>
+  ca_row_contrib(X_scaled, eigs) |>
   head()
 }
