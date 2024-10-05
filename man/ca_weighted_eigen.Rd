@@ -2,7 +2,7 @@
 % Please edit documentation in R/ca_eig.R
 \name{ca_weighted_eigen}
 \alias{ca_weighted_eigen}
-\title{Compute eigvalues and eigvectors for CA}
+\title{Compute eigenvalues and eigenvectors for CA}
 \usage{
 ca_weighted_eigen(X)
 }
@@ -10,12 +10,12 @@ ca_weighted_eigen(X)
 \item{X}{X_active}
 }
 \description{
-Return eigvalues and eigvectors of a matrix
+Return eigenvalues and eigenvectors of a matrix
 }
 \examples{
 library(FactoMineR2)
 
-iris[, -5] |>
+mtcars[, c(2, 8:11)] |>
   ca_standardize() |>
   ca_weighted_eigen()
 }

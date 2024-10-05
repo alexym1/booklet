@@ -20,12 +20,14 @@ reference:
   contents:
   - pca_eigen
   - pca_weighted_eigen
+  - ca_weighted_eigen
 
 - title: Standardization
   desc:  Standardize a dataset.
   contents:
   - pca_standardize_norm
   - pca_standardize
+  - ca_standardize
 
 - title: PCA
   desc: Perform PCA.
@@ -38,6 +40,18 @@ reference:
   - pca_var_cor
   - pca_var_cos2
   - pca_var_contrib
+
+- title: CA
+  desc: Perform CA.
+  contents:
+  - ca_row_coords
+  - ca_row_cos2
+  - ca_row_contrib
+  - ca_row_inertia
+  - ca_col_coords
+  - ca_col_cos2
+  - ca_col_contrib
+  - ca_col_inertia
 
 - title: MFA
   desc: Perform MFA.

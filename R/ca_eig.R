@@ -1,6 +1,6 @@
-#' Compute eigvalues and eigvectors for CA
+#' Compute eigenvalues and eigenvectors for CA
 #'
-#' Return eigvalues and eigvectors of a matrix
+#' Return eigenvalues and eigenvectors of a matrix
 #'
 #' @param X X_active
 #'

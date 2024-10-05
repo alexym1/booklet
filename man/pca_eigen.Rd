@@ -3,7 +3,7 @@
 \name{pca_eigen}
 \alias{pca_eigen}
 \alias{pca_weighted_eigen}
-\title{Compute eigvalues and eigvectors}
+\title{Compute eigenvalues and eigenvectors}
 \usage{
 pca_eigen(X)
 
@@ -21,7 +21,7 @@ pca_weighted_eigen(
 \item{weighted_col}{column weights}
 }
 \description{
-Return eigvalues and eigvectors of a matrix
+Return eigenvalues and eigenvectors of a matrix
 }
 \details{
 Standardization depends on what you need to perform factor analysis. We
@@ -29,7 +29,7 @@ implemented two types:
 \itemize{
 \item \code{pca_weighted_eigen}: This is the default method in FactoMineR to compute
 eigvalues, eigvectors and U matrix.
-\item \code{pca_eigen}: This is the standard method to compute eigvalues, eigvectors.
+\item \code{pca_eigen}: This is the standard method to compute eigenvalues, eigenvectors.
 }
 }
 \examples{

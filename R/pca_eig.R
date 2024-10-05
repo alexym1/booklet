@@ -1,6 +1,6 @@
-#' Compute eigvalues and eigvectors
+#' Compute eigenvalues and eigenvectors
 #'
-#' Return eigvalues and eigvectors of a matrix
+#' Return eigenvalues and eigenvectors of a matrix
 #'
 #' @param X X_active
 #' @param weighted_row row weights
@@ -13,7 +13,7 @@
 #' * \code{pca_weighted_eigen}: This is the default method in FactoMineR to compute
 #' eigvalues, eigvectors and U matrix.
 #'
-#' * \code{pca_eigen}: This is the standard method to compute eigvalues, eigvectors.
+#' * \code{pca_eigen}: This is the standard method to compute eigenvalues, eigenvectors.
 #'
 #' @examples
 #' library(FactoMineR2)

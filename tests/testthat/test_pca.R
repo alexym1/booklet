@@ -1,17 +1,14 @@
 # Observed results
 df <- pca_standardize_norm(iris[, -5])
-gf <- pca_standardize(iris[, -5])
-
 df_eigs <- pca_eigen(df)
-gf_eigs <- pca_weighted_eigen(gf)
-
 df_coords <- pca_ind_coords(df_eigs)
-gf_coords <- pca_ind_coords(gf_eigs)
-
 df_var_coords <- pca_var_coords(df_eigs)
-gf_var_coords <- pca_var_coords(gf_eigs)
-
 df_var_cos2 <- pca_var_cos2(df_var_coords)
+
+gf <- pca_standardize(iris[, -5])
+gf_eigs <- pca_weighted_eigen(gf)
+gf_coords <- pca_ind_coords(gf_eigs)
+gf_var_coords <- pca_var_coords(gf_eigs)
 gf_var_cos2 <- pca_var_cos2(gf_var_coords)
 
 # Expected results
