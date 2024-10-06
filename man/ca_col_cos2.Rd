@@ -2,14 +2,19 @@
 % Please edit documentation in R/ca.R
 \name{ca_col_cos2}
 \alias{ca_col_cos2}
+\alias{ca_col_sup_cos2}
 \title{Compute col squared cosines}
 \usage{
 ca_col_cos2(col_coords, X)
+
+ca_col_sup_cos2(col_coords, X_sup, X)
 }
 \arguments{
 \item{col_coords}{col coordinates}
 
-\item{X}{standardized matrix}
+\item{X}{active dataset}
+
+\item{X_sup}{supplementary dataset}
 }
 \description{
 Return col squared cosines for each correspondence component

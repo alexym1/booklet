@@ -2,14 +2,19 @@
 % Please edit documentation in R/ca_standardize.R
 \name{ca_standardize}
 \alias{ca_standardize}
+\alias{ca_standardize_sup}
 \title{Data standardization for CA}
 \usage{
 ca_standardize(X, weighted_row = rep(1, nrow(X)))
+
+ca_standardize_sup(X, type = c("row", "col"), weighted_row = rep(1, nrow(X)))
 }
 \arguments{
-\item{X}{matrix}
+\item{X}{Active or supplementary datasets}
 
 \item{weighted_row}{row weights}
+
+\item{type}{standardization for supplementary rows or cols}
 }
 \description{
 Perform data standardization for multivariate exploratory data analysis.

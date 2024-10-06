@@ -2,14 +2,19 @@
 % Please edit documentation in R/ca.R
 \name{ca_row_cos2}
 \alias{ca_row_cos2}
+\alias{ca_row_sup_cos2}
 \title{Compute row squared cosines}
 \usage{
 ca_row_cos2(row_coords, X)
+
+ca_row_sup_cos2(row_coords, X_sup, X)
 }
 \arguments{
 \item{row_coords}{row coordinates}
 
-\item{X}{standardized matrix}
+\item{X}{Active standardized matrix}
+
+\item{X_sup}{Supplementary standardized matrix}
 }
 \description{
 Return row squared cosines for each correspondence component

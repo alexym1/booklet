@@ -2,6 +2,7 @@
 #'
 #' Return Correspondence component for individuals
 #'
+#' @param X_sup Supplementary dataset
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
 #' @examples
@@ -19,12 +20,21 @@ ca_row_coords <- function(eigs) {
   return(row_coords)
 }
 
+#' @rdname ca_row_coords
+#' @export
+ca_row_sup_coords <- function(X_sup, eigs){
+  row_sup_coords <- crossprod(t(as.matrix(X_sup)), eigs[["vectors"]])
+  return(row_sup_coords)
+}
+
+
 #' Compute row squared cosines
 #'
 #' Return row squared cosines for each correspondence component
 #'
 #' @param row_coords row coordinates
-#' @param X standardized matrix
+#' @param X Active standardized matrix
+#' @param X_sup Supplementary standardized matrix
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -41,6 +51,15 @@ ca_row_coords <- function(eigs) {
 ca_row_cos2 <- function(row_coords, X) {
   row_cos2 <- row_coords^2 / rowSums(t(t(X[["CA_scaled"]]^2) * X[["weighted_col"]]))
   return(row_cos2)
+}
+
+
+#' @rdname ca_row_cos2
+#' @export
+ca_row_sup_cos2 <- function(row_coords, X_sup, X){
+  dist_row <- rowSums(t((t(X_sup) - X[["weighted_col"]])^2 / X[["weighted_col"]]))
+  row_sup_cos2 <- row_coords^2 / dist_row
+  return(row_sup_cos2)
 }
 
 
@@ -95,6 +114,7 @@ ca_row_inertia <- function(X) {
 #'
 #' Return Correspondence component for columns
 #'
+#' @param X_sup Supplementary dataset
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
 #' @examples
@@ -112,13 +132,20 @@ ca_col_coords <- function(eigs) {
   return(col_coords)
 }
 
+#' @rdname ca_col_coords
+#' @export
+ca_col_sup_coords <- function(X_sup, eigs){
+  col_sup_coords <- crossprod(as.matrix(X_sup), eigs[["U"]])
+  return(col_sup_coords)
+}
 
 #' Compute col squared cosines
 #'
 #' Return col squared cosines for each correspondence component
 #'
 #' @param col_coords col coordinates
-#' @param X standardized matrix
+#' @param X active dataset
+#' @param X_sup supplementary dataset
 #'
 #' @examples
 #' library(FactoMineR2)
@@ -135,6 +162,15 @@ ca_col_coords <- function(eigs) {
 ca_col_cos2 <- function(col_coords, X) {
   col_cos2 <- col_coords^2 / colSums(X[["CA_scaled"]]^2 * X[["weighted_row"]])
   return(col_cos2)
+}
+
+
+#' @rdname ca_col_cos2
+#' @export
+ca_col_sup_cos2 <- function(col_coords, X_sup, X){
+  dist_col <- colSums((X_sup - X[["weighted_row"]])^2 / X[["weighted_row"]])
+  row_sup_cos2 <- col_coords^2 / dist_col
+  return(row_sup_cos2)
 }
 
 

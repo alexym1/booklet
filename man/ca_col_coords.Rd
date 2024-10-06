@@ -2,12 +2,17 @@
 % Please edit documentation in R/ca.R
 \name{ca_col_coords}
 \alias{ca_col_coords}
+\alias{ca_col_sup_coords}
 \title{Compute col coordinates}
 \usage{
 ca_col_coords(eigs)
+
+ca_col_sup_coords(X_sup, eigs)
 }
 \arguments{
 \item{eigs}{eigs computed by \code{ca_weighted_eigen}}
+
+\item{X_sup}{Supplementary dataset}
 }
 \description{
 Return Correspondence component for columns

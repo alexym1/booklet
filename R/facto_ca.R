@@ -97,13 +97,9 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
       X_sup <- X[row_sup,]
     }
 
-    sum_row_sup <- rowSums(X_sup)
-    X_row_sup <- X_sup / sum_row_sup
-
-    row_sup_coords <- crossprod(t(as.matrix(X_row_sup)), eigs[["vectors"]])
-
-    dist_row <- rowSums(t((t(X_row_sup) - X_active_scaled[["weighted_col"]])^2 / X_active_scaled[["weighted_col"]]))
-    row_sup_cos2 <- row_sup_coords^2 / dist_row
+    X_row_sup <- ca_standardize_sup(X_sup, type = "row")
+    row_sup_coords <- ca_row_sup_coords(X_row_sup, eigs)
+    row_sup_cos2 <- ca_row_sup_cos2(row_sup_coords, X_row_sup, X_active_scaled)
 
     res_ca$row.sup <- list(
       coord = row_sup_coords[,1:ncp],
@@ -118,14 +114,9 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
       X_sup <- X[, col_sup, drop = FALSE]
     }
 
-    X_col_sup <- X_sup * weighted_row
-    sum_col_sup <- colSums(X_col_sup)
-
-    new_X_col_sup <- t(t(X_col_sup) / sum_col_sup)
-    col_sup_coords <- crossprod(as.matrix(new_X_col_sup), eigs[["U"]])
-
-    dist_col <- colSums((new_X_col_sup - X_active_scaled[["weighted_row"]])^2 / X_active_scaled[["weighted_row"]])
-    col_sup_cos2 <- col_sup_coords^2 / dist_col
+    X_col_sup <- ca_standardize_sup(X_sup, type = "col", weighted_row)
+    col_sup_coords <- ca_col_sup_coords(X_col_sup, eigs)
+    col_sup_cos2 <- ca_col_sup_cos2(col_sup_coords, X_col_sup, X_active_scaled)
 
     res_ca$col.sup <- list(
       coord = col_sup_coords[,1:ncp],

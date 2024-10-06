@@ -28,6 +28,7 @@ reference:
   - pca_standardize_norm
   - pca_standardize
   - ca_standardize
+  - ca_standardize_sup
 
 - title: PCA
   desc: Perform PCA.
@@ -46,11 +47,15 @@ reference:
   contents:
   - facto_ca
   - ca_row_coords
+  - ca_row_sup_coords
   - ca_row_cos2
+  - ca_row_sup_cos2
   - ca_row_contrib
   - ca_row_inertia
   - ca_col_coords
+  - ca_col_sup_coords
   - ca_col_cos2
+  - ca_col_sup_cos2
   - ca_col_contrib
   - ca_col_inertia
 
