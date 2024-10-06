@@ -10,6 +10,10 @@
 
 * Update `_pkgdown.yml`
 
+* Update `renv.lock` making the package lightweight
+
+* `facto_pca` was updated to return same outputs as `FactoMineR::PCA()`
+
 
 # FactoMineR2 0.3.0
 

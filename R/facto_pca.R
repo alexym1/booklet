@@ -69,21 +69,33 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
   weights <- rep(1, nrow(X_active)) / nrow(X_active)
   weighted_col <- rep(1, ncol(X_active))
 
+  lst_eigs <- eigs
+  lst_eigs[["values"]] <- sqrt(lst_eigs[["values"]])
+
+  center <- colMeans(X_active)
+  std <- sqrt(as.vector(crossprod(weights, as.matrix(X_active^2)) - center^2))
+
   res_pca <- list(
     eig = df_eigs,
     var = lst_var,
     ind = lst_ind,
+    svd = lst_eigs,
     call = list(
       row.w = weights,
       col.w = weighted_col,
       scale.unit = scale.unit,
-      ncp = ncp
+      ncp = ncp,
+      centre = as.vector(center),
+      ecart.type = std,
+      X = X,
+      row.w.unit = weights,
+      call = match.call(),
+      ind.sup = ind_sup,
+      quanti.sup = quanti_sup
     )
   )
 
   if (!is.null(ind_sup)) {
-    center <- colMeans(X_active)
-    std <- sqrt(as.vector(crossprod(weights, as.matrix(X_active^2)) - center^2))
 
     if (!is.null(quanti_sup)) {
       X_sup <- X[ind_sup, -quanti_sup]
