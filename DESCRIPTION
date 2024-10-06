@@ -6,17 +6,16 @@ Authors@R: c(
     person("Alex", "Martinez", , "yahiaoui-martinez.alex@outlook.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5315-675X"))
     )
-Description: Perform PCA, MFA, CA, MFA.
+Description: Perform PCA, MFA, CA, MCA.
 License: MIT + file LICENSE
 URL: https://github.com/alexym1/FactoMineR2, https://alexym1.github.io/FactoMineR2
 BugReports: https://github.com/alexym1/FactoMineR2/issues
-Imports:
+Suggests: 
     covr,
+    devtools, 
     factoextra,
     FactoMineR,
-    knitr
-Suggests: 
-    devtools, 
+    knitr,
     renv, 
     testthat
 VignetteBuilder:
