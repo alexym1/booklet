@@ -117,7 +117,7 @@ ca_col_coords <- function(eigs) {
 #'
 #' Return col squared cosines for each correspondence component
 #'
-#' @param col_coords row coordinates
+#' @param col_coords col coordinates
 #' @param X standardized matrix
 #'
 #' @examples
@@ -142,7 +142,7 @@ ca_col_cos2 <- function(col_coords, X) {
 #'
 #' Return col contributions for each correspondence component
 #'
-#' @param col_coords row coordinates
+#' @param col_coords col coordinates
 #' @param X standardized matrix
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'

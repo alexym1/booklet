@@ -7,7 +7,7 @@
 ca_col_cos2(col_coords, X)
 }
 \arguments{
-\item{col_coords}{row coordinates}
+\item{col_coords}{col coordinates}
 
 \item{X}{standardized matrix}
 }

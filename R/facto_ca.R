@@ -1,0 +1,135 @@
+#' Perform CA with FactoMineR's style
+#'
+#' Return CA results with FactoMineR's style
+#'
+#' @param X a data frame with n rows (individuals) and p columns (numeric variables)
+#' @param ncp an integer, the number of components to keep (value set by default)
+#' @param row_sup a vector indicating the indexes of the supplementary rows
+#' @param col_sup a vector indicating the indexes of the supplementary cols
+#' @param weighted_row row weights
+#'
+#' @examples
+#' library(FactoMineR2)
+#' res <- facto_ca(X = mtcars[,c(2, 8:11)], ncp = 2)
+#' @export
+facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = NULL) {
+  if (!is.null(row_sup) & !is.null(col_sup)) {
+    X_active <- X[-row_sup, -col_sup]
+  } else if (!is.null(row_sup) & is.null(col_sup)) {
+    X_active <- X[-row_sup, ]
+  } else if (is.null(row_sup) & !is.null(col_sup)) {
+    X_active <- X[, -col_sup]
+  } else {
+    X_active <- X
+  }
+
+  ncp <- min(ncp, ncol(X_active))
+
+  if (is.null(weighted_row)) {
+    weighted_row <- rep(1, nrow(X_active))
+  }
+
+  X_active_scaled <- ca_standardize(X_active, weighted_row)
+
+  eigs <- ca_weighted_eigen(X_active_scaled)
+  eigvalues <- eigs$values
+
+  df_eigs <- data.frame(
+    eigenvalue = eigvalues,
+    `percentage of variance` = eigvalues / sum(eigvalues) * 100,
+    `cumulative percentage of variance` = cumsum(eigvalues / sum(eigvalues)) * 100
+  )
+
+  rownames(df_eigs) <- paste0("comp ", 1:nrow(df_eigs))
+
+  row_coords <- ca_row_coords(eigs)
+  row_cos2 <- ca_row_cos2(row_coords, X_active_scaled)
+  row_contrib <- ca_row_contrib(row_coords, X_active_scaled, eigs)
+  row_inertia = ca_row_inertia(X_active_scaled)
+
+  lst_ind <- list(
+    coord = row_coords[, 1:ncp],
+    cos2 = row_cos2[, 1:ncp],
+    contrib = row_contrib[, 1:ncp],
+    row_inertia = row_inertia[1:ncp]
+  )
+
+  col_coords <- ca_col_coords(eigs)
+  col_cos2 <- ca_col_cos2(col_coords, X_active_scaled)
+  col_contrib <- ca_col_contrib(col_coords, X_active_scaled, eigs)
+  col_inertia <- ca_col_inertia(X_active_scaled)
+
+  lst_var <- list(
+    coord = col_coords[, 1:ncp],
+    cos2 = col_cos2[, 1:ncp],
+    contrib = col_contrib[, 1:ncp],
+    inertia = col_inertia[1:ncp]
+  )
+
+  res_ca <- list(
+    eig = df_eigs,
+    var = lst_var,
+    ind = lst_ind,
+    call = list(
+      X = X_active_scaled[["CA_scaled"]],
+      marge.col = X_active_scaled[["weighted_col"]],
+      marge.row = X_active_scaled[["weighted_row"]],
+      ncp = ncp,
+      row.w = weighted_row,
+      excl = NULL,
+      call = match.call(),
+      Xtot = X,
+      N = sum(X_active_scaled[["weighted_row"]] * rowSums(X_active_scaled[["CA_scaled"]])),
+      row.sup = row_sup,
+      col.sup = col_sup
+    )
+  )
+
+  if (!is.null(row_sup)) {
+
+    if (!is.null(col_sup)) {
+      X_sup <- X[row_sup, -col_sup]
+    } else {
+      X_sup <- X[row_sup,]
+    }
+
+    sum_row_sup <- rowSums(X_sup)
+    X_row_sup <- X_sup / sum_row_sup
+
+    row_sup_coords <- crossprod(t(as.matrix(X_row_sup)), eigs[["vectors"]])
+
+    dist_row <- rowSums(t((t(X_row_sup) - X_active_scaled[["weighted_col"]])^2 / X_active_scaled[["weighted_col"]]))
+    row_sup_cos2 <- row_sup_coords^2 / dist_row
+
+    res_ca$row.sup <- list(
+      coord = row_sup_coords[,1:ncp],
+      cos2 = row_sup_cos2[,1:ncp]
+    )
+  }
+
+  if (!is.null(col_sup)) {
+    if (!is.null(row_sup)) {
+      X_sup <- X[-row_sup, col_sup, drop = FALSE]
+    } else {
+      X_sup <- X[, col_sup, drop = FALSE]
+    }
+
+    X_col_sup <- X_sup * weighted_row
+    sum_col_sup <- colSums(X_col_sup)
+
+    new_X_col_sup <- t(t(X_col_sup) / sum_col_sup)
+    col_sup_coords <- crossprod(as.matrix(new_X_col_sup), eigs[["U"]])
+
+    dist_col <- colSums((new_X_col_sup - X_active_scaled[["weighted_row"]])^2 / X_active_scaled[["weighted_row"]])
+    col_sup_cos2 <- col_sup_coords^2 / dist_col
+
+    res_ca$col.sup <- list(
+      coord = col_sup_coords[,1:ncp],
+      cos2 = col_sup_cos2[,1:ncp]
+    )
+  }
+
+  class(res_ca) <- c("CA", "list")
+
+  return(res_ca)
+}

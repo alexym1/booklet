@@ -7,7 +7,7 @@
 ca_col_contrib(col_coords, X, eigs)
 }
 \arguments{
-\item{col_coords}{row coordinates}
+\item{col_coords}{col coordinates}
 
 \item{X}{standardized matrix}
 

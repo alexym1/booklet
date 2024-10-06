@@ -44,6 +44,7 @@ reference:
 - title: CA
   desc: Perform CA.
   contents:
+  - facto_ca
   - ca_row_coords
   - ca_row_cos2
   - ca_row_contrib

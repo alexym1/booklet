@@ -1,5 +1,6 @@
 # FactoMineR2 0.4.0
 
+* Add all necessary functions to perform Correspondence Analysis (CA) (#9)
 * Replace `standardize()` and `standardize_norm()` by `pca_standardize()` and `pca_standardize_norm()`
 * Replace `get_eig()` and `get_weighted_eigen()` by `pca_eigen()` and `pca_weighted_eigen()`
 
