@@ -47,7 +47,7 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
   row_contrib <- ca_row_contrib(row_coords, X_active_scaled, eigs)
   row_inertia = ca_row_inertia(X_active_scaled)
 
-  lst_ind <- list(
+  lst_row <- list(
     coord = row_coords[, 1:ncp],
     cos2 = row_cos2[, 1:ncp],
     contrib = row_contrib[, 1:ncp],
@@ -59,17 +59,18 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
   col_contrib <- ca_col_contrib(col_coords, X_active_scaled, eigs)
   col_inertia <- ca_col_inertia(X_active_scaled)
 
-  lst_var <- list(
+  lst_col <- list(
     coord = col_coords[, 1:ncp],
     cos2 = col_cos2[, 1:ncp],
     contrib = col_contrib[, 1:ncp],
     inertia = col_inertia[1:ncp]
   )
 
+  lst_eigs <- eigs
+  lst_eigs[["values"]] <- sqrt(lst_eigs[["values"]])
+
   res_ca <- list(
     eig = df_eigs,
-    var = lst_var,
-    ind = lst_ind,
     call = list(
       X = X_active_scaled[["CA_scaled"]],
       marge.col = X_active_scaled[["weighted_col"]],
@@ -82,7 +83,10 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
       N = sum(X_active_scaled[["weighted_row"]] * rowSums(X_active_scaled[["CA_scaled"]])),
       row.sup = row_sup,
       col.sup = col_sup
-    )
+    ),
+    row = lst_row,
+    col = lst_col,
+    svd = lst_eigs
   )
 
   if (!is.null(row_sup)) {
