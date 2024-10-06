@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-![](https://img.shields.io/badge/github%20version-0.3.0-orange.svg)
+![](https://img.shields.io/badge/github%20version-0.4.0-orange.svg)
 [![R-CMD-check](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=master)
@@ -38,7 +38,7 @@ devtools::install_github("alexym1/FactoMineR2")
 library(FactoMineR2)
 
 # Get active individuals
-X_active <- standardize_norm(iris[,-5])
+X_active <- pca_standardize_norm(iris[,-5])
 head(X_active)
 #>      Sepal.Length Sepal.Width Petal.Length Petal.Width
 #> [1,]   -0.8976739  1.01560199    -1.335752   -1.311052
@@ -51,7 +51,7 @@ head(X_active)
 
 ``` r
 # Get eigs
-eigs <- get_eigen(X_active)
+eigs <- pca_eigen(X_active)
 eigs$values
 #> [1] 434.856175 136.190540  21.866774   3.086511
 ```
@@ -80,7 +80,7 @@ head(eigs$U)
 # Get principal components
 ind_coords <- pca_ind_coords(eigs)
 head(ind_coords)
-#>           [,1]       [,2]        [,3]         [,4]
+#>          Dim.1      Dim.2       Dim.3        Dim.4
 #> [1,] -2.257141 -0.4784238  0.12727962  0.024087508
 #> [2,] -2.074013  0.6718827  0.23382552  0.102662845
 #> [3,] -2.356335  0.3407664 -0.04405390  0.028282305

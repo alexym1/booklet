@@ -96,7 +96,6 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
   )
 
   if (!is.null(ind_sup)) {
-
     if (!is.null(quanti_sup)) {
       X_sup <- X[ind_sup, -quanti_sup]
     } else {

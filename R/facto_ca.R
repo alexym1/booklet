@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' library(FactoMineR2)
-#' res <- facto_ca(X = mtcars[,c(2, 8:11)], ncp = 2)
+#' res <- facto_ca(X = mtcars[, c(2, 8:11)], ncp = 2)
 #' @export
 facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = NULL) {
   if (!is.null(row_sup) & !is.null(col_sup)) {
@@ -45,7 +45,7 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
   row_coords <- ca_row_coords(eigs)
   row_cos2 <- ca_row_cos2(row_coords, X_active_scaled)
   row_contrib <- ca_row_contrib(row_coords, X_active_scaled, eigs)
-  row_inertia = ca_row_inertia(X_active_scaled)
+  row_inertia <- ca_row_inertia(X_active_scaled)
 
   lst_row <- list(
     coord = row_coords[, 1:ncp],
@@ -90,11 +90,10 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
   )
 
   if (!is.null(row_sup)) {
-
     if (!is.null(col_sup)) {
       X_sup <- X[row_sup, -col_sup]
     } else {
-      X_sup <- X[row_sup,]
+      X_sup <- X[row_sup, ]
     }
 
     X_row_sup <- ca_standardize_sup(X_sup, type = "row")
@@ -102,8 +101,8 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
     row_sup_cos2 <- ca_row_sup_cos2(row_sup_coords, X_row_sup, X_active_scaled)
 
     res_ca$row.sup <- list(
-      coord = row_sup_coords[,1:ncp],
-      cos2 = row_sup_cos2[,1:ncp]
+      coord = row_sup_coords[, 1:ncp],
+      cos2 = row_sup_cos2[, 1:ncp]
     )
   }
 
@@ -119,8 +118,8 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
     col_sup_cos2 <- ca_col_sup_cos2(col_sup_coords, X_col_sup, X_active_scaled)
 
     res_ca$col.sup <- list(
-      coord = col_sup_coords[,1:ncp],
-      cos2 = col_sup_cos2[,1:ncp]
+      coord = col_sup_coords[, 1:ncp],
+      cos2 = col_sup_cos2[, 1:ncp]
     )
   }
 

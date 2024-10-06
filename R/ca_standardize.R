@@ -25,7 +25,7 @@ ca_standardize_sup <- function(X, type = c("row", "col"), weighted_row = rep(1, 
   type <- match.arg(type)
   if (type == "row") {
     X_sup_scaled <- X / rowSums(X)
-  } else if(type == "col") {
+  } else if (type == "col") {
     X_sup_scaled <- t(t(X * weighted_row) / colSums(X))
   }
   return(X_sup_scaled)

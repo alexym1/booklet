@@ -22,7 +22,7 @@ ca_row_coords <- function(eigs) {
 
 #' @rdname ca_row_coords
 #' @export
-ca_row_sup_coords <- function(X_sup, eigs){
+ca_row_sup_coords <- function(X_sup, eigs) {
   row_sup_coords <- crossprod(t(as.matrix(X_sup)), eigs[["vectors"]])
   return(row_sup_coords)
 }
@@ -56,7 +56,7 @@ ca_row_cos2 <- function(row_coords, X) {
 
 #' @rdname ca_row_cos2
 #' @export
-ca_row_sup_cos2 <- function(row_coords, X_sup, X){
+ca_row_sup_cos2 <- function(row_coords, X_sup, X) {
   dist_row <- rowSums(t((t(X_sup) - X[["weighted_col"]])^2 / X[["weighted_col"]]))
   row_sup_cos2 <- row_coords^2 / dist_row
   return(row_sup_cos2)
@@ -134,7 +134,7 @@ ca_col_coords <- function(eigs) {
 
 #' @rdname ca_col_coords
 #' @export
-ca_col_sup_coords <- function(X_sup, eigs){
+ca_col_sup_coords <- function(X_sup, eigs) {
   col_sup_coords <- crossprod(as.matrix(X_sup), eigs[["U"]])
   return(col_sup_coords)
 }
@@ -167,7 +167,7 @@ ca_col_cos2 <- function(col_coords, X) {
 
 #' @rdname ca_col_cos2
 #' @export
-ca_col_sup_cos2 <- function(col_coords, X_sup, X){
+ca_col_sup_cos2 <- function(col_coords, X_sup, X) {
   dist_col <- colSums((X_sup - X[["weighted_row"]])^2 / X[["weighted_row"]])
   row_sup_cos2 <- col_coords^2 / dist_col
   return(row_sup_cos2)
