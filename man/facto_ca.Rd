@@ -22,5 +22,5 @@ Return CA results with FactoMineR's style
 }
 \examples{
 library(FactoMineR2)
-res <- facto_ca(X = mtcars[,c(2, 8:11)], ncp = 2)
+res <- facto_ca(X = mtcars[, c(2, 8:11)], ncp = 2)
 }
