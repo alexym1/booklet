@@ -14,6 +14,8 @@
 
 * `facto_pca` was updated to return same outputs as `FactoMineR::PCA()`
 
+* Update `CONTRIBUTING.md` with coverage testing
+
 
 # FactoMineR2 0.3.0
 
