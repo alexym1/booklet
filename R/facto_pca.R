@@ -45,6 +45,8 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
   rownames(df_eigs) <- paste0("comp ", 1:nrow(df_eigs))
 
   ind_coords <- pca_ind_coords(eigs)
+  rownames(ind_coords) <- rownames(X_active)
+
   ind_cos2 <- pca_ind_cos2(ind_coords, weighted_col = rep(1, ncol(ind_coords)))
   ind_contrib <- pca_ind_contrib(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coords)) / nrow(ind_coords))
 
@@ -88,10 +90,8 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
       centre = as.vector(center),
       ecart.type = std,
       X = X,
-      row.w.unit = weights,
-      call = match.call(),
-      ind.sup = ind_sup,
-      quanti.sup = quanti_sup
+      row.w.init = rep(1, nrow(X_active)),
+      call = match.call()
     )
   )
 
@@ -103,12 +103,16 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     }
 
     X_sup_scaled <- (X_sup - center) / std
-    ind_sup_coords <- as.matrix(X_sup_scaled) %*% eigs$vectors
+    ind_sup_coords <- as.data.frame(as.matrix(X_sup_scaled) %*% eigs$vectors)
+    rownames(ind_sup_coords) <- rownames(X_sup)
 
     res_pca$ind.sup <- list(
       coord = ind_sup_coords[, 1:ncp],
       cos2 = pca_ind_cos2(ind_sup_coords)[, 1:ncp]
     )
+
+    res_pca$call$ind.sup <- ind_sup
+
   }
 
   if (!is.null(quanti_sup)) {
@@ -119,13 +123,17 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     }
 
     X_sup_scaled <- pca_standardize(X_sup, scale = scale.unit)
-    var_sup_coords <- t(X_sup_scaled * weights) %*% eigs$U
+    var_sup_coords <- as.data.frame(t(X_sup_scaled * weights) %*% eigs$U)
+    names(var_sup_coords) <- paste0("Dim.", 1:ncp)
 
-    res_pca$var.sup <- list(
-      coord = var_sup_coords,
-      cor = var_sup_coords,
-      cos2 = pca_var_cos2(var_sup_coords)
+    res_pca$quanti.sup <- list(
+      coord = var_sup_coords[, 1:ncp],
+      cor = var_sup_coords[, 1:ncp],
+      cos2 = pca_var_cos2(var_sup_coords)[, 1:ncp]
     )
+
+    res_pca$call$quanti.sup <- X_sup
+
   }
 
   class(res_pca) <- c("PCA", "list")

@@ -109,7 +109,7 @@ pca_var_coords <- function(eigs) {
 #'   head()
 #' @export
 pca_var_cor <- function(eigs) {
-  var_cor <- -1 * (eigs[["vectors"]] %*% diag(sqrt(eigs[["values"]])))
+  var_cor <- (eigs[["vectors"]] %*% diag(sqrt(eigs[["values"]])))
   colnames(var_cor) <- paste0("Dim.", 1:ncol(var_cor))
   return(var_cor)
 }
