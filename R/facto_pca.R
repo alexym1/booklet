@@ -97,12 +97,12 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
 
   if (!is.null(ind_sup)) {
     if (!is.null(quanti_sup)) {
-      X_sup <- X[ind_sup, -quanti_sup]
+      X_sup <- X[ind_sup, -quanti_sup, drop = FALSE]
     } else {
       X_sup <- X[ind_sup, ]
     }
 
-    X_sup_scaled <- (X_sup - center) / std
+    X_sup_scaled <- t(t(t(t(X_sup) - center)) / std)
     ind_sup_coords <- as.data.frame(as.matrix(X_sup_scaled) %*% eigs$vectors)
     rownames(ind_sup_coords) <- rownames(X_sup)
 

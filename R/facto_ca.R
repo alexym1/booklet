@@ -23,7 +23,7 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
     X_active <- X
   }
 
-  ncp <- min(ncp, ncol(X_active))
+  ncp <- min(c(ncp, ncol(X_active) - 1, nrow(X_active) - 1))
 
   if (is.null(weighted_row)) {
     weighted_row <- rep(1, nrow(X_active))
@@ -40,9 +40,11 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
     `cumulative percentage of variance` = cumsum(eigvalues / sum(eigvalues)) * 100
   )
 
-  rownames(df_eigs) <- paste0("comp ", 1:nrow(df_eigs))
+  rownames(df_eigs) <- paste0("dim ", 1:nrow(df_eigs))
 
   row_coords <- ca_row_coords(eigs)
+  rownames(row_coords) <- rownames(X_active_scaled[["CA_scaled"]])
+
   row_cos2 <- ca_row_cos2(row_coords, X_active_scaled)
   row_contrib <- ca_row_contrib(row_coords, X_active_scaled, eigs)
   row_inertia <- ca_row_inertia(X_active_scaled)
@@ -51,10 +53,12 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
     coord = row_coords[, 1:ncp],
     cos2 = row_cos2[, 1:ncp],
     contrib = row_contrib[, 1:ncp],
-    row_inertia = row_inertia[1:ncp]
+    inertia = as.vector(row_inertia)
   )
 
   col_coords <- ca_col_coords(eigs)
+  colnames(col_coords) <- paste0("Dim ", 1:ncol(col_coords))
+
   col_cos2 <- ca_col_cos2(col_coords, X_active_scaled)
   col_contrib <- ca_col_contrib(col_coords, X_active_scaled, eigs)
   col_inertia <- ca_col_inertia(X_active_scaled)
@@ -63,16 +67,16 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
     coord = col_coords[, 1:ncp],
     cos2 = col_cos2[, 1:ncp],
     contrib = col_contrib[, 1:ncp],
-    inertia = col_inertia[1:ncp]
+    inertia = as.vector(col_inertia)
   )
 
   lst_eigs <- eigs
   lst_eigs[["values"]] <- sqrt(lst_eigs[["values"]])
 
   res_ca <- list(
-    eig = df_eigs,
+    eig = df_eigs[1:ncp,],
     call = list(
-      X = X_active_scaled[["CA_scaled"]],
+      X = X_active,
       marge.col = X_active_scaled[["weighted_col"]],
       marge.row = X_active_scaled[["weighted_row"]],
       ncp = ncp,
@@ -80,7 +84,7 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
       excl = NULL,
       call = match.call(),
       Xtot = X,
-      N = sum(X_active_scaled[["weighted_row"]] * rowSums(X_active_scaled[["CA_scaled"]])),
+      N = sum(rep(1, nrow(X_active)) * rowSums(X_active)),
       row.sup = row_sup,
       col.sup = col_sup
     ),
@@ -98,6 +102,8 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
 
     X_row_sup <- ca_standardize_sup(X_sup, type = "row")
     row_sup_coords <- ca_row_sup_coords(X_row_sup, eigs)
+    colnames(row_sup_coords) <- paste0("Dim ", 1:ncol(row_sup_coords))
+
     row_sup_cos2 <- ca_row_sup_cos2(row_sup_coords, X_row_sup, X_active_scaled)
 
     res_ca$row.sup <- list(
@@ -115,6 +121,8 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
 
     X_col_sup <- ca_standardize_sup(X_sup, type = "col", weighted_row)
     col_sup_coords <- ca_col_sup_coords(X_col_sup, eigs)
+    colnames(col_sup_coords) <- paste0("Dim ", 1:ncol(col_sup_coords))
+
     col_sup_cos2 <- ca_col_sup_cos2(col_sup_coords, X_col_sup, X_active_scaled)
 
     res_ca$col.sup <- list(

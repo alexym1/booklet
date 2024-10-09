@@ -16,7 +16,7 @@
 #' @export
 ca_row_coords <- function(eigs) {
   row_coords <- t(t(as.matrix(eigs[["U"]])) * sqrt(eigs[["values"]]))
-  colnames(row_coords) <- paste0("Dim.", 1:ncol(row_coords))
+  colnames(row_coords) <- paste0("Dim ", 1:ncol(row_coords))
   return(row_coords)
 }
 
@@ -86,7 +86,7 @@ ca_row_sup_cos2 <- function(row_coords, X_sup, X) {
 #'   head()
 #' @export
 ca_row_contrib <- function(row_coords, X, eigs) {
-  row_contrib <- t(t(row_coords^2 * X[["weighted_row"]]) / eigs[["values"]])
+  row_contrib <- t(t(row_coords^2 * X[["weighted_row"]]) / eigs[["values"]]) * 100
   return(row_contrib)
 }
 
@@ -197,7 +197,7 @@ ca_col_sup_cos2 <- function(col_coords, X_sup, X) {
 #'   head()
 #' @export
 ca_col_contrib <- function(col_coords, X, eigs) {
-  col_contrib <- t(t(col_coords^2 * X[["weighted_col"]]) / eigs[["values"]])
+  col_contrib <- t(t(col_coords^2 * X[["weighted_col"]]) / eigs[["values"]]) * 100
   return(col_contrib)
 }
 

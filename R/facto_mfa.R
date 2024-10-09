@@ -12,9 +12,8 @@
 #' res <- facto_mfa(X = iris[, -c(5)], groups = c(2, 2), ncp = 2)
 #' @export
 facto_mfa <- function(X, groups, ncp = 2) {
-  if (length(groups) != ncp) {
-    stop("The number of groups must be equal to the number of components")
-  }
+
+  ncp <- min(ncp, ncol(X))
 
   X_scaled <- pca_standardize(X, scale = TRUE)
 
