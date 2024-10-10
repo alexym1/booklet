@@ -112,7 +112,6 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     )
 
     res_pca$call$ind.sup <- ind_sup
-
   }
 
   if (!is.null(quanti_sup)) {
@@ -133,7 +132,6 @@ facto_pca <- function(X, ncp = 5, scale.unit = TRUE, ind_sup = NULL, quanti_sup 
     )
 
     res_pca$call$quanti.sup <- X_sup
-
   }
 
   class(res_pca) <- c("PCA", "list")

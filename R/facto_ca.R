@@ -74,7 +74,7 @@ facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = 
   lst_eigs[["values"]] <- sqrt(lst_eigs[["values"]])
 
   res_ca <- list(
-    eig = df_eigs[1:ncp,],
+    eig = df_eigs[1:ncp, ],
     call = list(
       X = X_active,
       marge.col = X_active_scaled[["weighted_col"]],

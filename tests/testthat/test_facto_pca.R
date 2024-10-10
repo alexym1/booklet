@@ -1,3 +1,5 @@
+library(FactoMineR)
+
 data("decathlon")
 X <- decathlon[, -c(11:13)]
 
