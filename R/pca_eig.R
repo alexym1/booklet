@@ -1,6 +1,6 @@
-#' Compute eigvalues and eigvectors
+#' Compute eigenvalues and eigenvectors
 #'
-#' Return eigvalues and eigvectors of a matrix
+#' Return eigenvalues and eigenvectors of a matrix
 #'
 #' @param X X_active
 #' @param weighted_row row weights
@@ -10,19 +10,19 @@
 #' Standardization depends on what you need to perform factor analysis. We
 #' implemented two types:
 #'
-#' * \code{get_weighted_eigen}: This is the default method in FactoMineR to compute
+#' * \code{pca_weighted_eigen}: This is the default method in FactoMineR to compute
 #' eigvalues, eigvectors and U matrix.
 #'
-#' * \code{get_eigen}: This is the standard method to compute eigvalues, eigvectors.
+#' * \code{pca_eigen}: This is the standard method to compute eigenvalues, eigenvectors.
 #'
 #' @examples
 #' library(FactoMineR2)
 #'
 #' iris[, -5] |>
-#'   standardize_norm() |>
-#'   get_eigen()
+#'   pca_standardize_norm() |>
+#'   pca_eigen()
 #' @export
-get_eigen <- function(X) {
+pca_eigen <- function(X) {
   svd_res <- svd(X)
 
   eigs <- list(values = svd_res$d^2, vectors = svd_res$v, U = svd_res$u)
@@ -33,9 +33,9 @@ get_eigen <- function(X) {
   return(eigs)
 }
 
-#' @rdname get_eigen
+#' @rdname pca_eigen
 #' @export
-get_weighted_eigen <- function(X, weighted_row = rep(1, nrow(X)) / nrow(X), weighted_col = rep(1, ncol(X))) {
+pca_weighted_eigen <- function(X, weighted_row = rep(1, nrow(X)) / nrow(X), weighted_col = rep(1, ncol(X))) {
   svd_res <- svd(t(t(X) * sqrt(weighted_col)) * sqrt(weighted_row))
   V <- svd_res$v
   U <- svd_res$u

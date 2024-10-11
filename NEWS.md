@@ -1,14 +1,35 @@
+# FactoMineR2 0.4.0
+
+* Add all necessary functions to perform Correspondence Analysis (CA) (#9)
+
+* Replace `standardize()` and `standardize_norm()` by `pca_standardize()` and `pca_standardize_norm()`
+
+* Replace `get_eig()` and `get_weighted_eigen()` by `pca_eigen()` and `pca_weighted_eigen()`
+
+* Update all unit tests for better testing and coverage
+
+* Update `_pkgdown.yml`
+
+* `facto_pca` was updated to return same outputs as `FactoMineR::PCA()`
+
+* Update `CONTRIBUTING.md` with coverage testing
+
+
 # FactoMineR2 0.3.0
 
 * Add `facto_mfa()` function to perform Multiple Factor Analysis (MFA) (#7)
+
 * Update unit tests for better testing and coverage
+
 * Update `_pkgdown.yml`
 
 
 # FactoMineR2 0.2.1
 
 * `get_weighted_eigen()` now returns U matrix as expected (#4)
+
 * `pca_ind_coords()` & `pca_var_coords()` return same signs of the corresponding coordinates as FactoMineR.
+
 * `facto_pca()` has been updated. Now, it returns the same output as `FactoMineR::PCA()`.
 
 

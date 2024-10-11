@@ -35,16 +35,24 @@ Report bugs at <https://github.com/alexym1/FactoMineR2/issues>.
     # Run this command to validate your tests
     testthat::test_dir("tests/testthat")
     ```
-* 5. Run `devtools::check()` to ensure that your code meets the package's standards.
+  
+* 5. Check the coverage. The coverage should be at least 90%.
+    
+    ```
+    detach("package:FactoMineR2", unload=TRUE)
+    covr::package_coverage()
+    ```
+  
+* 6. Run `devtools::check()` to ensure that your code meets the package's standards.
      Fix errors, warnings or notes that may appear.
      
-* 6. (optional) New code should follow the tidyverse [style guide](http://style.tidyverse.org).
+* 7. (optional) New code should follow the tidyverse [style guide](http://style.tidyverse.org).
 You can use the [styler](https://CRAN.R-project.org/package=styler) package to
 apply these styles, but please don't restyle code that has nothing to do with 
 your PR.  
 
 
-* 7. Push to remote source:
+* 8. Push to remote source:
 
     ```
     git push origin <your_branch_name>

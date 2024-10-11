@@ -7,7 +7,7 @@
 pca_ind_coords(eigs)
 }
 \arguments{
-\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
+\item{eigs}{eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}}
 }
 \description{
 Return principal component for individuals
@@ -16,8 +16,8 @@ Return principal component for individuals
 library(FactoMineR2)
 
 iris[, -5] |>
-  standardize_norm() |>
-  get_weighted_eigen() |>
+  pca_standardize_norm() |>
+  pca_weighted_eigen() |>
   pca_ind_coords() |>
   head()
 }

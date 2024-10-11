@@ -1,3 +1,4 @@
+library(FactoMineR)
 library(FactoMineR2)
 library(testthat)
 

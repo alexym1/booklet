@@ -13,12 +13,12 @@ pca_ind_contrib(
 \arguments{
 \item{ind_coords}{individual coordinates}
 
-\item{eigs}{eigs computed by \code{get_eigen} or \code{get_weighted_eigen}}
+\item{eigs}{eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}}
 
 \item{weighted_row}{row weights}
 }
 \description{
-Return indivdual contributions for each principal component
+Return individual contributions for each principal component
 }
 \details{
 If you want to compute the contributions of the individuals to the principal
@@ -28,8 +28,8 @@ components, you have to change the weighted_col argument to rep(1, nrow(ind_cos2
 library(FactoMineR2)
 
 eigs <- iris[, -5] |>
-  standardize_norm() |>
-  get_weighted_eigen()
+  pca_standardize_norm() |>
+  pca_weighted_eigen()
 
 eigs |>
   pca_ind_coords() |>
