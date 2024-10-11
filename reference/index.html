@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">FactoMineR2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,10 +50,16 @@
 
       <dl><dt>
 
-          <code><a href="get_eigen.html">get_eigen()</a></code> <code><a href="get_eigen.html">get_weighted_eigen()</a></code>
+          <code><a href="pca_eigen.html">pca_eigen()</a></code> <code><a href="pca_eigen.html">pca_weighted_eigen()</a></code>
 
         </dt>
-        <dd>Compute eigvalues and eigvectors</dd>
+        <dd>Compute eigenvalues and eigenvectors</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_weighted_eigen.html">ca_weighted_eigen()</a></code>
+
+        </dt>
+        <dd>Compute eigenvalues and eigenvectors for CA</dd>
       </dl></div><div class="section level2">
       <h2 id="standardization">Standardization<a class="anchor" aria-label="anchor" href="#standardization"></a></h2>
 
@@ -67,10 +73,16 @@
 
       <dl><dt>
 
-          <code><a href="standardize_norm.html">standardize_norm()</a></code> <code><a href="standardize_norm.html">standardize()</a></code>
+          <code><a href="pca_standardize_norm.html">pca_standardize_norm()</a></code> <code><a href="pca_standardize_norm.html">pca_standardize()</a></code>
 
         </dt>
-        <dd>Data standardization</dd>
+        <dd>Data standardization for PCA</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_standardize.html">ca_standardize()</a></code> <code><a href="ca_standardize.html">ca_standardize_sup()</a></code>
+
+        </dt>
+        <dd>Data standardization for CA</dd>
       </dl></div><div class="section level2">
       <h2 id="pca">PCA<a class="anchor" aria-label="anchor" href="#pca"></a></h2>
 
@@ -130,6 +142,71 @@
 
         </dt>
         <dd>Compute variable contributions</dd>
+      </dl></div><div class="section level2">
+      <h2 id="ca">CA<a class="anchor" aria-label="anchor" href="#ca"></a></h2>
+
+      <div class="section-desc"><p>Perform CA.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="facto_ca.html">facto_ca()</a></code>
+
+        </dt>
+        <dd>Perform CA with FactoMineR's style</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_row_coords.html">ca_row_coords()</a></code> <code><a href="ca_row_coords.html">ca_row_sup_coords()</a></code>
+
+        </dt>
+        <dd>Compute row coordinates</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_row_cos2.html">ca_row_cos2()</a></code> <code><a href="ca_row_cos2.html">ca_row_sup_cos2()</a></code>
+
+        </dt>
+        <dd>Compute row squared cosines</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_row_contrib.html">ca_row_contrib()</a></code>
+
+        </dt>
+        <dd>Compute row contributions</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_row_inertia.html">ca_row_inertia()</a></code>
+
+        </dt>
+        <dd>Compute row inertia</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_col_coords.html">ca_col_coords()</a></code> <code><a href="ca_col_coords.html">ca_col_sup_coords()</a></code>
+
+        </dt>
+        <dd>Compute col coordinates</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_col_cos2.html">ca_col_cos2()</a></code> <code><a href="ca_col_cos2.html">ca_col_sup_cos2()</a></code>
+
+        </dt>
+        <dd>Compute col squared cosines</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_col_contrib.html">ca_col_contrib()</a></code>
+
+        </dt>
+        <dd>Compute col contributions</dd>
+      </dl><dl><dt>
+
+          <code><a href="ca_col_inertia.html">ca_col_inertia()</a></code>
+
+        </dt>
+        <dd>Compute col inertia</dd>
       </dl></div><div class="section level2">
       <h2 id="mfa">MFA<a class="anchor" aria-label="anchor" href="#mfa"></a></h2>
 

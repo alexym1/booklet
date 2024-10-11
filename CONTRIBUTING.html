@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">FactoMineR2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Contributing to FactoMineR2</h1>
-      <small class="dont-index">Source: <a href="https://github.com/alexym1/FactoMineR2/blob/v0.3.0/.github/CONTRIBUTING.md" class="external-link"><code>.github/CONTRIBUTING.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/alexym1/FactoMineR2/blob/master/.github/CONTRIBUTING.md" class="external-link"><code>.github/CONTRIBUTING.md</code></a></small>
     </div>
 
 <div id="contributing-to-factominer2" class="section level1">
@@ -68,12 +68,17 @@
 </ol><pre><code><span><span class="co"># Run this command to validate your tests</span></span>
 <span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_dir.html" class="external-link">test_dir</a></span><span class="op">(</span><span class="st">"tests/testthat"</span><span class="op">)</span></span></code></pre>
 </li>
-<li><ol start="5" style="list-style-type: decimal"><li>Run <code><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">devtools::check()</a></code> to ensure that your code meets the package’s standards. Fix errors, warnings or notes that may appear.</li>
+<li>
+<ol start="5" style="list-style-type: decimal"><li>Check the coverage. The coverage should be at least 90%.</li>
+</ol><pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="st">"package:FactoMineR2"</span>, unload<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">covr</span><span class="fu">::</span><span class="fu"><a href="http://covr.r-lib.org/reference/package_coverage.html" class="external-link">package_coverage</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</li>
+<li><ol start="6" style="list-style-type: decimal"><li>Run <code><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">devtools::check()</a></code> to ensure that your code meets the package’s standards. Fix errors, warnings or notes that may appear.</li>
 </ol></li>
-<li><ol start="6" style="list-style-type: decimal"><li>(optional) New code should follow the tidyverse <a href="http://style.tidyverse.org" class="external-link">style guide</a>. You can use the <a href="https://CRAN.R-project.org/package=styler" class="external-link">styler</a> package to apply these styles, but please don’t restyle code that has nothing to do with your PR.</li>
+<li><ol start="7" style="list-style-type: decimal"><li>(optional) New code should follow the tidyverse <a href="http://style.tidyverse.org" class="external-link">style guide</a>. You can use the <a href="https://CRAN.R-project.org/package=styler" class="external-link">styler</a> package to apply these styles, but please don’t restyle code that has nothing to do with your PR.</li>
 </ol></li>
 <li>
-<ol start="7" style="list-style-type: decimal"><li>Push to remote source:</li>
+<ol start="8" style="list-style-type: decimal"><li>Push to remote source:</li>
 </ol><pre><code>git push origin &lt;your_branch_name&gt;</code></pre>
 </li>
 </ul></div>
