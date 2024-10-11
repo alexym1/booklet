@@ -6,6 +6,8 @@
 #' @param groups a vector indicating the group of each variable
 #' @param ncp an integer, the number of components to keep (value set by default)
 #'
+#' @importFrom stats setNames
+#'
 #' @examples
 #' library(FactoMineR2)
 #'
@@ -39,7 +41,8 @@ facto_mfa <- function(X, groups, ncp = 2) {
 
   res_mfa <- list(
     separate.analyses = separate.analyses,
-    global.pca = global_mfa
+    global.pca = global_mfa,
+    eig = global_mfa$eig
   )
 
   class(res_mfa) <- c("MFA", "list")
