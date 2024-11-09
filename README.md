@@ -25,6 +25,12 @@ implemented. However, the main functions are already available.
 
 ## Installation
 
+Install package from the CRAN:
+
+``` r
+install.packages("FactoMineR2")
+```
+
 The latest version can be installed from GitHub as follows:
 
 ``` r
