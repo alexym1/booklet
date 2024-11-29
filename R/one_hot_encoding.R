@@ -19,7 +19,9 @@ one_hot_encoding <- function(M){
     one_hot_encoded
   })
 
-  new_M <- do.call(cbind, M_lst)
+  quali_vars <- do.call(cbind, M_lst)
+  quanti_vars <- M[, !(1:ncol(M) %in% is_quali), drop = FALSE]
+  new_M <- cbind(quanti_vars, quali_vars)
 
   return(new_M)
 }
