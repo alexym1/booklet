@@ -15,8 +15,6 @@
 #' res <- facto_mca(X = mtcars[, c(2, 8:11)], ncp = 2)
 #' @export
 facto_mca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = NULL) {
-  method <- match.arg(method)
-
   if (!is.null(col_sup)) {
     act <- (1:ncol(X))[-col_sup]
   } else {
@@ -41,28 +39,82 @@ facto_mca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row =
     weighted_row = weighted_row
   )
 
+  quali_idx <- which(unlist(lapply(X[,col_sup], is.factor)) | unlist(lapply(X[, col_sup], is.character)))
+
+  if(length(quali_idx) == 0){
+    quali_idx = NULL
+  }
+
+  quanti_idx <- which(unlist(lapply(X[,col_sup], is.numeric)) | unlist(lapply(X[, col_sup], is.integer)))
+
+  if(length(quanti_idx) == 0){
+    quanti_idx = NULL
+  }
+
+  # v.test
+
   res_mca <- list(
     eig = res_ca$eig,
     call = list(
       X = X,
-      marge.col = NULL,
+      marge.col = res_ca$call$marge.col,
       marge.row = rep(1 / nrow(X), nrow(X)),
       ncp = ncp,
       row.w = rep(1, nrow(X)),
       excl = NULL,
       call = match.call(),
-      Xtot = NULL,
-      N = NULL,
-      col.sup = NULL,
-      quali = act
+      Xtot = res_ca$call$Xtot,
+      N = res_ca$call$N,
+      row.sup = row_sup,
+      col.sup = col_sup,
+      quali = act,
+      quali.sup = col_sup[as.vector(quali_idx)],
+      quanti.sup = col_sup[as.vector(quanti_idx)]
     ),
-    ind = NULL,
-    var = NULL,
-    svd = NULL
+    ind = list(
+      coord = res_ca$ind$coord,
+      contrib = res_ca$ind$contrib,
+      cos2 = res_ca$ind$cos2
+    ),
+    var = list(
+      coord = res_ca$var$coord,
+      contrib = res_ca$var$contrib,
+      cos2 = res_ca$var$cos2,
+      v.test = NULL,
+      eta2 = ca_col_eta2(contrib = res_ca$col$contrib, X = X[,act], eigs = res_ca$eig)
+    ),
+    svd = list(
+      vs = res_ca$svd$values,
+      V = res_ca$svd$vectors,
+      U = res_ca$svd$U
+    )
   )
 
-  # quali.sup
-  # quanti.sup
+  if(!is.null(row_sup)){
+    NULL
+  }
+
+  if(!is.null(quali_idx)){
+    res_mca$quali.sup <- list(
+      coord = NULL,
+      cos2 = NULL,
+      v.test = NULL,
+      eta2 = NULL
+    )
+  }
+
+  if(!is.null(quanti_idx)){
+    U <- res_mca$svd$U
+    df_quanti <- cbind.data.frame(U, X[,names(quanti_idx), drop = FALSE])
+    weighted_cov <- cov.wt(df_quanti, cor=TRUE, wt = res_mca$call$row.w, method = "ML")
+    coord_quanti_sup <- weighted_cov$cor[-(1:ncol(U)), 1:ncol(U), drop = FALSE]
+
+    mca_var_sup_coords <- data.frame(t(coord_quanti_sup[1:ncp]))
+    colnames(mca_var_sup_coords) <- paste0("Dim.", 1:ncp)
+    rownames(mca_var_sup_coords) <- names(quanti_idx)
+
+    res_mca$quanti.sup <- mca_var_sup_coords
+  }
 
   class(res_mca) <- c("MCA", "list")
 

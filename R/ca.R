@@ -228,7 +228,7 @@ ca_col_inertia <- function(X) {
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
 #' @details
-#' `ca_col_eta2` is only used to compute eta2 in `facto_mca()`.
+#' `ca_col_eta2()` is only used by `facto_mca()` to compute eta2 for columns.
 #'
 #' @export
 ca_col_eta2 <- function(contrib, X, eigs) {

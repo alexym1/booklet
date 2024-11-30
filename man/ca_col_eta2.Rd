@@ -17,5 +17,5 @@ ca_col_eta2(contrib, X, eigs)
 Return col eta2 for each correspondence component
 }
 \details{
-\code{ca_col_eta2} is only used to compute eta2 in \code{facto_mca()}.
+\code{ca_col_eta2()} is only used by \code{facto_mca()} to compute eta2 for columns.
 }
