@@ -3,6 +3,7 @@
 export(ca_col_contrib)
 export(ca_col_coords)
 export(ca_col_cos2)
+export(ca_col_eta2)
 export(ca_col_inertia)
 export(ca_col_sup_coords)
 export(ca_col_sup_cos2)

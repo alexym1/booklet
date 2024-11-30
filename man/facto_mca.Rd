@@ -4,21 +4,12 @@
 \alias{facto_mca}
 \title{Perform MCA with FactoMineR's style}
 \usage{
-facto_mca(
-  X,
-  ncp = 5,
-  method = c("indicator", "burt"),
-  row_sup = NULL,
-  col_sup = NULL,
-  weighted_row = NULL
-)
+facto_mca(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = NULL)
 }
 \arguments{
 \item{X}{a data frame with n rows (individuals) and p columns (numeric variables)}
 
 \item{ncp}{an integer, the number of components to keep (value set by default)}
-
-\item{method}{a character string, the method to use for the MCA either "indicator" or "burt"}
 
 \item{row_sup}{supplementary rows}
 

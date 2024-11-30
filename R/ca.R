@@ -217,3 +217,24 @@ ca_col_inertia <- function(X) {
   col_inertia <- X[["weighted_col"]] * colSums(X[["CA_scaled"]]^2 * X[["weighted_row"]])
   return(col_inertia)
 }
+
+
+#' Compute col eta2
+#'
+#' Return col eta2 for each correspondence component
+#'
+#' @param contrib contribution matrix
+#' @param X contribution matrix
+#' @param eigs eigs computed by \code{ca_weighted_eigen}
+#'
+#' @details
+#' `ca_col_eta2` is only used to compute eta2 in `facto_mca()`.
+#'
+#' @export
+ca_col_eta2 <- function(contrib, X, eigs) {
+  variables <- rep(colnames(X), unlist(lapply(X, nlevels)))
+  ctrbs <- aggregate(contrib / 100, by = list(factor(variables)), FUN = sum)
+  eta2 <- t(t(data.frame(ctrbs, row.names = 1)) * eigs[,"eigenvalue"]) * ncol(X)
+  col_eta2 <- eta2[colnames(X), , drop = FALSE]
+  return(col_eta2)
+}
