@@ -21,6 +21,12 @@ facto_mca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row =
     act <- 1:ncol(X)
   }
 
+  if (!is.null(row_sup)) {
+    ind_act <- (1:nrow(X))[-row_sup]
+  } else {
+    ind_act <- 1:nrow(X)
+  }
+
   Y <- X[, act]
   Z <- one_hot_encoding(Y)
 
@@ -51,7 +57,9 @@ facto_mca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row =
     quanti_idx = NULL
   }
 
-  # v.test
+  Nj <- colSums(Z[ind_act,-supplementary_colums] * res_ca$call$row.w)
+  N <- sum(Nj)/(ncol(X) - length(quali.sup) - length(quanti.sup))
+  coeffs <- sqrt(Nj * ((N - 1)/(N - Nj)))
 
   res_mca <- list(
     eig = res_ca$eig,
@@ -72,15 +80,15 @@ facto_mca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row =
       quanti.sup = col_sup[as.vector(quanti_idx)]
     ),
     ind = list(
-      coord = res_ca$ind$coord,
-      contrib = res_ca$ind$contrib,
-      cos2 = res_ca$ind$cos2
+      coord = res_ca$row$coord,
+      contrib = res_ca$row$contrib,
+      cos2 = res_ca$row$cos2
     ),
     var = list(
-      coord = res_ca$var$coord,
-      contrib = res_ca$var$contrib,
-      cos2 = res_ca$var$cos2,
-      v.test = NULL,
+      coord = res_ca$col$coord,
+      contrib = res_ca$col$contrib,
+      cos2 = res_ca$col$cos2,
+      v.test = as.matrix(res_ca$col$coord * coeffs),
       eta2 = ca_col_eta2(contrib = res_ca$col$contrib, X = X[,act], eigs = res_ca$eig)
     ),
     svd = list(
@@ -90,16 +98,29 @@ facto_mca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row =
     )
   )
 
+
   if(!is.null(row_sup)){
-    NULL
+    res_mca$ind.sup <- list(
+      coord = NULL,
+      cos2 = NULL
+    )
   }
 
   if(!is.null(quali_idx)){
+    Nj <- colSums(Z[ind_act, supplementary_colums] * res_ca$call$row.w)
+    coeffs <- sqrt(Nj * ((N - 1)/(N - Nj)))
+
+    # X_qtl <- one_hot_encoding(X[ind_act, col_sup,drop=FALSE])
+    # ni <- colSums(X_qtl * res_mca$call$row.w)
+
+    # X_qtl <- X[ind_act, col_sup,drop=FALSE]
+    # res_eta2 <- sapply(X_qtl, ca_quali_sup_eta2, x = res_mca$ind$coord, weights = res_mca$call$row.w)
+
     res_mca$quali.sup <- list(
-      coord = NULL,
-      cos2 = NULL,
-      v.test = NULL,
-      eta2 = NULL
+      coord = res_ca$col.sup$coord,
+      cos2 = res_ca$col.sup$cos2,
+      v.test = as.matrix(res_ca$col.sup$coord * coeffs),
+      eta2 = NULL # t(res_eta2)
     )
   }
 
@@ -119,4 +140,18 @@ facto_mca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row =
   class(res_mca) <- c("MCA", "list")
 
   return(res_mca)
+}
+
+ca_quali_sup_eta2 <- function(vec, x, weights) {
+  compute_VB <- function(xx, tt, weights, ni) {
+    col_sums <- colSums((tt * xx) * weights)
+    return(sum((col_sums^2) / ni))
+  }
+
+  # tt <- one_hot_encoding(vec)
+  tt <- tab.disjonctif(vec)
+  ni <- colSums(tt * weights)
+  VB_values <- lapply(as.data.frame(x), compute_VB, tt = tt, weights = weights, ni = ni)
+  weighted_variance <- colSums(x * x * weights)
+  return(unlist(VB_values) / weighted_variance)
 }
