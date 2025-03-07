@@ -20,7 +20,7 @@ The R package FactoMineR2 is designed for multivariate data analysis. It offers 
 
 ```{r message = FALSE, warning=FALSE}
 library(FactoMineR2)
-X <- iris[,1:4]
+X <- iris[, 1:4]
 head(X)
 ```
 

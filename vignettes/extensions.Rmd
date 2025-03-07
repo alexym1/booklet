@@ -27,7 +27,7 @@ data(decathlon)
 ## Data preparation
 
 ```{r}
-X <- decathlon[,-c(11:13)]
+X <- decathlon[, -c(11:13)]
 res_pca <- facto_pca(X, ncp = 5, quanti_sup = 10)
 ```
 

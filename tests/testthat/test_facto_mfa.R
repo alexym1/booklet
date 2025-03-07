@@ -1,3 +1,5 @@
+library(FactoMineR)
+
 observed_mfa <- facto_mfa(iris[, -5], ncp = 4, groups = c(2, 2))
 expected_mfa <- MFA(iris[, -5], group = c(2, 2), ncp = 4, graph = FALSE)
 
@@ -54,17 +56,16 @@ test_that("Testing facto_mfa() - separate.analyses", {
 })
 
 test_that("Testing facto_mfa() - global", {
-
-  expect_equal(observed_mfa$eig[,1], as.vector(expected_mfa$eig[,1]))
-  expect_equal(observed_mfa$eig[,2], as.vector(expected_mfa$eig[,2]))
-  expect_equal(observed_mfa$eig[,3], as.vector(expected_mfa$eig[,3]))
+  expect_equal(observed_mfa$eig[, 1], as.vector(expected_mfa$eig[, 1]))
+  expect_equal(observed_mfa$eig[, 2], as.vector(expected_mfa$eig[, 2]))
+  expect_equal(observed_mfa$eig[, 3], as.vector(expected_mfa$eig[, 3]))
 
   observed_mfa_global <- observed_mfa$global.pca
   expected_mfa_global <- expected_mfa$global.pca
 
-  expect_equal(observed_mfa_global$eig[,1], as.vector(expected_mfa_global$eig[,1]))
-  expect_equal(observed_mfa_global$eig[,2], as.vector(expected_mfa_global$eig[,2]))
-  expect_equal(observed_mfa_global$eig[,3], as.vector(expected_mfa_global$eig[,3]))
+  expect_equal(observed_mfa_global$eig[, 1], as.vector(expected_mfa_global$eig[, 1]))
+  expect_equal(observed_mfa_global$eig[, 2], as.vector(expected_mfa_global$eig[, 2]))
+  expect_equal(observed_mfa_global$eig[, 3], as.vector(expected_mfa_global$eig[, 3]))
 
   # Active individuals
   expect_equal(as.vector(observed_mfa_global$ind$coord), as.vector(expected_mfa_global$ind$coord))

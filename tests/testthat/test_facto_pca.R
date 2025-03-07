@@ -8,9 +8,9 @@ test_that("Testing facto_pca()", {
   expected_pca <- PCA(X, ind.sup = 1, quanti.sup = 10, graph = FALSE)
 
   # Eig
-  expect_equal(observed_pca$eig[,1], as.vector(expected_pca$eig[,1]))
-  expect_equal(observed_pca$eig[,2], as.vector(expected_pca$eig[,2]))
-  expect_equal(observed_pca$eig[,3], as.vector(expected_pca$eig[,3]))
+  expect_equal(observed_pca$eig[, 1], as.vector(expected_pca$eig[, 1]))
+  expect_equal(observed_pca$eig[, 2], as.vector(expected_pca$eig[, 2]))
+  expect_equal(observed_pca$eig[, 3], as.vector(expected_pca$eig[, 3]))
 
   # Active individuals
   expect_equal(observed_pca$ind$coord, expected_pca$ind$coord)
