@@ -23,7 +23,7 @@ test_that("Testing facto_pca()", {
 
   # Active Variables
   expect_equivalent(observed_pca$var$coord, as.data.frame(expected_pca$var$coord))
-  expect_equal(observed_pca$var$cor, expected_pca$var$cor)
+  expect_equal(observed_pca$var$cor, as.data.frame(expected_pca$var$cor))
   expect_equivalent(observed_pca$var$cos2, as.data.frame(expected_pca$var$cos2))
   expect_equivalent(observed_pca$var$contrib, as.data.frame(expected_pca$var$contrib))
 

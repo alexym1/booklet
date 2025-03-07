@@ -104,7 +104,8 @@ std <- sqrt(as.vector(crossprod(weights, as.matrix(X_active^2)) - center^2))
 
 X_sup <- X[1, -10]
 X_sup_scaled <- (X_sup - center) / std
-ind_sup_coords <- as.matrix(X_sup_scaled) %*% eigs$vectors
+ind_sup_coords <- as.data.frame(as.matrix(X_sup_scaled) %*% eigs$vectors)
+rownames(ind_sup_coords) <- rownames(X_sup)
 ind_sup_coords[, 1:5]
 ```
 
@@ -166,7 +167,8 @@ res_pca$quanti.sup$coord
 X_sup <- X[-1, 10, drop = FALSE]
 X_sup_scaled <- pca_standardize(X_sup, scale = TRUE)
 
-var_sup_coords <- t(X_sup_scaled * weights) %*% eigs$U
+var_sup_coords <- as.data.frame(t(X_sup_scaled * weights) %*% eigs$U)
+rownames(var_sup_coords) <- colnames(X_sup)
 var_sup_coords[, 1:5]
 ```
 
