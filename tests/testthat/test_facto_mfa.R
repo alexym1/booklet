@@ -12,24 +12,24 @@ test_that("Testing facto_mfa() - separate.analyses", {
   expect_equal(observed_analysis$Gr2$eig$eigenvalue, as.vector(expected_analysis$Gr2$eig[, 1]))
 
   # Active individuals
-  # expect_equal(as.vector(observed_analysis$Gr1$ind$coord), as.vector(expected_analysis$Gr1$ind$coord))
-  expect_equal(as.vector(observed_analysis$Gr1$ind$cos2), as.vector(expected_analysis$Gr1$ind$cos2))
-  expect_equal(as.vector(observed_analysis$Gr1$ind$contrib), as.vector(expected_analysis$Gr1$ind$contrib))
+  expect_equivalent(observed_analysis$Gr1$ind$coord, as.data.frame(expected_analysis$Gr1$ind$coord))
+  expect_equivalent(observed_analysis$Gr1$ind$cos2, as.data.frame(expected_analysis$Gr1$ind$cos2))
+  expect_equivalent(observed_analysis$Gr1$ind$contrib, as.data.frame(expected_analysis$Gr1$ind$contrib))
 
-  # expect_equal(as.vector(observed_analysis$Gr2$ind$coord), as.vector(expected_analysis$Gr2$ind$coord))
-  expect_equal(as.vector(observed_analysis$Gr2$ind$cos2), as.vector(expected_analysis$Gr2$ind$cos2))
-  expect_equal(as.vector(observed_analysis$Gr2$ind$contrib), as.vector(expected_analysis$Gr2$ind$contrib))
+  expect_equivalent(observed_analysis$Gr2$ind$coord, as.data.frame(expected_analysis$Gr2$ind$coord))
+  expect_equivalent(observed_analysis$Gr2$ind$cos2, as.data.frame(expected_analysis$Gr2$ind$cos2))
+  expect_equivalent(observed_analysis$Gr2$ind$contrib, as.data.frame(expected_analysis$Gr2$ind$contrib))
 
   # Active Variables
-  # expect_equal(as.vector(observed_analysis$Gr1$var$coord), as.vector(expected_analysis$Gr1$var$coord))
-  # expect_equal(as.vector(observed_analysis$Gr1$var$cor), as.vector(expected_analysis$Gr1$var$cor))
-  expect_equal(as.vector(observed_analysis$Gr1$var$cos2), as.vector(expected_analysis$Gr1$var$cos2))
-  expect_equal(as.vector(observed_analysis$Gr1$var$contrib), as.vector(expected_analysis$Gr1$var$contrib))
+  expect_equivalent(observed_analysis$Gr1$var$coord, as.data.frame(expected_analysis$Gr1$var$coord))
+  expect_equivalent(observed_analysis$Gr1$var$cor, as.data.frame(expected_analysis$Gr1$var$cor))
+  expect_equivalent(observed_analysis$Gr1$var$cos2, as.data.frame(expected_analysis$Gr1$var$cos2))
+  expect_equivalent(observed_analysis$Gr1$var$contrib, as.data.frame(expected_analysis$Gr1$var$contrib))
 
-  # expect_equal(as.vector(observed_analysis$Gr2$var$coord), as.vector(expected_analysis$Gr2$var$coord))
-  # expect_equal(as.vector(observed_analysis$Gr2$var$cor), as.vector(expected_analysis$Gr2$var$cor))
-  expect_equal(as.vector(observed_analysis$Gr2$var$cos2), as.vector(expected_analysis$Gr2$var$cos2))
-  expect_equal(as.vector(observed_analysis$Gr2$var$contrib), as.vector(expected_analysis$Gr2$var$contrib))
+  expect_equivalent(observed_analysis$Gr2$var$coord, as.data.frame(expected_analysis$Gr2$var$coord))
+  expect_equivalent(observed_analysis$Gr2$var$cor, as.data.frame(expected_analysis$Gr2$var$cor))
+  expect_equivalent(observed_analysis$Gr2$var$cos2, as.data.frame(expected_analysis$Gr2$var$cos2))
+  expect_equivalent(observed_analysis$Gr2$var$contrib, as.data.frame(expected_analysis$Gr2$var$contrib))
 
   # Call
   expect_equal(observed_analysis$Gr1$call$row.w, expected_analysis$Gr1$call$row.w)
@@ -68,15 +68,15 @@ test_that("Testing facto_mfa() - global", {
   expect_equal(observed_mfa_global$eig[, 3], as.vector(expected_mfa_global$eig[, 3]))
 
   # Active individuals
-  expect_equal(as.vector(observed_mfa_global$ind$coord), as.vector(expected_mfa_global$ind$coord))
-  expect_equal(as.vector(observed_mfa_global$ind$cos2), as.vector(expected_mfa_global$ind$cos2))
-  expect_equal(as.vector(observed_mfa_global$ind$contrib), as.vector(expected_mfa_global$ind$contrib))
+  expect_equivalent(observed_mfa_global$ind$coord, as.data.frame(expected_mfa_global$ind$coord))
+  expect_equivalent(observed_mfa_global$ind$cos2, as.data.frame(expected_mfa_global$ind$cos2))
+  expect_equivalent(observed_mfa_global$ind$contrib, as.data.frame(expected_mfa_global$ind$contrib))
 
   # Active Variables
-  expect_equal(as.vector(observed_mfa_global$var$coord), as.vector(expected_mfa_global$var$coord))
-  expect_equal(as.vector(observed_mfa_global$var$cor), as.vector(expected_mfa_global$var$coord))
-  expect_equal(as.vector(observed_mfa_global$var$cos2), as.vector(expected_mfa_global$var$cos2))
-  expect_equal(as.vector(observed_mfa_global$var$contrib), as.vector(expected_mfa_global$var$contrib))
+  expect_equal(observed_mfa_global$var$coord, as.data.frame(expected_mfa_global$var$coord))
+  expect_equal(observed_mfa_global$var$cor, as.data.frame(expected_mfa_global$var$cor))
+  expect_equal(observed_mfa_global$var$cos2, as.data.frame(expected_mfa_global$var$cos2))
+  expect_equal(observed_mfa_global$var$contrib, as.data.frame(expected_mfa_global$var$contrib))
 
   # Call
   expect_equal(observed_mfa_global$call$row.w, expected_mfa_global$call$row.w)
@@ -85,6 +85,6 @@ test_that("Testing facto_mfa() - global", {
   expect_equal(observed_mfa_global$call$ncp, expected_mfa_global$call$ncp)
   expect_equal(as.vector(observed_mfa_global$call$centre), expected_mfa_global$call$centre)
   expect_equal(observed_mfa_global$call$ecart.type, expected_mfa_global$call$ecart.type)
-  # expect_equal(observed_mfa_global$call$X, expected_mfa_global$call$X)
+  expect_equivalent(observed_mfa_global$call$X, expected_mfa_global$call$X)
   expect_equal(observed_mfa_global$call$row.w.init, expected_mfa_global$call$row.w.init)
 })

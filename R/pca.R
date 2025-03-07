@@ -15,7 +15,7 @@
 #' @export
 pca_ind_coords <- function(eigs) {
   ind_coords <- t(t(as.matrix(eigs[["U"]])) * sqrt(eigs[["values"]]))
-  return(ind_coords)
+  return(as.data.frame(ind_coords))
 }
 
 #' Compute individual squared cosines
@@ -67,7 +67,7 @@ pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
 #' @export
 pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coords)) / nrow(ind_coords)) {
   ind_contrib <- t(t(ind_coords^2 * weighted_row) / eigs[["values"]]) * 100
-  return(ind_contrib)
+  return(as.data.frame(ind_contrib))
 }
 
 
@@ -88,7 +88,7 @@ pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coo
 #' @export
 pca_var_coords <- function(eigs) {
   var_coords <- t(t(as.matrix(eigs[["vectors"]])) * sqrt(eigs[["values"]]))
-  return(var_coords)
+  return(as.data.frame(var_coords))
 }
 
 #' Compute variable correlation
@@ -109,7 +109,7 @@ pca_var_coords <- function(eigs) {
 pca_var_cor <- function(eigs) {
   var_cor <- (eigs[["vectors"]] %*% diag(sqrt(eigs[["values"]])))
   colnames(var_cor) <- paste0("Dim.", 1:ncol(var_cor))
-  return(var_cor)
+  return(as.data.frame(var_cor))
 }
 
 
@@ -157,5 +157,5 @@ pca_var_cos2 <- function(var_coords) {
 #' @export
 pca_var_contrib <- function(var_cos2, eigs, weighted_col = rep(1, ncol(var_cos2))) {
   var_contrib <- t(t(var_cos2) / eigs[["values"]]) * weighted_col * 100
-  return(var_contrib)
+  return(as.data.frame(var_contrib))
 }
