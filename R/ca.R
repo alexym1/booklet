@@ -16,8 +16,7 @@
 #' @export
 ca_row_coords <- function(eigs) {
   row_coords <- t(t(as.matrix(eigs[["U"]])) * sqrt(eigs[["values"]]))
-  colnames(row_coords) <- paste0("Dim ", 1:ncol(row_coords))
-  return(row_coords)
+  return(as.data.frame(row_coords))
 }
 
 #' @rdname ca_row_coords
@@ -128,7 +127,6 @@ ca_row_inertia <- function(X) {
 #' @export
 ca_col_coords <- function(eigs) {
   col_coords <- t(t(as.matrix(eigs[["vectors"]])) * sqrt(eigs[["values"]]))
-  colnames(col_coords) <- paste0("Dim.", 1:ncol(col_coords))
   return(col_coords)
 }
 

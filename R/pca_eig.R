@@ -27,8 +27,11 @@ pca_eigen <- function(X) {
 
   eigs <- list(values = svd_res$d^2, vectors = svd_res$v, U = svd_res$u)
 
-  colnames(eigs[[2]]) <- paste0("Dim.", 1:ncol(X))
-  rownames(eigs[[2]]) <- colnames(X)
+  colnames(eigs$vectors) <- paste0("Dim.", 1:ncol(X))
+  rownames(eigs$vectors) <- colnames(X)
+
+  colnames(eigs$U) <- paste0("Dim.", 1:ncol(X))
+  rownames(eigs$U) <- rownames(X)
 
   return(eigs)
 }
@@ -47,8 +50,11 @@ pca_weighted_eigen <- function(X, weighted_row = rep(1, nrow(X)) / nrow(X), weig
 
   eigs <- list(values = svd_res$d^2, vectors = V, U = U)
 
-  colnames(eigs[[2]]) <- paste0("Dim.", 1:ncol(X))
-  rownames(eigs[[2]]) <- colnames(X)
+  colnames(eigs$vectors) <- paste0("Dim.", 1:ncol(X))
+  rownames(eigs$vectors) <- colnames(X)
+
+  colnames(eigs$U) <- paste0("Dim.", 1:ncol(X))
+  rownames(eigs$U) <- rownames(X)
 
   return(eigs)
 }

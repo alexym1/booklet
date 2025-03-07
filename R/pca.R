@@ -15,7 +15,6 @@
 #' @export
 pca_ind_coords <- function(eigs) {
   ind_coords <- t(t(as.matrix(eigs[["U"]])) * sqrt(eigs[["values"]]))
-  colnames(ind_coords) <- paste0("Dim.", 1:ncol(ind_coords))
   return(ind_coords)
 }
 
@@ -89,7 +88,6 @@ pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coo
 #' @export
 pca_var_coords <- function(eigs) {
   var_coords <- t(t(as.matrix(eigs[["vectors"]])) * sqrt(eigs[["values"]]))
-  colnames(var_coords) <- paste0("Dim.", 1:ncol(var_coords))
   return(var_coords)
 }
 

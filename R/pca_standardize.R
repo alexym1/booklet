@@ -26,8 +26,9 @@
 #'   head()
 #' @export
 pca_standardize_norm <- function(X, center = TRUE, scale = TRUE) {
-  X <- scale(X, center = center, scale = scale)
-  return(X)
+  X_scaled <- scale(X, center = center, scale = scale)
+  df_X <- as.data.frame(X_scaled)
+  return(df_X)
 }
 
 #' @rdname pca_standardize_norm
@@ -43,6 +44,8 @@ pca_standardize <- function(X, scale = TRUE, weighted_row = rep(1, nrow(X)) / nr
     std[std <= 1e-16] <- 1
     X <- t(t(X) / std)
   }
+
+  X <- as.data.frame(X)
 
   return(X)
 }
