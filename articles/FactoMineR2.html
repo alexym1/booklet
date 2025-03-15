@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to FactoMineR2">
 <meta name="description" content="Start here if this is your first time using FactoMineR2. This document deals with the differences between FactoMineR and FactoMineR2.
 ">
@@ -30,7 +30,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">FactoMineR2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
       <h1>Introduction to FactoMineR2</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/alexym1/FactoMineR2/blob/v0.4.0/vignettes/FactoMineR2.Rmd" class="external-link"><code>vignettes/FactoMineR2.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/alexym1/FactoMineR2/blob/master/vignettes/FactoMineR2.Rmd" class="external-link"><code>vignettes/FactoMineR2.Rmd</code></a></small>
       <div class="d-none name"><code>FactoMineR2.Rmd</code></div>
     </div>
 
@@ -88,7 +88,7 @@ interpreting complex data structures, making it a valuable resource for
 researchers and data analysts.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alexym1/FactoMineR2" class="external-link">FactoMineR2</a></span><span class="op">)</span></span>
-<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
 <span><span class="co">#&gt; 1          5.1         3.5          1.4         0.2</span></span>
@@ -110,13 +110,13 @@ deviation.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">X_scaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_standardize_norm.html">pca_standardize_norm</a></span><span class="op">(</span><span class="va">X</span>, center <span class="op">=</span> <span class="cn">TRUE</span>, scale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">X_scaled</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
-<span><span class="co">#&gt; [1,]   -0.8976739  1.01560199    -1.335752   -1.311052</span></span>
-<span><span class="co">#&gt; [2,]   -1.1392005 -0.13153881    -1.335752   -1.311052</span></span>
-<span><span class="co">#&gt; [3,]   -1.3807271  0.32731751    -1.392399   -1.311052</span></span>
-<span><span class="co">#&gt; [4,]   -1.5014904  0.09788935    -1.279104   -1.311052</span></span>
-<span><span class="co">#&gt; [5,]   -1.0184372  1.24503015    -1.335752   -1.311052</span></span>
-<span><span class="co">#&gt; [6,]   -0.5353840  1.93331463    -1.165809   -1.048667</span></span></code></pre></div>
+<span><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span><span class="co">#&gt; 1   -0.8976739  1.01560199    -1.335752   -1.311052</span></span>
+<span><span class="co">#&gt; 2   -1.1392005 -0.13153881    -1.335752   -1.311052</span></span>
+<span><span class="co">#&gt; 3   -1.3807271  0.32731751    -1.392399   -1.311052</span></span>
+<span><span class="co">#&gt; 4   -1.5014904  0.09788935    -1.279104   -1.311052</span></span>
+<span><span class="co">#&gt; 5   -1.0184372  1.24503015    -1.335752   -1.311052</span></span>
+<span><span class="co">#&gt; 6   -0.5353840  1.93331463    -1.165809   -1.048667</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="compute-eigenvalues">Compute eigenvalues<a class="anchor" aria-label="anchor" href="#compute-eigenvalues"></a>
@@ -140,13 +140,13 @@ variance.</p>
 <code class="sourceCode R"><span><span class="co"># You can also use the `pca_ind_coords()` function.</span></span>
 <span><span class="va">ind_coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">[[</span><span class="st">"U"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">eigs</span><span class="op">[[</span><span class="st">"values"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ind_coords</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           [,1]       [,2]        [,3]         [,4]</span></span>
-<span><span class="co">#&gt; [1,] -2.257141 -0.4784238  0.12727962  0.024087508</span></span>
-<span><span class="co">#&gt; [2,] -2.074013  0.6718827  0.23382552  0.102662845</span></span>
-<span><span class="co">#&gt; [3,] -2.356335  0.3407664 -0.04405390  0.028282305</span></span>
-<span><span class="co">#&gt; [4,] -2.291707  0.5953999 -0.09098530 -0.065735340</span></span>
-<span><span class="co">#&gt; [5,] -2.381863 -0.6446757 -0.01568565 -0.035802870</span></span>
-<span><span class="co">#&gt; [6,] -2.068701 -1.4842053 -0.02687825  0.006586116</span></span></code></pre></div>
+<span><span class="co">#&gt;       Dim.1      Dim.2       Dim.3        Dim.4</span></span>
+<span><span class="co">#&gt; 1 -2.257141 -0.4784238  0.12727962  0.024087508</span></span>
+<span><span class="co">#&gt; 2 -2.074013  0.6718827  0.23382552  0.102662845</span></span>
+<span><span class="co">#&gt; 3 -2.356335  0.3407664 -0.04405390  0.028282305</span></span>
+<span><span class="co">#&gt; 4 -2.291707  0.5953999 -0.09098530 -0.065735340</span></span>
+<span><span class="co">#&gt; 5 -2.381863 -0.6446757 -0.01568565 -0.035802870</span></span>
+<span><span class="co">#&gt; 6 -2.068701 -1.4842053 -0.02687825  0.006586116</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
