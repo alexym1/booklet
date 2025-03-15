@@ -1,3 +1,12 @@
+# FactoMineR2 0.5.0
+
+* Transform matrix to a "tidyverse" friendly data.frame output (#14)
+
+* Update unit tests for better testing and coverage
+
+* Update vignettes
+
+
 # FactoMineR2 0.4.0
 
 * Add all necessary functions to perform Correspondence Analysis (CA) (#9)

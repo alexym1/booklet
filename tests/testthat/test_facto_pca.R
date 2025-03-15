@@ -8,24 +8,24 @@ test_that("Testing facto_pca()", {
   expected_pca <- PCA(X, ind.sup = 1, quanti.sup = 10, graph = FALSE)
 
   # Eig
-  expect_equal(observed_pca$eig[,1], as.vector(expected_pca$eig[,1]))
-  expect_equal(observed_pca$eig[,2], as.vector(expected_pca$eig[,2]))
-  expect_equal(observed_pca$eig[,3], as.vector(expected_pca$eig[,3]))
+  expect_equal(observed_pca$eig[, 1], as.vector(expected_pca$eig[, 1]))
+  expect_equal(observed_pca$eig[, 2], as.vector(expected_pca$eig[, 2]))
+  expect_equal(observed_pca$eig[, 3], as.vector(expected_pca$eig[, 3]))
 
   # Active individuals
-  expect_equal(observed_pca$ind$coord, expected_pca$ind$coord)
-  expect_equal(observed_pca$ind$cos2, expected_pca$ind$cos2)
-  expect_equal(observed_pca$ind$contrib, expected_pca$ind$contrib)
+  expect_equivalent(observed_pca$ind$coord, as.data.frame(expected_pca$ind$coord))
+  expect_equivalent(observed_pca$ind$cos2, as.data.frame(expected_pca$ind$cos2))
+  expect_equivalent(observed_pca$ind$contrib, as.data.frame(expected_pca$ind$contrib))
 
   # Supplementary individuals
   expect_equal(observed_pca$ind.sup$coord, as.data.frame(expected_pca$ind.sup$coord))
   expect_equal(observed_pca$ind.sup$cos2, as.data.frame(expected_pca$ind.sup$cos2))
 
   # Active Variables
-  expect_equal(observed_pca$var$coord, expected_pca$var$coord)
-  expect_equal(observed_pca$var$cor, expected_pca$var$cor)
-  expect_equal(observed_pca$var$cos2, expected_pca$var$cos2)
-  expect_equal(observed_pca$var$contrib, expected_pca$var$contrib)
+  expect_equivalent(observed_pca$var$coord, as.data.frame(expected_pca$var$coord))
+  expect_equal(observed_pca$var$cor, as.data.frame(expected_pca$var$cor))
+  expect_equivalent(observed_pca$var$cos2, as.data.frame(expected_pca$var$cos2))
+  expect_equivalent(observed_pca$var$contrib, as.data.frame(expected_pca$var$contrib))
 
   # Supplementary Variables
   expect_equal(observed_pca$quanti.sup$coord, as.data.frame(expected_pca$quanti.sup$coord))
