@@ -12,9 +12,12 @@
 #' @examples
 #' library(FactoMineR2)
 #'
-#' res <- facto_mca(X = mtcars[, c(2, 8:11)], ncp = 2)
+#' new_df <- apply(mtcars[, c(2, 8:11)], 2, as.character)
+#' res <- facto_mca(X = as.data.frame(new_df), ncp = 2)
 #' @export
 facto_mca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = NULL) {
+  stopifnot("`X` must be a data.frame" = is.data.frame(X))
+
   if (!is.null(col_sup)) {
     act <- (1:ncol(X))[-col_sup]
   } else {

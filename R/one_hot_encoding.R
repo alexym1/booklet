@@ -11,11 +11,10 @@
 #' @export
 one_hot_encoding <- function(M){
   is_quali <- which(!unlist(lapply(M, is.numeric)))
-  M[, is_quali] <- lapply(M[, is_quali, drop = FALSE], as.factor)
 
-  M_lst <- lapply(is_quali, function(column) {
+  M_lst <- lapply(names(is_quali), function(column) {
     one_hot_encoded <- model.matrix(~ 0 + M[, column])
-    colnames(one_hot_encoded) <- levels(M[, column])
+    colnames(one_hot_encoded) <- paste0(column, "_", sort(unique(M[, column])))
     one_hot_encoded
   })
 

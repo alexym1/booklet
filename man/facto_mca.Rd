@@ -23,5 +23,6 @@ Return MCA results with FactoMineR's style
 \examples{
 library(FactoMineR2)
 
-res <- facto_mca(X = mtcars[, c(2, 8:11)], ncp = 2)
+new_df <- apply(mtcars[, c(2, 8:11)], 2, as.character)
+res <- facto_mca(X = new_df, ncp = 2)
 }
