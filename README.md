@@ -5,7 +5,9 @@
 
 <!-- badges: start -->
 
-![](https://img.shields.io/badge/github%20version-0.5.0-orange.svg)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/FactoMineR2)](https://cran.r-project.org/package=FactoMineR2)
+[![](https://cranlogs.r-pkg.org/badges/FactoMineR2)](https://cran.r-project.org/package=FactoMineR2)
+![](https://img.shields.io/badge/github%20version-0.5.0-green.svg)
 [![R-CMD-check](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=master)
@@ -38,7 +40,7 @@ devtools::install_github("alexym1/FactoMineR2")
 library(FactoMineR2)
 
 # Get active individuals
-X_active <- pca_standardize_norm(iris[,-5])
+X_active <- pca_standardize_norm(iris[, -5])
 head(X_active)
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #> 1   -0.8976739  1.01560199    -1.335752   -1.311052
