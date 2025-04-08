@@ -38,7 +38,7 @@ devtools::install_github("alexym1/FactoMineR2")
 library(FactoMineR2)
 
 # Get active individuals
-X_active <- pca_standardize_norm(iris[,-5])
+X_active <- pca_standardize_norm(iris[, -5])
 head(X_active)
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #> 1   -0.8976739  1.01560199    -1.335752   -1.311052
