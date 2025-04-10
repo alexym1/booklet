@@ -1,7 +1,7 @@
 Package: booklet
 Type: Package
 Title: Multivariate Exploratory Data Analysis
-Version: 0.5.0
+Version: 1.0.0
 Authors@R: c(
     person("Alex", "Martinez", , "yahiaoui-martinez.alex@outlook.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5315-675X"))

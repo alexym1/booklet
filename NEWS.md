@@ -1,3 +1,10 @@
+# booklet 1.0.0
+
+* Change branding
+
+* Release to CRAN
+
+
 # booklet 0.5.0
 
 * Transform matrix to a "tidyverse" friendly data.frame output (#14)
