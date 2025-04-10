@@ -30,7 +30,7 @@ facto_pca(
 Return PCA results with FactoMineR's style
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 res <- facto_pca(iris[, -5], ncp = 2, ind_sup = 1, quanti_sup = 1)
 }

@@ -13,13 +13,13 @@ vignette: >
 knitr::opts_chunk$set(collapse = T, comment = "#>")
 ```
 
-`FactoMineR2` is an R package that provides an efficient and user-friendly way to perform multivariate data analyses. `factoextra` was initially designed for `FactoMineR` but you can easily use it with `FactoMineR2` for data visualization. This vignette provides a quick overview of how to use `factoextra` with `FactoMineR2`.
+`lavander` is an R package that provides an efficient and user-friendly way to perform multivariate data analyses. `factoextra` was initially designed for `FactoMineR` but you can easily use it with `lavander` for data visualization. This vignette provides a quick overview of how to use `factoextra` with `lavander`.
 
 
 ```{r message = FALSE, warning=FALSE}
 library(factoextra)
 library(FactoMineR)
-library(FactoMineR2)
+library(lavander)
 data(decathlon)
 ```
 

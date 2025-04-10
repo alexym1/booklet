@@ -9,7 +9,7 @@
 #' @param weighted_row row weights
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #' res <- facto_ca(X = mtcars[, c(2, 8:11)], ncp = 2)
 #' @export
 facto_ca <- function(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = NULL) {

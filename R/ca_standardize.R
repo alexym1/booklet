@@ -7,7 +7,7 @@
 #' @param type standardization for supplementary rows or cols
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' mtcars[, c(2, 8:11)] |>
 #'   ca_standardize()

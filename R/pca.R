@@ -5,7 +5,7 @@
 #' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' iris[, -5] |>
 #'   pca_standardize_norm() |>
@@ -26,7 +26,7 @@ pca_ind_coords <- function(eigs) {
 #' @param weighted_col column weights
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' iris[, -5] |>
 #'   pca_standardize_norm() |>
@@ -54,7 +54,7 @@ pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
 #' components, you have to change the weighted_col argument to rep(1, nrow(ind_cos2)).
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' eigs <- iris[, -5] |>
 #'   pca_standardize_norm() |>
@@ -78,7 +78,7 @@ pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coo
 #' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' iris[, -5] |>
 #'   pca_standardize_norm() |>
@@ -98,7 +98,7 @@ pca_var_coords <- function(eigs) {
 #' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' iris[, -5] |>
 #'   pca_standardize_norm() |>
@@ -120,7 +120,7 @@ pca_var_cor <- function(eigs) {
 #' @param var_coords variable coordinates
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' iris[, -5] |>
 #'   pca_standardize_norm() |>
@@ -143,7 +143,7 @@ pca_var_cos2 <- function(var_coords) {
 #' @param weighted_col column weights
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' eigs <- iris[, -5] |>
 #'   pca_standardize_norm() |>

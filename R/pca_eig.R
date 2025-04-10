@@ -16,7 +16,7 @@
 #' * \code{pca_eigen}: This is the standard method to compute eigenvalues, eigenvectors.
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' iris[, -5] |>
 #'   pca_standardize_norm() |>

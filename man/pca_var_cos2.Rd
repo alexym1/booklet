@@ -13,7 +13,7 @@ pca_var_cos2(var_coords)
 Return variable squared cosines
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 iris[, -5] |>
   pca_standardize_norm() |>

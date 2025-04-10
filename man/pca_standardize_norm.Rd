@@ -33,7 +33,7 @@ the data matrix. (X - µ) / S, where µ is the mean and S is the standard deviat
 }
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 iris[, -5] |>
   pca_standardize_norm() |>

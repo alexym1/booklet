@@ -2,8 +2,8 @@
 title: "Comparison with FactoMineR"
 output: rmarkdown::html_vignette
 description: >
-  Start here if this is your first time using FactoMineR2.
-  This document deals with the differences between FactoMineR and FactoMineR2.
+  Start here if this is your first time using lavander.
+  This document deals with the differences between FactoMineR and lavander.
 vignette: >
   %\VignetteIndexEntry{Comparison with FactoMineR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,12 +14,12 @@ vignette: >
 knitr::opts_chunk$set(collapse = T, comment = "#>")
 ```
 
-`FactoMineR2` was designed to return same result as `FactoMineR` but with a more modern and tidyverse-friendly syntax. This document aims to show the differences between the two packages.
+`lavander` was designed to return same result as `FactoMineR` but with a more modern and tidyverse-friendly syntax. This document aims to show the differences between the two packages.
 
 
 ```{r message = FALSE, warning=FALSE}
 library(FactoMineR)
-library(FactoMineR2)
+library(lavander)
 data(decathlon)
 ```
 
@@ -35,7 +35,7 @@ head(res_pca$eig)
 
 
 ```{r}
-# Get eigvalues and eigvectors with FactoMineR2
+# Get eigvalues and eigvectors with lavander
 X_active <- X[-1, -10]
 X_active_scaled <- pca_standardize(X_active, scale = TRUE)
 
@@ -62,7 +62,7 @@ head(res_pca$ind$coord)
 ```
 
 ```{r}
-# Get principal components with FactoMineR2
+# Get principal components with lavander
 ind_coords <- pca_ind_coords(eigs)
 head(ind_coords[, 1:5])
 ```
@@ -73,7 +73,7 @@ head(res_pca$ind$cos2)
 ```
 
 ```{r}
-# Get individual cos2 with FactoMineR2
+# Get individual cos2 with lavander
 ind_cos2 <- pca_ind_cos2(ind_coords)
 head(ind_cos2[, 1:5])
 ```
@@ -84,7 +84,7 @@ head(res_pca$ind$contrib)
 ```
 
 ```{r}
-# Get individual contributions with FactoMineR2
+# Get individual contributions with lavander
 ind_contrib <- pca_ind_contrib(ind_coords, eigs)
 head(ind_contrib[, 1:5])
 ```
@@ -97,7 +97,7 @@ res_pca$ind.sup$coord
 ```
 
 ```{r}
-# Get supplementary individuals with FactoMineR2
+# Get supplementary individuals with lavander
 weights <- rep(1, nrow(X_active)) / nrow(X_active)
 center <- colMeans(X_active)
 std <- sqrt(as.vector(crossprod(weights, as.matrix(X_active^2)) - center^2))
@@ -115,7 +115,7 @@ res_pca$ind.sup$cos2
 ```
 
 ```{r}
-# Get supplementary individuals cos2 with FactoMineR2
+# Get supplementary individuals cos2 with lavander
 ind_sup_cos2 <- pca_ind_cos2(ind_sup_coords)
 ind_sup_cos2[, 1:5]
 ```
@@ -129,7 +129,7 @@ head(res_pca$var$coord)
 ```
 
 ```{r}
-# Get variable coordinates with FactoMineR2
+# Get variable coordinates with lavander
 var_coords <- pca_var_coords(eigs)
 head(var_coords[, 1:5])
 ```
@@ -140,7 +140,7 @@ head(res_pca$var$cos2)
 ```
 
 ```{r}
-# Get variable cos2 with FactoMineR2
+# Get variable cos2 with lavander
 var_cos2 <- pca_var_cos2(var_coords)
 head(var_cos2[, 1:5])
 ```
@@ -151,7 +151,7 @@ head(res_pca$var$contrib)
 ```
 
 ```{r}
-# Get variable contributions with FactoMineR2
+# Get variable contributions with lavander
 var_contrib <- pca_var_contrib(var_cos2, eigs)
 head(var_contrib[, 1:5])
 ```
@@ -163,7 +163,7 @@ head(var_contrib[, 1:5])
 res_pca$quanti.sup$coord
 ```
 ```{r}
-# Get supplementary CONTINUOUS variables coordinates with FactoMineR2
+# Get supplementary CONTINUOUS variables coordinates with lavander
 X_sup <- X[-1, 10, drop = FALSE]
 X_sup_scaled <- pca_standardize(X_sup, scale = TRUE)
 
@@ -178,7 +178,7 @@ res_pca$quanti.sup$cos2
 ```
 
 ```{r}
-# Get supplementary variables cos2 with FactoMineR2
+# Get supplementary variables cos2 with lavander
 var_sup_cos2 <- pca_var_cos2(var_sup_coords)
 var_sup_cos2[, 1:5]
 ```

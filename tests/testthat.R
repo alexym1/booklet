@@ -1,5 +1,5 @@
 library(FactoMineR)
-library(FactoMineR2)
+library(booklet)
 library(testthat)
 
-test_check("FactoMineR2")
+test_check("booklet")

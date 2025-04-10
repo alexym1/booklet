@@ -9,7 +9,7 @@
 #' @importFrom stats setNames
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' res <- facto_mfa(X = iris[, -c(5)], groups = c(2, 2), ncp = 2)
 #' @export

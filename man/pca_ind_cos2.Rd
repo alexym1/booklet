@@ -15,7 +15,7 @@ pca_ind_cos2(ind_coords, weighted_col = rep(1, ncol(ind_coords)))
 Return individual squared cosines for each principal component
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 iris[, -5] |>
   pca_standardize_norm() |>

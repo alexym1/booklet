@@ -21,6 +21,6 @@ facto_ca(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = NULL)
 Return CA results with FactoMineR's style
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 res <- facto_ca(X = mtcars[, c(2, 8:11)], ncp = 2)
 }

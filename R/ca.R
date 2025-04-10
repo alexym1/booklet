@@ -6,7 +6,7 @@
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' mtcars[, c(2, 8:11)] |>
 #'   ca_standardize() |>
@@ -36,7 +36,7 @@ ca_row_sup_coords <- function(X_sup, eigs) {
 #' @param X_sup Supplementary standardized matrix
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' X_scaled <- mtcars[, c(2, 8:11)] |>
 #'   ca_standardize()
@@ -71,7 +71,7 @@ ca_row_sup_cos2 <- function(row_coords, X_sup, X) {
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' X_scaled <- mtcars[, c(2, 8:11)] |>
 #'   ca_standardize()
@@ -97,7 +97,7 @@ ca_row_contrib <- function(row_coords, X, eigs) {
 #' @param X standardized matrix
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' mtcars[, c(2, 8:11)] |>
 #'   ca_standardize() |>
@@ -117,7 +117,7 @@ ca_row_inertia <- function(X) {
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' mtcars[, c(2, 8:11)] |>
 #'   ca_standardize() |>
@@ -146,7 +146,7 @@ ca_col_sup_coords <- function(X_sup, eigs) {
 #' @param X_sup supplementary dataset
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' X_scaled <- mtcars[, c(2, 8:11)] |>
 #'   ca_standardize()
@@ -181,7 +181,7 @@ ca_col_sup_cos2 <- function(col_coords, X_sup, X) {
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' X_scaled <- mtcars[, c(2, 8:11)] |>
 #'   ca_standardize()
@@ -207,7 +207,7 @@ ca_col_contrib <- function(col_coords, X, eigs) {
 #' @param X standardized matrix
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' mtcars[, c(2, 8:11)] |>
 #'   ca_standardize() |>
