@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-![](https://img.shields.io/badge/github%20version-0.5.0-orange.svg)
+![](https://img.shields.io/badge/github%20version-1.0.0-green.svg)
 [![R-CMD-check](https://github.com/alexym1/booklet/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/booklet/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/alexym1/booklet/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/booklet?branch=master)
