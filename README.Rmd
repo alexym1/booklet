@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 # booklet <a href=#><img src='man/figures/sticker.png' align="right" width="120" /></a>
 
 <!-- badges: start -->
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/booklet)](https://cran.r-project.org/package=booklet)
 ![](https://img.shields.io/badge/github%20version-1.0.0-green.svg)
 [![R-CMD-check](https://github.com/alexym1/booklet/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/booklet/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/alexym1/booklet/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/booklet?branch=master)

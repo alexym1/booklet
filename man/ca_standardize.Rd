@@ -23,5 +23,6 @@ Perform data standardization for multivariate exploratory data analysis.
 library(booklet)
 
 mtcars[, c(2, 8:11)] |>
-  ca_standardize()
+  ca_standardize() |>
+  head()
 }

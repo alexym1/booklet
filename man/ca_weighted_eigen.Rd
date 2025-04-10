@@ -17,5 +17,6 @@ library(booklet)
 
 mtcars[, c(2, 8:11)] |>
   ca_standardize() |>
-  ca_weighted_eigen()
+  ca_weighted_eigen() |>
+  head()
 }
