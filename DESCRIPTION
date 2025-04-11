@@ -3,13 +3,15 @@ Type: Package
 Title: Multivariate Exploratory Data Analysis
 Version: 1.0.0
 Authors@R: c(
-    person("Alex", "Martinez", , "yahiaoui-martinez.alex@outlook.com", role = c("aut", "cre"),
+    person("Alex", "Yahiaoui Martinez", , "yahiaoui-martinez.alex@outlook.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5315-675X"))
     )
 Description: Perform PCA, MFA, CA and more.
 License: MIT + file LICENSE
 URL: https://github.com/alexym1/booklet, https://alexym1.github.io/booklet/
 BugReports: https://github.com/alexym1/booklet/issues
+Depends:
+    R (>= 4.1.0)
 Suggests: 
     covr,
     devtools, 
