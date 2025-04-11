@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Multivariate exploratory data analysis in R • FactoMineR2</title>
+<title>Multivariate Exploratory Data Analysis • booklet</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -16,9 +16,9 @@
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Multivariate exploratory data analysis in R">
-<meta name="description" content="Perform PCA, MFA, CA, MCA.">
-<meta property="og:description" content="Perform PCA, MFA, CA, MCA.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Multivariate Exploratory Data Analysis">
+<meta name="description" content="Perform PCA, MFA, CA and more.">
+<meta property="og:description" content="Perform PCA, MFA, CA and more.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -26,9 +26,9 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">FactoMineR2</a>
+    <a class="navbar-brand me-2" href="index.html">booklet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="articles/FactoMineR2.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="articles/booklet.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
@@ -52,7 +52,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/alexym1/FactoMineR2/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/alexym1/booklet/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -61,8 +61,8 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="factominer2-">FactoMineR2 <a href="#"><img src="reference/figures/sticker.png" align="right" width="120"></a>
-<a class="anchor" aria-label="anchor" href="#factominer2-"></a>
+<div class="page-header"><h1 id="booklet-">booklet <a href="#"><img src="reference/figures/sticker.png" align="right" width="120"></a>
+<a class="anchor" aria-label="anchor" href="#booklet-"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -72,7 +72,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><code>FactoMineR2</code> is a ground-up rewrite of <a href="https://github.com/husson/FactoMineR/tree/master" class="external-link">FactoMineR</a> that provides a set of functions for multivariate exploratory data analysis. It is designed to be a more user-friendly version of <code>FactoMineR</code>. The main goal was to make the package more intuitive and easier to use. The package is still under development, and some functions are not yet implemented. However, the main functions are already available.</p>
+<p><code>booklet</code> is a ground-up rewrite of <a href="https://github.com/husson/FactoMineR/tree/master" class="external-link">FactoMineR</a> that provides a set of functions for multivariate exploratory data analysis. It is designed to be a more user-friendly version of <code>FactoMineR</code>. The main goal was to make the package more intuitive and easier to use. The package is still under development, and some functions are not yet implemented. However, the main functions are already available.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -80,16 +80,16 @@
 <p>The latest version can be installed from GitHub as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"alexym1/FactoMineR2"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"alexym1/booklet"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alexym1/FactoMineR2" class="external-link">FactoMineR2</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alexym1/booklet" class="external-link">booklet</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get active individuals</span></span>
-<span><span class="va">X_active</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pca_standardize_norm.html">pca_standardize_norm</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">X_active</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pca_standardize_norm.html">pca_standardize_norm</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>, <span class="op">-</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">X_active</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
 <span><span class="co">#&gt; 1   -0.8976739  1.01560199    -1.335752   -1.311052</span></span>
@@ -118,14 +118,14 @@
 <div class="section level2">
 <h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
-<p>Please note that this project is released with a <a href="https://alexym1.github.io/FactoMineR2/CONTRIBUTING.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<p>Please note that this project is released with a <a href="https://alexym1.github.io/booklet/CONTRIBUTING.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/alexym1/FactoMineR2/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/alexym1/FactoMineR2/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/alexym1/booklet/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/alexym1/booklet/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -148,7 +148,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing FactoMineR2</a></li>
+<li><a href="authors.html#citation">Citing booklet</a></li>
 </ul>
 </div>
 
