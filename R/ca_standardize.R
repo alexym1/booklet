@@ -7,10 +7,11 @@
 #' @param type standardization for supplementary rows or cols
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' mtcars[, c(2, 8:11)] |>
-#'   ca_standardize()
+#'   ca_standardize() |>
+#'   head()
 #' @export
 ca_standardize <- function(X, weighted_row = rep(1, nrow(X))) {
   new_CA <- as.matrix(X) * weighted_row / sum(X * weighted_row)

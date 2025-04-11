@@ -13,7 +13,7 @@ pca_ind_coords(eigs)
 Return principal component for individuals
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 iris[, -5] |>
   pca_standardize_norm() |>

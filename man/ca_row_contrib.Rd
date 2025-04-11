@@ -17,7 +17,7 @@ ca_row_contrib(row_coords, X, eigs)
 Return row contributions for each correspondence component
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 X_scaled <- mtcars[, c(2, 8:11)] |>
   ca_standardize()

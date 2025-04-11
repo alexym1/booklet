@@ -13,7 +13,7 @@ ca_row_inertia(X)
 Return row inertia for each correspondence component
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 mtcars[, c(2, 8:11)] |>
   ca_standardize() |>

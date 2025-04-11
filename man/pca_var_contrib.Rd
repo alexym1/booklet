@@ -17,7 +17,7 @@ pca_var_contrib(var_cos2, eigs, weighted_col = rep(1, ncol(var_cos2)))
 Return variable contributions
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 eigs <- iris[, -5] |>
   pca_standardize_norm() |>

@@ -20,7 +20,7 @@ ca_col_sup_cos2(col_coords, X_sup, X)
 Return col squared cosines for each correspondence component
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 X_scaled <- mtcars[, c(2, 8:11)] |>
   ca_standardize()

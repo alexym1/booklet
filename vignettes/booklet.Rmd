@@ -1,11 +1,11 @@
 ---
-title: "Introduction to FactoMineR2"
+title: "Introduction to booklet"
 output: rmarkdown::html_vignette
 description: >
-  Start here if this is your first time using FactoMineR2.
-  This document deals with the differences between FactoMineR and FactoMineR2.
+  Start here if this is your first time using booklet.
+  This document deals with the differences between FactoMineR and booklet.
 vignette: >
-  %\VignetteIndexEntry{Introduction to FactoMineR2}
+  %\VignetteIndexEntry{Introduction to booklet}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,10 +16,10 @@ knitr::opts_chunk$set(collapse = T, comment = "#>")
 
 ## Introduction
 
-The R package FactoMineR2 is designed for multivariate data analysis. It offers a wide array of statistical techniques for exploratory data analysis, including principal component analysis (PCA). FactoMineR2 is user-friendly and provides comprehensive tools for visualizing and interpreting complex data structures, making it a valuable resource for researchers and data analysts. 
+The R package booklet is designed for multivariate data analysis. It offers a wide array of statistical techniques for exploratory data analysis, including principal component analysis (PCA). booklet is user-friendly and provides comprehensive tools for visualizing and interpreting complex data structures, making it a valuable resource for researchers and data analysts. 
 
 ```{r message = FALSE, warning=FALSE}
-library(FactoMineR2)
+library(booklet)
 X <- iris[, 1:4]
 head(X)
 ```

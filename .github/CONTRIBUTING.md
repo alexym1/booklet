@@ -1,6 +1,6 @@
-# Contributing to FactoMineR2
+# Contributing to booklet
 
-This outlines how to propose a change to FactoMineR2.
+This outlines how to propose a change to booklet.
 
 ### Fixing typos
 
@@ -15,14 +15,14 @@ bug, create an associated issue and illustrate the bug with a minimal example.
 
 ### Reports bugs
 
-Report bugs at <https://github.com/alexym1/FactoMineR2/issues>.
+Report bugs at <https://github.com/alexym1/booklet/issues>.
 
 ### Contribution
 
 * 1. Clone the repo
 
     ```
-    git clone git@github.com:alexym1/FactoMineR2.git
+    git clone git@github.com:alexym1/booklet.git
     ```
 
 * 2. Create a branch for latest `master` or `main` branch.
@@ -39,7 +39,7 @@ Report bugs at <https://github.com/alexym1/FactoMineR2/issues>.
 * 5. Check the coverage. The coverage should be at least 90%.
     
     ```
-    detach("package:FactoMineR2", unload=TRUE)
+    detach("package:booklet", unload=TRUE)
     covr::package_coverage()
     ```
   

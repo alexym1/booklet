@@ -18,7 +18,7 @@ ca_col_sup_coords(X_sup, eigs)
 Return Correspondence component for columns
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 mtcars[, c(2, 8:11)] |>
   ca_standardize() |>

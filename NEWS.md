@@ -1,4 +1,11 @@
-# FactoMineR2 0.5.0
+# booklet 1.0.0
+
+* Change branding
+
+* Release to CRAN
+
+
+# booklet 0.5.0
 
 * Transform matrix to a "tidyverse" friendly data.frame output (#14)
 
@@ -7,7 +14,7 @@
 * Update vignettes
 
 
-# FactoMineR2 0.4.0
+# booklet 0.4.0
 
 * Add all necessary functions to perform Correspondence Analysis (CA) (#9)
 
@@ -24,7 +31,7 @@
 * Update `CONTRIBUTING.md` with coverage testing
 
 
-# FactoMineR2 0.3.0
+# booklet 0.3.0
 
 * Add `facto_mfa()` function to perform Multiple Factor Analysis (MFA) (#7)
 
@@ -33,7 +40,7 @@
 * Update `_pkgdown.yml`
 
 
-# FactoMineR2 0.2.1
+# booklet 0.2.1
 
 * `get_weighted_eigen()` now returns U matrix as expected (#4)
 
@@ -42,7 +49,7 @@
 * `facto_pca()` has been updated. Now, it returns the same output as `FactoMineR::PCA()`.
 
 
-# FactoMineR2 0.2.0
+# booklet 0.2.0
 
 * `facto_pca()` is a wrapper function that mimics `FactoMineR::PCA()`.
 
@@ -55,7 +62,7 @@
 * `Comparison.Rmd` has been updated allowing to compute either supplementary individual coordinates or supplementary variable coordinates.
 
 
-# FactoMineR2 0.1.1
+# booklet 0.1.1
 
 * `standardize()` now works as expected with `scale = FALSE` (#1)
 
@@ -66,7 +73,7 @@
 * Codecov badge has been fixed and now use `master` instead of `main` branch for coding coverage.
 
 
-# FactoMineR2 0.1.0
+# booklet 0.1.0
 
 * `get_eig()` is a wrapper function that returns eigenvalues and eigenvectors.
 

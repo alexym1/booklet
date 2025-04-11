@@ -25,7 +25,7 @@ If you want to compute the contributions of the individuals to the principal
 components, you have to change the weighted_col argument to rep(1, nrow(ind_cos2)).
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 eigs <- iris[, -5] |>
   pca_standardize_norm() |>

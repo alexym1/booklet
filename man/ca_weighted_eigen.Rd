@@ -13,9 +13,10 @@ ca_weighted_eigen(X)
 Return eigenvalues and eigenvectors of a matrix
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 mtcars[, c(2, 8:11)] |>
   ca_standardize() |>
-  ca_weighted_eigen()
+  ca_weighted_eigen() |>
+  head()
 }

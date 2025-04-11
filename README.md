@@ -1,21 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# FactoMineR2 <a href=#><img src='man/figures/sticker.png' align="right" width="120" /></a>
+# booklet <a href=#><img src='man/figures/sticker.png' align="right" width="120" /></a>
 
 <!-- badges: start -->
 
-![](https://img.shields.io/badge/github%20version-0.5.0-orange.svg)
-[![R-CMD-check](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/FactoMineR2/actions/workflows/R-CMD-check.yaml)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/booklet)](https://cran.r-project.org/package=booklet)
+![](https://img.shields.io/badge/github%20version-1.0.0-green.svg)
+[![R-CMD-check](https://github.com/alexym1/booklet/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/booklet/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/alexym1/FactoMineR2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/FactoMineR2?branch=master)
+coverage](https://codecov.io/gh/alexym1/booklet/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/booklet?branch=master)
 <!-- badges: end -->
 
 > Multivariate exploratory data analysis in R
 
 ## Overview
 
-`FactoMineR2` is a ground-up rewrite of
+`booklet` is a ground-up rewrite of
 [FactoMineR](https://github.com/husson/FactoMineR/tree/master) that
 provides a set of functions for multivariate exploratory data analysis.
 It is designed to be a more user-friendly version of `FactoMineR`. The
@@ -29,16 +30,16 @@ The latest version can be installed from GitHub as follows:
 
 ``` r
 install.packages("devtools")
-devtools::install_github("alexym1/FactoMineR2")
+devtools::install_github("alexym1/booklet")
 ```
 
 ## Example
 
 ``` r
-library(FactoMineR2)
+library(booklet)
 
 # Get active individuals
-X_active <- pca_standardize_norm(iris[,-5])
+X_active <- pca_standardize_norm(iris[, -5])
 head(X_active)
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #> 1   -0.8976739  1.01560199    -1.335752   -1.311052
@@ -72,5 +73,5 @@ head(ind_coords)
 ## Code of conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://alexym1.github.io/FactoMineR2/CONTRIBUTING.html). By
+Conduct](https://alexym1.github.io/booklet/CONTRIBUTING.html). By
 participating in this project you agree to abide by its terms.

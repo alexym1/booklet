@@ -16,10 +16,10 @@
 #' weights. This is the same method used in `FactoMineR::PCA()`.
 #'
 #' * \code{standardize_norm}: standardization is performed by centering and scaling
-#' the data matrix. (X - µ) / σ, where µ is the mean and σ is the standard deviation.
+#' the data matrix. (X - µ) / S, where µ is the mean and S is the standard deviation.
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' iris[, -5] |>
 #'   pca_standardize_norm() |>

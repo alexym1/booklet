@@ -10,7 +10,7 @@
 #' @param weighted_col column weights
 #'
 #' @examples
-#' library(FactoMineR2)
+#' library(booklet)
 #'
 #' res <- facto_pca(iris[, -5], ncp = 2, ind_sup = 1, quanti_sup = 1)
 #' @export

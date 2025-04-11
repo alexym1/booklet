@@ -13,7 +13,7 @@ pca_var_coords(eigs)
 Return variable coordinates
 }
 \examples{
-library(FactoMineR2)
+library(booklet)
 
 iris[, -5] |>
   pca_standardize_norm() |>
