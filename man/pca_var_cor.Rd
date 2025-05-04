@@ -9,6 +9,9 @@ pca_var_cor(eigs)
 \arguments{
 \item{eigs}{eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}}
 }
+\value{
+A dataframe of variable correlation.
+}
 \description{
 Return variable correlation
 }

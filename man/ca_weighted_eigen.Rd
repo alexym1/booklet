@@ -9,6 +9,9 @@ ca_weighted_eigen(X)
 \arguments{
 \item{X}{X_active}
 }
+\value{
+A list containing results of Single Value Decomposition (SVD).
+}
 \description{
 Return eigenvalues and eigenvectors of a matrix
 }

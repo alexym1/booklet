@@ -11,6 +11,9 @@ pca_ind_cos2(ind_coords, weighted_col = rep(1, ncol(ind_coords)))
 
 \item{weighted_col}{column weights}
 }
+\value{
+A dataframe of individual squared cosines.
+}
 \description{
 Return individual squared cosines for each principal component
 }

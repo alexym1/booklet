@@ -20,6 +20,9 @@ pca_weighted_eigen(
 
 \item{weighted_col}{column weights}
 }
+\value{
+A list containing results of Single Value Decomposition (SVD).
+}
 \description{
 Return eigenvalues and eigenvectors of a matrix
 }

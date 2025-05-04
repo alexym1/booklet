@@ -13,6 +13,9 @@ ca_row_contrib(row_coords, X, eigs)
 
 \item{eigs}{eigs computed by \code{ca_weighted_eigen}}
 }
+\value{
+A dataframe of row contributions.
+}
 \description{
 Return row contributions for each correspondence component
 }

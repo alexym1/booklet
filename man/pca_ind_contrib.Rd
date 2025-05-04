@@ -17,6 +17,9 @@ pca_ind_contrib(
 
 \item{weighted_row}{row weights}
 }
+\value{
+A dataframe of individual contributions.
+}
 \description{
 Return individual contributions for each principal component
 }

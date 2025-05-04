@@ -26,11 +26,17 @@ implemented. However, the main functions are already available.
 
 ## Installation
 
+The `booklet` package can be installed from CRAN as follows:
+
+``` r
+install.packages("booklet")
+```
+
 The latest version can be installed from GitHub as follows:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("alexym1/booklet")
+# install.packages("pak")
+pak::pak("alexym1/booklet")
 ```
 
 ## Example

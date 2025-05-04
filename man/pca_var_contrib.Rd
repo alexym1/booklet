@@ -13,6 +13,9 @@ pca_var_contrib(var_cos2, eigs, weighted_col = rep(1, ncol(var_cos2)))
 
 \item{weighted_col}{column weights}
 }
+\value{
+A dataframe of variable contributions.
+}
 \description{
 Return variable contributions
 }

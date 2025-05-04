@@ -13,6 +13,9 @@ facto_mfa(X, groups, ncp = 2)
 
 \item{ncp}{an integer, the number of components to keep (value set by default)}
 }
+\value{
+A list containing results of FactoMineR's multiple factor analysis (MFA).
+}
 \description{
 Return MFA results with FactoMineR's style
 }

@@ -13,6 +13,9 @@ ca_col_contrib(col_coords, X, eigs)
 
 \item{eigs}{eigs computed by \code{ca_weighted_eigen}}
 }
+\value{
+A dataframe of col contributions.
+}
 \description{
 Return col contributions for each correspondence component
 }

@@ -9,6 +9,9 @@ ca_col_inertia(X)
 \arguments{
 \item{X}{standardized matrix}
 }
+\value{
+A dataframe of col inertia.
+}
 \description{
 Return col inertia for each correspondence component
 }

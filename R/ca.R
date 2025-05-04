@@ -5,6 +5,8 @@
 #' @param X_sup Supplementary dataset
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
+#' @returns A dataframe of row coordinates.
+#'
 #' @examples
 #' library(booklet)
 #'
@@ -34,6 +36,8 @@ ca_row_sup_coords <- function(X_sup, eigs) {
 #' @param row_coords row coordinates
 #' @param X Active standardized matrix
 #' @param X_sup Supplementary standardized matrix
+#'
+#' @returns A dataframe of row squared cosines.
 #'
 #' @examples
 #' library(booklet)
@@ -70,6 +74,8 @@ ca_row_sup_cos2 <- function(row_coords, X_sup, X) {
 #' @param X standardized matrix
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
+#' @returns A dataframe of row contributions.
+#'
 #' @examples
 #' library(booklet)
 #'
@@ -96,6 +102,8 @@ ca_row_contrib <- function(row_coords, X, eigs) {
 #'
 #' @param X standardized matrix
 #'
+#' @returns A dataframe of row inertia.
+#'
 #' @examples
 #' library(booklet)
 #'
@@ -115,6 +123,8 @@ ca_row_inertia <- function(X) {
 #'
 #' @param X_sup Supplementary dataset
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
+#'
+#' @returns A dataframe of col coordinates.
 #'
 #' @examples
 #' library(booklet)
@@ -144,6 +154,8 @@ ca_col_sup_coords <- function(X_sup, eigs) {
 #' @param col_coords col coordinates
 #' @param X active dataset
 #' @param X_sup supplementary dataset
+#'
+#' @returns A dataframe of col squared cosines.
 #'
 #' @examples
 #' library(booklet)
@@ -180,6 +192,8 @@ ca_col_sup_cos2 <- function(col_coords, X_sup, X) {
 #' @param X standardized matrix
 #' @param eigs eigs computed by \code{ca_weighted_eigen}
 #'
+#' @returns A dataframe of col contributions.
+#'
 #' @examples
 #' library(booklet)
 #'
@@ -205,6 +219,8 @@ ca_col_contrib <- function(col_coords, X, eigs) {
 #' Return col inertia for each correspondence component
 #'
 #' @param X standardized matrix
+#'
+#' @returns A dataframe of col inertia.
 #'
 #' @examples
 #' library(booklet)

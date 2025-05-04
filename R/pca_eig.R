@@ -6,6 +6,8 @@
 #' @param weighted_row row weights
 #' @param weighted_col column weights
 #'
+#' @returns A list containing results of Single Value Decomposition (SVD).
+#'
 #' @details
 #' Standardization depends on what you need to perform factor analysis. We
 #' implemented two types:

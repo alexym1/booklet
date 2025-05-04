@@ -6,6 +6,8 @@
 #' @param groups a vector indicating the group of each variable
 #' @param ncp an integer, the number of components to keep (value set by default)
 #'
+#' @returns A list containing results of FactoMineR's multiple factor analysis (MFA).
+#'
 #' @importFrom stats setNames
 #'
 #' @examples

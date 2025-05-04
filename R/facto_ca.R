@@ -8,6 +8,8 @@
 #' @param col_sup a vector indicating the indexes of the supplementary cols
 #' @param weighted_row row weights
 #'
+#' @returns A list containing results of FactoMineR's correspondence analysis (CA).
+#'
 #' @examples
 #' library(booklet)
 #' res <- facto_ca(X = mtcars[, c(2, 8:11)], ncp = 2)

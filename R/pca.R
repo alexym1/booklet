@@ -4,6 +4,8 @@
 #'
 #' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #'
+#' @returns A dataframe of individual coordinates.
+#'
 #' @examples
 #' library(booklet)
 #'
@@ -24,6 +26,8 @@ pca_ind_coords <- function(eigs) {
 #'
 #' @param ind_coords individual coordinates
 #' @param weighted_col column weights
+#'
+#' @returns A dataframe of individual squared cosines.
 #'
 #' @examples
 #' library(booklet)
@@ -48,6 +52,8 @@ pca_ind_cos2 <- function(ind_coords, weighted_col = rep(1, ncol(ind_coords))) {
 #' @param ind_coords individual coordinates
 #' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #' @param weighted_row row weights
+#'
+#' @returns A dataframe of individual contributions.
 #'
 #' @details
 #' If you want to compute the contributions of the individuals to the principal
@@ -77,6 +83,8 @@ pca_ind_contrib <- function(ind_coords, eigs, weighted_row = rep(1, nrow(ind_coo
 #'
 #' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #'
+#' @returns A dataframe of variable coordinates.
+#'
 #' @examples
 #' library(booklet)
 #'
@@ -96,6 +104,8 @@ pca_var_coords <- function(eigs) {
 #' Return variable correlation
 #'
 #' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
+#'
+#' @returns A dataframe of variable correlation.
 #'
 #' @examples
 #' library(booklet)
@@ -119,6 +129,8 @@ pca_var_cor <- function(eigs) {
 #'
 #' @param var_coords variable coordinates
 #'
+#' @returns A dataframe of variable squared consines.
+#'
 #' @examples
 #' library(booklet)
 #'
@@ -141,6 +153,8 @@ pca_var_cos2 <- function(var_coords) {
 #' @param var_cos2 variable coordinates
 #' @param eigs eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}
 #' @param weighted_col column weights
+#'
+#' @returns A dataframe of variable contributions.
 #'
 #' @examples
 #' library(booklet)

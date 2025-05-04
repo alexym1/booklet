@@ -9,6 +9,9 @@ pca_var_cos2(var_coords)
 \arguments{
 \item{var_coords}{variable coordinates}
 }
+\value{
+A dataframe of variable squared consines.
+}
 \description{
 Return variable squared cosines
 }

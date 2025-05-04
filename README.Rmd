@@ -32,11 +32,17 @@ knitr::opts_chunk$set(
 
 ## Installation
 
+The `booklet` package can be installed from CRAN as follows:
+
+```{r eval = FALSE}
+install.packages("booklet")
+```
+
 The latest version can be installed from GitHub as follows: 
 
 ```{r eval = FALSE}
-install.packages("devtools")
-devtools::install_github("alexym1/booklet")
+# install.packages("pak")
+pak::pak("alexym1/booklet")
 ```
 
 ## Example

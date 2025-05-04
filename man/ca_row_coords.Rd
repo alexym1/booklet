@@ -14,6 +14,9 @@ ca_row_sup_coords(X_sup, eigs)
 
 \item{X_sup}{Supplementary dataset}
 }
+\value{
+A dataframe of row coordinates.
+}
 \description{
 Return Correspondence component for individuals
 }

@@ -9,6 +9,8 @@
 #' @param quanti_sup a vector indicating the indexes of the quantitative supplementary variables
 #' @param weighted_col column weights
 #'
+#' @returns A list containing results of FactoMineR's principal components analysis (PCA).
+#'
 #' @examples
 #' library(booklet)
 #'
