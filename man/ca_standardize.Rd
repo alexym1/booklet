@@ -16,6 +16,9 @@ ca_standardize_sup(X, type = c("row", "col"), weighted_row = rep(1, nrow(X)))
 
 \item{type}{standardization for supplementary rows or cols}
 }
+\value{
+A dataframe of the same size as \code{X}.
+}
 \description{
 Perform data standardization for multivariate exploratory data analysis.
 }

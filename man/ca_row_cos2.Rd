@@ -16,6 +16,9 @@ ca_row_sup_cos2(row_coords, X_sup, X)
 
 \item{X_sup}{Supplementary standardized matrix}
 }
+\value{
+A dataframe of row squared cosines.
+}
 \description{
 Return row squared cosines for each correspondence component
 }

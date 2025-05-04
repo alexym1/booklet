@@ -18,6 +18,9 @@ pca_standardize(X, scale = TRUE, weighted_row = rep(1, nrow(X))/nrow(X))
 
 \item{weighted_row}{row weights}
 }
+\value{
+A dataframe of the same size as \code{X}.
+}
 \description{
 Perform data standardization for multivariate exploratory data analysis.
 }

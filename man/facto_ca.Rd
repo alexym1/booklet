@@ -17,6 +17,9 @@ facto_ca(X, ncp = 5, row_sup = NULL, col_sup = NULL, weighted_row = NULL)
 
 \item{weighted_row}{row weights}
 }
+\value{
+A list containing results of FactoMineR's correspondence analysis (CA).
+}
 \description{
 Return CA results with FactoMineR's style
 }

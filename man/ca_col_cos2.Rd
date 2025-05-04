@@ -16,6 +16,9 @@ ca_col_sup_cos2(col_coords, X_sup, X)
 
 \item{X_sup}{supplementary dataset}
 }
+\value{
+A dataframe of col squared cosines.
+}
 \description{
 Return col squared cosines for each correspondence component
 }

@@ -4,6 +4,8 @@
 #'
 #' @param X X_active
 #'
+#' @returns A list containing results of Single Value Decomposition (SVD).
+#'
 #' @examples
 #' library(booklet)
 #'

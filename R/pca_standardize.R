@@ -7,6 +7,7 @@
 #' @param scale scaling by the standard deviation
 #' @param weighted_row row weights
 #'
+#'
 #' @details
 #' Standardization depends on what you need to perform factor analysis. Two
 #' methods are implemented:
@@ -17,6 +18,10 @@
 #'
 #' * \code{standardize_norm}: standardization is performed by centering and scaling
 #' the data matrix. (X - µ) / S, where µ is the mean and S is the standard deviation.
+#'
+#'
+#' @returns A dataframe of the same size as \code{X}.
+#'
 #'
 #' @examples
 #' library(booklet)

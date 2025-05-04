@@ -9,6 +9,9 @@ pca_ind_coords(eigs)
 \arguments{
 \item{eigs}{eigs computed by \code{pca_eigen} or \code{pca_weighted_eigen}}
 }
+\value{
+A dataframe of individual coordinates.
+}
 \description{
 Return principal component for individuals
 }

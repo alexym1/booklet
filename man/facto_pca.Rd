@@ -26,6 +26,9 @@ facto_pca(
 
 \item{weighted_col}{column weights}
 }
+\value{
+A list containing results of FactoMineR's principal components analysis (PCA).
+}
 \description{
 Return PCA results with FactoMineR's style
 }

@@ -6,6 +6,8 @@
 #' @param weighted_row row weights
 #' @param type standardization for supplementary rows or cols
 #'
+#' @returns A dataframe of the same size as \code{X}.
+#'
 #' @examples
 #' library(booklet)
 #'
