@@ -7,7 +7,7 @@
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/booklet)](https://cran.r-project.org/package=booklet)
 [![](https://cranlogs.r-pkg.org/badges/booklet)](https://cran.r-project.org/package=booklet)
-![](https://img.shields.io/badge/github%20version-1.0.0-green.svg)
+![](https://img.shields.io/badge/github%20version-1.0.1-green.svg)
 [![R-CMD-check](https://github.com/alexym1/booklet/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/alexym1/booklet/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/alexym1/booklet/branch/master/graph/badge.svg)](https://app.codecov.io/gh/alexym1/booklet?branch=master)
