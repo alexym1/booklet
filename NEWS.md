@@ -1,3 +1,8 @@
+# booklet 1.0.1
+
+* Add new logo (#19)
+
+
 # booklet 1.0.0
 
 * Change branding
